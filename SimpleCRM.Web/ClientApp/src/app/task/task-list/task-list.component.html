@@ -1,0 +1,22 @@
+<h3>Task List <button type="button" class="btn btn-primary">Add new</button></h3>
+
+<p></p>
+
+<p *ngIf="!tasks"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="tasks">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Employee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td><a href="/employee/{{ task.employeeId }}">{{ task.employeeLastName }} {{ task.employeeFirstName }}</a></td>
+    </tr>
+  </tbody>
+</table>
