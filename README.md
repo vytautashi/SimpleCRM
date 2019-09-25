@@ -3,7 +3,7 @@
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### Prerequisites
 Things you need to install.
-* .NET Core 3.0 SDK (soon)
+* [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 ### Installation
 Step by step installation instructions.
   1. Clone the repository
