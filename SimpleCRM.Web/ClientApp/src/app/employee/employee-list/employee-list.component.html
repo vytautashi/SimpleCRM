@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
-      <td>{{ employee.lastName }} {{ employee.firstName }}</td>
+      <td><a [routerLink]="['/employee', employee.employeeId]">{{ employee.lastName }} {{ employee.firstName }}</a></td>
       <td>
         <p *ngIf="employee.connected" class="text-success"><em>Online</em></p>
         <p *ngIf="!employee.connected" class="text-danger"><em>Offline</em></p>

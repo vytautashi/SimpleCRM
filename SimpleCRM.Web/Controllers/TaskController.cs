@@ -20,16 +20,35 @@ namespace SimpleCRM.Web.Controllers
             _context = context;
         }
 
+        private DailyTaskDto ToDailyTaskDto(DailyTask task)
+        {
+            DailyTaskDto dailyTaskDto = new DailyTaskDto
+            {
+                DailyTaskId = task.DailyTaskId,
+                Title = task.Title,
+                Description = task.Description,
+            };
+            if (task.Employee != null)
+            {
+                dailyTaskDto.EmployeeId = task.Employee.EmployeeId;
+                dailyTaskDto.EmployeeFirstName = task.Employee.FirstName;
+                dailyTaskDto.EmployeeLastName = task.Employee.LastName;
+            }
+            return dailyTaskDto;
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var tasks = new DailyTaskDto[]{
-                new DailyTaskDto{DailyTaskId = 1, Title = "Sky web programming", Description = "",EmployeeId = 1, EmployeeFirstName = "Antanas", EmployeeLastName = "Antanauskas"},
-                new DailyTaskDto{DailyTaskId = 2, Title = "Sky web testing", Description = "",EmployeeId = 1, EmployeeFirstName = "Antanas", EmployeeLastName = "Antanauskas"},
-                new DailyTaskDto{DailyTaskId = 3, Title = "Sky web UI design", Description = "",EmployeeId = 2, EmployeeFirstName = "Jonas",EmployeeLastName = "Jonauskas"},
-                };
+            var dailyTasks = await _context.DailyTasks.Include(e => e.Employee).ToListAsync();
+            var tasksDto = new List<DailyTaskDto>();
 
-            return Ok(tasks);
+            foreach (var task in dailyTasks)
+            {
+                tasksDto.Add(ToDailyTaskDto(task));
+            }
+
+            return Ok(tasksDto);
         }
 
     }

@@ -12,9 +12,10 @@ namespace SimpleCRM.Data.Context
         {
         }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<DailyTask> DailyTasks { get; set; }
 
-		
-		protected override void OnConfiguring(DbContextOptionsBuilder options)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
 			options.UseSqlite("Data Source=SimpleCRM.db");
 		}

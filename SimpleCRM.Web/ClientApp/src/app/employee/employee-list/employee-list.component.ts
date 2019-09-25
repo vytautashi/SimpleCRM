@@ -7,7 +7,7 @@ const API_URL = 'api/employee';
   selector: 'app-employee',
   templateUrl: './employee-list.component.html'
 })
-export class EmployeeComponent {
+export class EmployeeListComponent {
   public employees: employeeDto[];
   private base_url: string; 
 

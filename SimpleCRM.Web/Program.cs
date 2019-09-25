@@ -24,7 +24,7 @@ namespace SimpleCRM.Web
 				try
 				{
 					var context = services.GetRequiredService<SimpleCRMContext>();
-					//DbInitializer.Initialize(context);
+					SimpleCRMContextSeed.Initialize(context);
 				}
 				catch (Exception ex)
 				{

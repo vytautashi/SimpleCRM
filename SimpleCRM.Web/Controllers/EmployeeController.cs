@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.Data.Models;
 using SimpleCRM.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using SimpleCRM.Data.Repositories;
 
 namespace SimpleCRM.Web.Controllers
 {
@@ -13,25 +14,23 @@ namespace SimpleCRM.Web.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly SimpleCRMContext _context;
+		private EmployeeRepository _employeeRepository;
 
         public EmployeeController(SimpleCRMContext context)
         {
-            _context = context;
+			_employeeRepository = new EmployeeRepository(context);
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var employees = new EmployeeDto[]{
-                new EmployeeDto{EmployeeId = 1, FirstName = "Antanas", LastName = "Antanauskas", Connected = true},
-                new EmployeeDto{EmployeeId = 2, FirstName = "Jonas",LastName = "Jonauskas", Connected = false},
-                };
+            return Ok(await _employeeRepository.GetEmployeeListAsync());
+        }
 
-            return Ok(employees);
-            //_context.Employees.Add(new Employee { FirstName = "Antanas",LastName = "Jo" });
-            //_context.SaveChanges();
-            //return await _context.Employees.ToListAsync();
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _employeeRepository.GetEmployeeAsync(id));
         }
 
     }
