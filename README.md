@@ -3,15 +3,16 @@
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### Prerequisites
 Things you need to install.
-* [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+* [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.2)
+* [Node.js LTS Version: 10.16.3](https://nodejs.org/en/download/)
 ### Installation
 Step by step installation instructions.
   1. Clone the repository
-  1. Build the solution in root directory by running:
+  1. Build solution by running within the `SimpleCRM.WebAngular` directory:
      ```
      dotnet build
      ```
-  1. Within the `SimpleCRM.Web` directory, launch:
+  1. Within the `SimpleCRM.WebAngular` directory, launch:
      ```
      dotnet run
      ```
