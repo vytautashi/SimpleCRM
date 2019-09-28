@@ -27,7 +27,6 @@ h1 {
   bottom: 0;
   left: 0;
   z-index: 1000;
-  padding: 20px;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   border-right: 1px solid #eee;
@@ -42,6 +41,13 @@ h1 {
 
 .sidebar .nav {
   margin-bottom: 20px;
+}
+
+.sidebar .menu-header {
+  margin-top: 20px;
+  padding: 2px 10px 2px 10px;
+  color: #bbbbbb;
+  background-color: #444444;
 }
 
 .sidebar .nav-item {
@@ -61,16 +67,3 @@ h1 {
   background-color: #333333;
 }
 
-/*
- * Dashboard
- */
-
- /* Placeholders */
-.placeholders {
-  padding-bottom: 3rem;
-}
-
-.placeholder img {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}

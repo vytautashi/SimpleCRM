@@ -1,0 +1,8 @@
+<div>
+  <select class="col-3" (change)="selectChange($event.target.value)">
+    <option value="0">All</option>
+    <option *ngFor="let role of roles" value={{role.roleId}}>
+      {{role.name}}
+    </option>
+  </select>
+</div>

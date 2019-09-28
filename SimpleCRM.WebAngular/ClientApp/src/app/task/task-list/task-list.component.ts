@@ -14,12 +14,12 @@ export class TaskComponent {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.base_url = baseUrl;
-    http.get<DailyTaslListViewModel>(baseUrl + API_URL).subscribe(result => {
+    http.get<DailyTaskListViewModel>(baseUrl + API_URL).subscribe(result => {
       this.tasks = result.dailyTasks;
     }, error => console.error(error));
   }
 }
-interface DailyTaslListViewModel {
+interface DailyTaskListViewModel {
   dailyTasks: DailyTaskDto[];
 }
 

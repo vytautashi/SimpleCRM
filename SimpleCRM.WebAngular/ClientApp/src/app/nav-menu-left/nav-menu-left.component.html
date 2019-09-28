@@ -1,10 +1,21 @@
 <div class="container-fluid">
   <div class="row">
 	<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+    <div class="menu-header">My Controls</div>
 	  <ul class="nav nav-pills flex-column">
 		<li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
 			<a class="nav-link" [routerLink]="['/']">Home</a>
 		</li>
+		<li class="nav-item" [routerLinkActive]="['link-active']">
+			<a class="nav-link" [routerLink]="['/mytasks']">My Tasks</a>
+		</li>
+		<li class="nav-item" [routerLinkActive]="['link-active']">
+			<a class="nav-link" [routerLink]="['/myprofile']">My Profile</a>
+		</li>
+    </ul>
+ 		
+    <div class="menu-header">Manager Controls</div>
+    <ul class="nav nav-pills flex-column">
 		<li class="nav-item" [routerLinkActive]='["link-active"]'>
 		  <a class="nav-link" [routerLink]='["/employee"]'>Employee List</a>
 		</li>

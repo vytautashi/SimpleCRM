@@ -1,6 +1,5 @@
 <h3>Employee List <button type="button" class="btn btn-primary">Add new</button></h3>
-
-
+<app-role (notify)="filterByRole($event)"></app-role>
 <table class='table table-striped' *ngIf="employees">
   <thead>
     <tr>

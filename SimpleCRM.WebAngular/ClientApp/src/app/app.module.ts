@@ -6,22 +6,22 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from "@angular/common";
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { NavMenuLeftComponent } from './nav-menu-left/nav-menu-left.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
 import { TaskComponent } from './task/task-list/task-list.component';
+import { RoleComponent } from './role/role-list/role-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
 	  NavMenuLeftComponent,
 	  HomeComponent,
     EmployeeListComponent,
     EmployeeComponent,
     TaskComponent,
+    RoleComponent,
   ],
   imports: [
     CommonModule,

@@ -35,6 +35,8 @@ namespace SimpleCRM.Data.Context
             var roles = new Role[]{
                 new Role{Name = "Programmer"},
                 new Role{Name = "Designer"},
+                new Role{Name = "Lead Programmer"},
+                new Role{Name = "Manager"},
             };
 
             context.Roles.AddRange(roles);
@@ -74,6 +76,14 @@ namespace SimpleCRM.Data.Context
                 , OnlineStatus = Employee.EmployeeOnlineStatus.Away
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
                 },
+
+                new Employee{FullName = "Petras N"
+                , Address = "Vilnius Lithuania"
+                , Phone = "862352643"
+                , Email = "tik@gmail.com"
+                , OnlineStatus = Employee.EmployeeOnlineStatus.Offline
+                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 4)
+                },
             };
 
             context.Employees.AddRange(employees);
@@ -103,14 +113,14 @@ namespace SimpleCRM.Data.Context
                 , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 3)
                 },
 
-                new DailyTask{Title = "[creation] employee add form"
+                new DailyTask{Title = "create Employee add form"
                 , Description = "no info"
                 , Status = DailyTask.DailyTaskStatus.Ongoing
                 , Priority = DailyTask.DailyTaskPriority.Normal
                 , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
                 },
 
-                new DailyTask{Title = "[extend] DailyTask model"
+                new DailyTask{Title = "extend DailyTask model"
                 , Description = ""
                 , Status = DailyTask.DailyTaskStatus.Completed
                 , Priority = DailyTask.DailyTaskPriority.Normal

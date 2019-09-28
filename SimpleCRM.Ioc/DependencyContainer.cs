@@ -18,6 +18,9 @@ namespace SimpleCRM.Ioc
 
             service.AddScoped<IDailyTaskService, DailyTaskService>();
             service.AddScoped<IDailyTaskRepository, DailyTaskRepository>();
+
+            service.AddScoped<IRoleService, RoleService>();
+            service.AddScoped<IRoleRepository, RoleRepository>();
         }
     }
 }

@@ -1,0 +1,11 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+  <div class="form-group">
+    <div class="input-group">
+      <input name="fullName" #fullName="ngModel" [(ngModel)]="service.formData.fullName" class="form-control"
+             placeholder="Employee Full Name" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid">Submit</button>
+  </div>
+</form>

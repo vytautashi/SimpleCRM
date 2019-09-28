@@ -53,6 +53,7 @@ namespace SimpleCRM.App.Services
                 Email = employee.Email,
                 OnlineStatus = (int) employee.OnlineStatus,
                 OnlineStatusText = employee.OnlineStatus.ToString(),
+                RoleId = employee.Role.RoleId,
                 RoleName = employee.Role.Name,
                 DailyTasks = ToDailyTaskDtoList(employee.DailyTasks),
             };
