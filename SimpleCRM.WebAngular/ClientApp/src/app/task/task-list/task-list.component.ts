@@ -5,7 +5,8 @@ const API_URL = 'api/dailytask';
 
 @Component({
   selector: 'app-task',
-  templateUrl: './task-list.component.html'
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.css'],
 })
 export class TaskComponent {
   public tasks: DailyTaskDto[];
@@ -26,6 +27,11 @@ interface DailyTaskDto {
   dailyTaskId: number;
   title: string;
   description: string;
+
+  priority: number;
+  priorityText: string;
+  status: number;
+  statusText: string;
 
   employeeId: number;
   employeeFullName: string;

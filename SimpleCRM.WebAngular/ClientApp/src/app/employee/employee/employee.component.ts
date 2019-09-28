@@ -6,7 +6,8 @@ const API_URL = 'api/employee';
 
 @Component({
   selector: 'app-employee',
-  templateUrl: './employee.component.html'
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent {
   public employee: EmployeeDto;
@@ -30,6 +31,11 @@ interface DailyTaskDto
   dailyTaskId: number;
   title: string;
   description: string;
+
+  priority: number;
+  priorityText: string;
+  status: number;
+  statusText: string;
 }
 
 interface EmployeeDto {
@@ -39,6 +45,7 @@ interface EmployeeDto {
   phone: string;
   email: string;
   onlineStatus: number;
+  onlineStatusText: string;
   roleName: string;
   dailyTasks: DailyTaskDto[];
 }

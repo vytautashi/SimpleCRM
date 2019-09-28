@@ -10,6 +10,7 @@ namespace SimpleCRM.App.Dto
         public string Phone { get; set; }
         public string Email { get; set; }
         public int OnlineStatus { get; set; }
+        public string OnlineStatusText { get; set; }
 
         public string RoleName { get; set; }
         public IEnumerable<DailyTaskDto> DailyTasks { get; set; }

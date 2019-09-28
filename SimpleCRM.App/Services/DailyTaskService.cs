@@ -27,6 +27,10 @@ namespace SimpleCRM.App.Services
                 DailyTaskId = dailyTask.DailyTaskId,
                 Title = dailyTask.Title,
                 Description = dailyTask.Description,
+                Priority = (int)dailyTask.Priority,
+                PriorityText = dailyTask.Priority.ToString(),
+                Status = (int)dailyTask.Status,
+                StatusText = dailyTask.Status.ToString(),
 
                 EmployeeId = dailyTask.Employee.EmployeeId,
                 EmployeeFullName = dailyTask.Employee.FullName,

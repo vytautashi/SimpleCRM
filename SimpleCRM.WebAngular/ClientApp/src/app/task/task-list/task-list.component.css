@@ -1,0 +1,29 @@
+.priority1, .priority2, .priority3 {
+  color: green;
+}
+
+.priority4 {
+  color: orange;
+}
+
+.priority5 {
+  color: red;
+}
+
+
+.taskNormal{
+
+}
+
+.taskCompleted {
+  color: gray;
+}
+.taskCanceled {
+  color: lightcoral;
+}
+.taskOngoing {
+  color: green;
+}
+.taskFrozen {
+  color: wheat;
+}

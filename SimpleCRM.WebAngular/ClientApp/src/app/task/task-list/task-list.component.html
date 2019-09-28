@@ -4,15 +4,37 @@
 <table class='table table-striped' *ngIf="tasks">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Employee</th>
+      <th class="col-1">Priority</th>
+      <th class="col-1">Status</th>
+      <th class="col-6">Task Title</th>
+      <th class="col-4">Employee</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
-      <td>{{ task.title }}</td>
-      <td>{{ task.description }}</td>
+      <td [ngClass]="
+          task.status == 1 ? 'taskCompleted'
+          : task.priority < 4 ? 'priority1'
+                : task.priority == 4 ? 'priority4'
+                : 'priority5'
+              ">
+            {{ task.priorityText }}
+      </td>
+      <td [ngClass]="
+              task.status == 0 ? 'taskCanceled'
+                : task.status == 1 ? 'taskCompleted'
+                : task.status == 2 ? 'taskOngoing'
+                : task.status == 3 ? 'taskFrozen'
+                : 'taskCompleted'
+              ">
+        {{ task.statusText }}
+      </td>
+      <td [ngClass]="
+              task.status == 1 ? 'taskCompleted'
+                : 'taskNormal'
+              ">
+        {{ task.title }}
+      </td>
       <td><a [routerLink]="['/employee', task.employeeId]">{{ task.employeeFullName }}</a></td>
     </tr>
   </tbody>

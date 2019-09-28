@@ -82,12 +82,48 @@ namespace SimpleCRM.Data.Context
         private static void AddDailyTasks(SimpleCRMContext context)
         {
             var tasks = new DailyTask[]{
-                new DailyTask{Title = "[Sky web] create user verification module", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)},
-                new DailyTask{Title = "[Sky web] write unit test for customer module", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)},
-                new DailyTask{Title = "[Sky web] UI design login screen", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 3)},
-                new DailyTask{Title = "employee add form [creation]", Description = "no info", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)},
-                new DailyTask{Title = "[extend] DailyTask model", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)},
-                };
+                new DailyTask{Title = "[Sky web] create user verification module"
+                , Description = ""
+                , Status = DailyTask.DailyTaskStatus.Ongoing
+                , Priority = DailyTask.DailyTaskPriority.Low
+                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)
+                },
+
+                new DailyTask{Title = "[Sky web] write unit test for customer module"
+                , Description = ""
+                , Status = DailyTask.DailyTaskStatus.Ongoing
+                , Priority = DailyTask.DailyTaskPriority.Low
+                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)
+                },
+
+                new DailyTask{Title = "[Sky web] UI design login screen"
+                , Description = ""
+                , Status = DailyTask.DailyTaskStatus.Ongoing
+                , Priority = DailyTask.DailyTaskPriority.Lowest
+                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 3)
+                },
+
+                new DailyTask{Title = "[creation] employee add form"
+                , Description = "no info"
+                , Status = DailyTask.DailyTaskStatus.Ongoing
+                , Priority = DailyTask.DailyTaskPriority.Normal
+                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
+                },
+
+                new DailyTask{Title = "[extend] DailyTask model"
+                , Description = ""
+                , Status = DailyTask.DailyTaskStatus.Completed
+                , Priority = DailyTask.DailyTaskPriority.Normal
+                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
+                },
+
+                new DailyTask{Title = "Refactor Repositories, create generetic class"
+                , Description = ""
+                , Status = DailyTask.DailyTaskStatus.Frozen
+                , Priority = DailyTask.DailyTaskPriority.Important
+                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
+                },
+            };
 
             context.DailyTasks.AddRange(tasks);
             context.SaveChanges();

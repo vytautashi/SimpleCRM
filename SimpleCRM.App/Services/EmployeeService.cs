@@ -23,15 +23,20 @@ namespace SimpleCRM.App.Services
         private IEnumerable<DailyTaskDto> ToDailyTaskDtoList(IEnumerable<DailyTask> dailyTasks)
         {
             ICollection<DailyTaskDto> dailyTasksDto = new Collection<DailyTaskDto>();
-            foreach (var task in dailyTasks)
+            foreach (var dailyTask in dailyTasks)
             {
                 dailyTasksDto.Add(new DailyTaskDto
                 {
-                    DailyTaskId = task.DailyTaskId,
-                    Title = task.Title,
-                    Description = task.Description,
-                    EmployeeId = task.Employee.EmployeeId,
-                    EmployeeFullName = task.Employee.FullName,
+                    DailyTaskId = dailyTask.DailyTaskId,
+                    Title = dailyTask.Title,
+                    Description = dailyTask.Description,
+                    Priority = (int)dailyTask.Priority,
+                    PriorityText = dailyTask.Priority.ToString(),
+                    Status = (int)dailyTask.Status,
+                    StatusText = dailyTask.Status.ToString(),
+
+                    EmployeeId = dailyTask.Employee.EmployeeId,
+                    EmployeeFullName = dailyTask.Employee.FullName,
                 });
             }
 
@@ -47,6 +52,7 @@ namespace SimpleCRM.App.Services
                 Phone = employee.Phone,
                 Email = employee.Email,
                 OnlineStatus = (int) employee.OnlineStatus,
+                OnlineStatusText = employee.OnlineStatus.ToString(),
                 RoleName = employee.Role.Name,
                 DailyTasks = ToDailyTaskDtoList(employee.DailyTasks),
             };

@@ -35,5 +35,6 @@ interface EmployeeDto {
   //phone: string;
   //email: string;
   onlineStatus: number;
+  onlineStatusText: string;
   roleName: string;
 }
