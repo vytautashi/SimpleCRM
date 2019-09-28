@@ -1,0 +1,31 @@
+<h3 *ngIf="employee">
+  {{ employee.fullName }}
+  <em *ngIf="employee.onlineStatus == 1" class="text-success">Online</em>
+  <em *ngIf="employee.onlineStatus == 0" class="text-danger">Offline</em>
+  <em *ngIf="employee.onlineStatus == 2" class="text-danger">Away</em>
+</h3>
+
+<table class="table table-sm" *ngIf="employee">
+  <tbody>
+    <tr>
+      <th class="w-25">Role</th>
+      <td>{{ employee.roleName }}</td>
+    </tr>
+    <tr>
+      <th class="w-25">Address</th>
+      <td>{{ employee.address }}</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>{{ employee.phone }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ employee.email }}</td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="employee">
+<h3>Task List</h3>
+<p>TODO  employee task list</p>
+</div>

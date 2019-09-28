@@ -1,0 +1,23 @@
+<h3>Employee List <button type="button" class="btn btn-primary">Add new</button></h3>
+
+
+<table class='table table-striped' *ngIf="employees">
+  <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Role</th>
+      <th>Online Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td><a [routerLink]="['/employee', employee.employeeId]">{{ employee.fullName }}</a></td>
+      <td>{{ employee.roleName }} </td>
+      <td>
+        <p *ngIf="employee.onlineStatus == 1" class="text-success"><em>Online</em></p>
+        <p *ngIf="employee.onlineStatus == 0" class="text-danger"><em>Offline</em></p>
+        <p *ngIf="employee.onlineStatus == 2" class="text-danger"><em>Away</em></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
