@@ -66,6 +66,14 @@ namespace SimpleCRM.Data.Context
                 , OnlineStatus = Employee.EmployeeOnlineStatus.Offline
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 2)
                 },
+
+                new Employee{FullName = "Vytautas"
+                , Address = "Klaipeda Lithuania"
+                , Phone = "**********"
+                , Email = "********@yahoo.com"
+                , OnlineStatus = Employee.EmployeeOnlineStatus.Away
+                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
+                },
             };
 
             context.Employees.AddRange(employees);
@@ -77,6 +85,8 @@ namespace SimpleCRM.Data.Context
                 new DailyTask{Title = "[Sky web] create user verification module", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)},
                 new DailyTask{Title = "[Sky web] write unit test for customer module", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)},
                 new DailyTask{Title = "[Sky web] UI design login screen", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 3)},
+                new DailyTask{Title = "employee add form [creation]", Description = "no info", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)},
+                new DailyTask{Title = "[extend] DailyTask model", Description = "", Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)},
                 };
 
             context.DailyTasks.AddRange(tasks);

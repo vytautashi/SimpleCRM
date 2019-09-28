@@ -20,7 +20,23 @@ namespace SimpleCRM.App.Services
             _employeeRepository = employeeRepository;
         }
 
+        private IEnumerable<DailyTaskDto> ToDailyTaskDtoList(IEnumerable<DailyTask> dailyTasks)
+        {
+            ICollection<DailyTaskDto> dailyTasksDto = new Collection<DailyTaskDto>();
+            foreach (var task in dailyTasks)
+            {
+                dailyTasksDto.Add(new DailyTaskDto
+                {
+                    DailyTaskId = task.DailyTaskId,
+                    Title = task.Title,
+                    Description = task.Description,
+                    EmployeeId = task.Employee.EmployeeId,
+                    EmployeeFullName = task.Employee.FullName,
+                });
+            }
 
+            return dailyTasksDto;
+        }
         private EmployeeDto ToEmployeeDto(Employee employee)
         {
             EmployeeDto employeeDto = new EmployeeDto
@@ -32,6 +48,7 @@ namespace SimpleCRM.App.Services
                 Email = employee.Email,
                 OnlineStatus = (int) employee.OnlineStatus,
                 RoleName = employee.Role.Name,
+                DailyTasks = ToDailyTaskDtoList(employee.DailyTasks),
             };
             return employeeDto;
         }

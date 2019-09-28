@@ -26,6 +26,7 @@ namespace SimpleCRM.Data.Repositories
             //        select new { e.Company, e.EmployeeDailyTasks };
 
             return _context.Employees
+                .Include(e => e.DailyTasks)
                 .Include(e => e.Role);
         }
 

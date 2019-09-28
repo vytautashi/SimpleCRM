@@ -12,5 +12,6 @@ namespace SimpleCRM.App.Dto
         public int OnlineStatus { get; set; }
 
         public string RoleName { get; set; }
+        public IEnumerable<DailyTaskDto> DailyTasks { get; set; }
     }
 }

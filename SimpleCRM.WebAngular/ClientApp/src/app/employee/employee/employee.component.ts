@@ -25,6 +25,13 @@ interface EmployeeViewModel {
   employee: EmployeeDto;
 }
 
+interface DailyTaskDto
+{
+  dailyTaskId: number;
+  title: string;
+  description: string;
+}
+
 interface EmployeeDto {
   employeeId: number;
   fullName: string;
@@ -33,4 +40,5 @@ interface EmployeeDto {
   email: string;
   onlineStatus: number;
   roleName: string;
+  dailyTasks: DailyTaskDto[];
 }
