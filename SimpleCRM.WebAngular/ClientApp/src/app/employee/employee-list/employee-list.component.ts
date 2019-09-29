@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { EmployeeDto } from '../../interfaces/EmployeeDto';
 
 const API_URL = 'api/employee';
 
@@ -28,23 +29,6 @@ export class EmployeeListComponent {
   }
 }
 
-export enum EmployeeOnlineStatus {
-  Offline = 0,
-  Online = 1,
-  Away = 2,
-}
-
 interface EmployeeListViewModel {
   employees: EmployeeDto[];
-}
-interface EmployeeDto {
-  employeeId: number;
-  fullName: string;
-  //address: string;
-  //phone: string;
-  //email: string;
-  onlineStatus: number;
-  onlineStatusText: string;
-  roleId: number;
-  roleName: string;
 }

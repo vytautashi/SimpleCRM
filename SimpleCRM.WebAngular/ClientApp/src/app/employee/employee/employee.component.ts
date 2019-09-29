@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { EmployeeDto } from '../../interfaces/EmployeeDto';
 
 const API_URL = 'api/employee';
 
@@ -24,28 +25,4 @@ export class EmployeeComponent {
 
 interface EmployeeViewModel {
   employee: EmployeeDto;
-}
-
-interface DailyTaskDto
-{
-  dailyTaskId: number;
-  title: string;
-  description: string;
-
-  priority: number;
-  priorityText: string;
-  status: number;
-  statusText: string;
-}
-
-interface EmployeeDto {
-  employeeId: number;
-  fullName: string;
-  address: string;
-  phone: string;
-  email: string;
-  onlineStatus: number;
-  onlineStatusText: string;
-  roleName: string;
-  dailyTasks: DailyTaskDto[];
 }

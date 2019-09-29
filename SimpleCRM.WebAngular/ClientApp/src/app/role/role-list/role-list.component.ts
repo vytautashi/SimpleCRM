@@ -1,5 +1,6 @@
 import { Component, Inject, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RoleDto } from '../../interfaces/RoleDto';
 
 const API_URL = 'api/role';
 
@@ -25,10 +26,4 @@ export class RoleComponent {
 }
 interface RoleListViewModel {
   roles: RoleDto[];
-}
-
-interface RoleDto {
-  roleId: number;
-  name: string;
-  description: string;
 }

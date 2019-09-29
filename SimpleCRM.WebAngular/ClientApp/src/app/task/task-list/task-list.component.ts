@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DailyTaskDto } from '../../interfaces/DailyTaskDto';
 
 const API_URL = 'api/dailytask';
 
@@ -21,18 +22,4 @@ export class TaskComponent {
 }
 interface DailyTaskListViewModel {
   dailyTasks: DailyTaskDto[];
-}
-
-interface DailyTaskDto {
-  dailyTaskId: number;
-  title: string;
-  description: string;
-
-  priority: number;
-  priorityText: string;
-  status: number;
-  statusText: string;
-
-  employeeId: number;
-  employeeFullName: string;
 }
