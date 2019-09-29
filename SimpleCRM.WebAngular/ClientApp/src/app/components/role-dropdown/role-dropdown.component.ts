@@ -7,8 +7,7 @@ import { RoleService } from 'src/app/services/role.service';
   templateUrl: './role-dropdown.component.html',
 })
 export class RoleDropdownComponent {
-  //public roles: RoleDto[];
-  public roles;
+  public roles: RoleDto[];
 
   constructor(service: RoleService) {
     service.getRoles().subscribe(result => {
