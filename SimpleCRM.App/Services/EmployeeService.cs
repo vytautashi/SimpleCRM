@@ -31,7 +31,6 @@ namespace SimpleCRM.App.Services
                     Title = dailyTask.Title,
                     Description = dailyTask.Description,
                     Priority = (int)dailyTask.Priority,
-                    PriorityText = dailyTask.Priority.ToString(),
                     Status = (int)dailyTask.Status,
                     StatusText = dailyTask.Status.ToString(),
 
@@ -51,8 +50,7 @@ namespace SimpleCRM.App.Services
                 Address = employee.Address,
                 Phone = employee.Phone,
                 Email = employee.Email,
-                OnlineStatus = (int) employee.OnlineStatus,
-                OnlineStatusText = employee.OnlineStatus.ToString(),
+                Online = employee.Online,
                 RoleId = employee.Role.RoleId,
                 RoleName = employee.Role.Name,
                 DailyTasks = ToDailyTaskDtoList(employee.DailyTasks),

@@ -15,6 +15,7 @@ import { RoleDropdownComponent } from './components/role-dropdown/role-dropdown.
 import { DailyTaskService } from './services/dailytask.service';
 import { DailyTaskComponent } from './components/task/task-list/task-list.component';
 import { EmployeeService } from './services/employee.service';
+import { PriorityBarComponent } from './components/priority-bar/priority-bar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EmployeeService } from './services/employee.service';
     EmployeeComponent,
     DailyTaskComponent,
     RoleDropdownComponent,
+    PriorityBarComponent,
   ],
   imports: [
     CommonModule,

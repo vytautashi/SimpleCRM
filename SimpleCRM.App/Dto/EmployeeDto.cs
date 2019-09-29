@@ -9,8 +9,7 @@ namespace SimpleCRM.App.Dto
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public int OnlineStatus { get; set; }
-        public string OnlineStatusText { get; set; }
+        public bool Online { get; set; }
 
         public int RoleId { get; set; }
         public string RoleName { get; set; }

@@ -28,7 +28,6 @@ namespace SimpleCRM.App.Services
                 Title = dailyTask.Title,
                 Description = dailyTask.Description,
                 Priority = (int)dailyTask.Priority,
-                PriorityText = dailyTask.Priority.ToString(),
                 Status = (int)dailyTask.Status,
                 StatusText = dailyTask.Status.ToString(),
 

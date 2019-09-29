@@ -1,0 +1,4 @@
+<span *ngFor="let num of [1,2,3,4,5]" class="priorityRating">
+  <span *ngIf="num<=priorityRating" [style.color]="ratingColor">!</span>
+  <span *ngIf="num>priorityRating" [style.color]="ratingColorEmpty">!</span>
+</span>

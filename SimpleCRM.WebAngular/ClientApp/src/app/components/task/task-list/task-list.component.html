@@ -12,13 +12,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
-      <td [ngClass]="
-          task.status == 1 ? 'taskCompleted'
-          : task.priority < 4 ? 'priority1'
-                : task.priority == 4 ? 'priority4'
-                : 'priority5'
-              ">
-            {{ task.priorityText }}
+      <td>
+        <priority-bar [priorityRating]="task.priority"></priority-bar>
       </td>
       <td [ngClass]="
               task.status == 0 ? 'taskCanceled'

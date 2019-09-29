@@ -1,8 +1,6 @@
 <h3 *ngIf="employee">
   {{ employee.fullName }}
-  <em *ngIf="employee.onlineStatus == 1" class="text-success">{{ employee.onlineStatusText }}</em>
-  <em *ngIf="employee.onlineStatus == 0" class="text-danger">{{ employee.onlineStatusText }}</em>
-  <em *ngIf="employee.onlineStatus == 2" class="text-secondary">{{ employee.onlineStatusText }}</em>
+  <em *ngIf="employee.online" class="text-success"> Online </em>
 </h3>
 
 <table class="table table-sm" *ngIf="employee">
@@ -37,13 +35,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let task of employee.dailyTasks">
-          <td [ngClass]="
-              task.status == 1 ? 'taskCompleted'
-                : task.priority < 4 ? 'priority1'
-                : task.priority == 4 ? 'priority4'
-                : 'priority5'
-              ">
-            {{ task.priorityText }}
+          <td>
+            <priority-bar [priorityRating]="task.priority"></priority-bar>
           </td>
           <td [ngClass]="
               task.status == 0 ? 'taskCanceled'

@@ -6,8 +6,7 @@ export interface EmployeeDto {
   address: string;
   phone: string;
   email: string;
-  onlineStatus: number;
-  onlineStatusText: string;
+  online: boolean;
   roleId: number;
   roleName: string;
   dailyTasks: DailyTaskDto[];

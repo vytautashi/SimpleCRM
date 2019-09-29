@@ -49,7 +49,7 @@ namespace SimpleCRM.Data.Context
                 , Address = "Aukstaiciu 22, Klaipeda Lithuania"
                 , Phone = "86342342"
                 , Email = "--1ioi23--@gmail.com"
-                , OnlineStatus = Employee.EmployeeOnlineStatus.Online
+                , Online = true
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
                 },
 
@@ -57,7 +57,7 @@ namespace SimpleCRM.Data.Context
                 , Address = "Aukstaiciu 22, Klaipeda Lithuania"
                 , Phone = "863234234"
                 , Email = "dfvs3423vdd@yahoo.com"
-                , OnlineStatus = Employee.EmployeeOnlineStatus.Online
+                , Online = true
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
                 },
 
@@ -65,7 +65,7 @@ namespace SimpleCRM.Data.Context
                 , Address = "Onutes 123-4, Vilnius Lithuania"
                 , Phone = "8624235234"
                 , Email = "nnnnerwr323r@yahoo.com"
-                , OnlineStatus = Employee.EmployeeOnlineStatus.Offline
+                , Online = false
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 2)
                 },
 
@@ -73,7 +73,7 @@ namespace SimpleCRM.Data.Context
                 , Address = "Klaipeda Lithuania"
                 , Phone = "**********"
                 , Email = "********@yahoo.com"
-                , OnlineStatus = Employee.EmployeeOnlineStatus.Away
+                , Online = true
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
                 },
 
@@ -81,7 +81,7 @@ namespace SimpleCRM.Data.Context
                 , Address = "Vilnius Lithuania"
                 , Phone = "862352643"
                 , Email = "tik@gmail.com"
-                , OnlineStatus = Employee.EmployeeOnlineStatus.Offline
+                , Online = false
                 , Role = context.Roles.FirstOrDefault(e => e.RoleId == 4)
                 },
             };

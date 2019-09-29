@@ -4,7 +4,6 @@ export interface DailyTaskDto {
   description: string;
 
   priority: number;
-  priorityText: string;
   status: number;
   statusText: string;
 

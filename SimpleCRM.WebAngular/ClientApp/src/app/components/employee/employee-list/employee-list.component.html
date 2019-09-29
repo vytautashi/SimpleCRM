@@ -12,9 +12,7 @@
       <td>
         <a [routerLink]="['/employee', employee.employeeId]">{{ employee.fullName }} </a>
 
-        <em *ngIf="employee.onlineStatus == 1" class="text-success">{{ employee.onlineStatusText }}</em>
-        <em *ngIf="employee.onlineStatus == 0" class="text-danger">{{ employee.onlineStatusText }}</em>
-        <em *ngIf="employee.onlineStatus == 2" class="text-secondary">{{ employee.onlineStatusText }}</em>
+        <em *ngIf="employee.online" class="text-success"> Online </em>
       </td>
       <td>{{ employee.roleName }} </td>
     </tr>

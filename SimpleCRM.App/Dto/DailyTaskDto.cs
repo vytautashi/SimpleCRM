@@ -6,7 +6,6 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public int Priority { get; set; }
-        public string PriorityText { get; set; }
         public int Status { get; set; }
         public string StatusText { get; set; }
 
