@@ -11,7 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
 import { TaskComponent } from './task/task-list/task-list.component';
-import { RoleComponent } from './role/role-list/role-list.component';
+import { RoleService } from './services/role.service';
+import { RoleDropdownComponent } from './components/role-dropdown/role-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { RoleComponent } from './role/role-list/role-list.component';
     EmployeeListComponent,
     EmployeeComponent,
     TaskComponent,
-    RoleComponent,
+    RoleDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +36,9 @@ import { RoleComponent } from './role/role-list/role-list.component';
       { path: 'task', component: TaskComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    RoleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
