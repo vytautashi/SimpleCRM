@@ -1,5 +1,3 @@
-import { DailyTaskDto } from './DailyTaskDto';
-
 export interface EmployeeDto {
   employeeId: number;
   fullName: string;
@@ -9,5 +7,4 @@ export interface EmployeeDto {
   online: boolean;
   roleId: number;
   roleName: string;
-  dailyTasks: DailyTaskDto[];
 }

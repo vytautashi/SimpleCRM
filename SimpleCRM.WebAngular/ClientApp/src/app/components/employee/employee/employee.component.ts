@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { EmployeeDto } from 'src/app/interfaces/EmployeeDto';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -9,12 +8,15 @@ import { EmployeeService } from 'src/app/services/employee.service';
   templateUrl: './employee.component.html',
 })
 export class EmployeeComponent {
+  @Input()
+  public employeeId: number;
   public employee: EmployeeDto;
 
-  constructor(private route: ActivatedRoute, service: EmployeeService) {
-    let employeeId = this.route.snapshot.paramMap.get('id');
+  constructor(private service: EmployeeService) {
+  }
 
-    service.getEmployee(employeeId).subscribe(result => {
+  ngOnInit() {
+    this.service.getEmployee(this.employeeId).subscribe(result => {
       this.employee = result.employee;
     }, error => console.error(error));
   }

@@ -14,7 +14,7 @@ export class EmployeeService {
     return this.http.get<any>(this.baseUrl + this.url);
   }
 
-  getEmployee(id: string) {
+  getEmployee(id: number) {
     return this.http.get<any>(this.baseUrl + this.url + "/" + id);
   }
 

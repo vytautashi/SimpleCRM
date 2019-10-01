@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from "@angular/common";
 
 import { AppComponent } from './app.component';
-import { NavMenuLeftComponent } from './nav-menu-left/nav-menu-left.component';
-import { HomeComponent } from './home/home.component';
+import { NavMenuLeftComponent } from './menus/nav-menu-left/nav-menu-left.component';
+import { HomeViewpageComponent } from './viewpages/home/home-viewpage.component';
 import { EmployeeListComponent } from './components/employee/employee-list/employee-list.component';
 import { EmployeeComponent } from './components/employee/employee/employee.component';
 import { RoleService } from './services/role.service';
@@ -17,12 +17,22 @@ import { DailyTaskComponent } from './components/task/task-list/task-list.compon
 import { EmployeeService } from './services/employee.service';
 import { PriorityBarComponent } from './components/priority-bar/priority-bar.component';
 import { EmployeeTasksComponent } from './components/employee-tasks/employee-tasks.component';
+import { MyTasksViewpageComponent } from './viewpages/my-tasks/my-tasks-viewpage.component';
+import { MyProfileViewpageComponent } from './viewpages/my-profile/my-profile-viewpage.component';
+import { EmployeeViewpageComponent } from './viewpages/employee/employee-viewpage.component';
+import { EmployeeListViewpageComponent } from './viewpages/employee-list/employee-list-viewpage.component';
+import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 	  NavMenuLeftComponent,
-	  HomeComponent,
+    HomeViewpageComponent,
+    MyTasksViewpageComponent,
+    MyProfileViewpageComponent,
+    EmployeeViewpageComponent,
+    EmployeeListViewpageComponent,
+    TaskListViewpageComponent,
     EmployeeListComponent,
     EmployeeComponent,
     DailyTaskComponent,
@@ -36,10 +46,12 @@ import { EmployeeTasksComponent } from './components/employee-tasks/employee-tas
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'employee', component: EmployeeListComponent },
-      { path: 'employee/:id', component: EmployeeComponent },
-      { path: 'task', component: DailyTaskComponent },
+      { path: '', component: HomeViewpageComponent, pathMatch: 'full' },
+      { path: 'my-tasks', component: MyTasksViewpageComponent },
+      { path: 'my-profile', component: MyProfileViewpageComponent },
+      { path: 'employee', component: EmployeeListViewpageComponent },
+      { path: 'employee/:id', component: EmployeeViewpageComponent },
+      { path: 'task', component: TaskListViewpageComponent },
     ])
   ],
   providers: [

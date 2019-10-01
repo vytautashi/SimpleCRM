@@ -3,7 +3,7 @@ import { EmployeeDto } from 'src/app/interfaces/EmployeeDto';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
-  selector: 'app-employee',
+  selector: 'app-employee-list',
   templateUrl: './employee-list.component.html'
 })
 export class EmployeeListComponent {
