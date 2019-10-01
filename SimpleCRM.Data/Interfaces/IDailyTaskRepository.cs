@@ -11,6 +11,7 @@ namespace SimpleCRM.Data.Interfaces
         Task UpdateAsync(DailyTask dailyTask);
         Task<bool> ExistsAsync(int id);
 
+        Task<IEnumerable<DailyTask>> GetListByEmployeeIdAsync(int id);
         Task<IEnumerable<DailyTask>> GetDailyTaskListAsync();
         Task<DailyTask> GetDailyTaskAsync(int id);
     }

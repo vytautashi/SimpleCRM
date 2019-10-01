@@ -32,7 +32,6 @@ namespace SimpleCRM.App.Services
             };
             return dailyTask;
         }
-
         private DailyTaskDto ToDailyTaskDto(DailyTask dailyTask)
         {
             DailyTaskDto dailyTaskDto = new DailyTaskDto
@@ -49,20 +48,29 @@ namespace SimpleCRM.App.Services
             };
             return dailyTaskDto;
         }
-        public async Task<DailyTaskListViewModel> GetDailyTaskListAsync()
+        private DailyTaskListViewModel ToDailyTaskListViewModel(IEnumerable<DailyTask> dailyTasks)
         {
-            IEnumerable<DailyTask> dailyTasks;
-            Collection<DailyTaskDto> DailyTasksDto;
-
-            DailyTasksDto = new Collection<DailyTaskDto>();
-            dailyTasks = await _dailyTaskRepository.GetDailyTaskListAsync();
+            Collection<DailyTaskDto> DailyTasksDto = new Collection<DailyTaskDto>();
 
             foreach (var e in dailyTasks)
             {
                 DailyTasksDto.Add(ToDailyTaskDto(e));
             }
 
-            return new DailyTaskListViewModel{ DailyTasks = DailyTasksDto};
+            return new DailyTaskListViewModel { DailyTasks = DailyTasksDto };
+        }
+
+        public async Task<DailyTaskListViewModel> GetListByEmployeeIdAsync(int id)
+        {
+            IEnumerable<DailyTask> dailyTasks = await _dailyTaskRepository.GetListByEmployeeIdAsync(id);
+
+            return ToDailyTaskListViewModel(dailyTasks);
+        }
+        public async Task<DailyTaskListViewModel> GetDailyTaskListAsync()
+        {
+            IEnumerable<DailyTask> dailyTasks = await _dailyTaskRepository.GetDailyTaskListAsync();
+
+            return ToDailyTaskListViewModel(dailyTasks);
         }
         public async Task<DailyTaskViewModel> GetDailyTaskAsync(int id)
         {

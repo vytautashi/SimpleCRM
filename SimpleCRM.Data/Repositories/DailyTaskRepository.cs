@@ -22,6 +22,13 @@ namespace SimpleCRM.Data.Repositories
             return _context.DailyTasks.Include(e => e.Employee);
         }
 
+        public async Task<IEnumerable<DailyTask>> GetListByEmployeeIdAsync(int id)
+        {
+            return await this.DailyTaskQuery()
+                .Where(task => task.EmployeeId == id)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<DailyTask>> GetDailyTaskListAsync()
         {
             return await this.DailyTaskQuery().ToListAsync();

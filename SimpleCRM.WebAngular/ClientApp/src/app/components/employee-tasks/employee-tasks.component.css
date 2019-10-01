@@ -1,0 +1,16 @@
+.taskNormal{
+
+}
+
+.taskCompleted {
+  color: gray;
+}
+.taskCanceled {
+  color: lightcoral;
+}
+.taskOngoing {
+  color: green;
+}
+.taskFrozen {
+  color: wheat;
+}

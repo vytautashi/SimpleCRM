@@ -33,6 +33,13 @@ namespace SimpleCRM.Web.Controllers
             return Ok(await _dailyTaskService.GetDailyTaskAsync(id));
         }
 
+        [Route("[action]/{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetByEmployee(int id)
+        {
+            return Ok(await _dailyTaskService.GetListByEmployeeIdAsync(id));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(DailyTaskViewModel dailyTask)
         {
