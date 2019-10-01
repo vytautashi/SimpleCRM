@@ -1,6 +1,7 @@
 ﻿using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
+using SimpleCRM.App.Converters;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
 using System;
@@ -20,30 +21,11 @@ namespace SimpleCRM.App.Services
             _roleRepository = roleRepository;
         }
 
-        private RoleDto ToRoleDto(Role role)
-        {
-            RoleDto employeeDto = new RoleDto
-            {
-                RoleId = role.Id,
-                Name = role.Name,
-                Description = role.Description,
-            };
-            return employeeDto;
-        }
         public async Task<RoleListViewModel> GetListAsync()
         {
-            IEnumerable<Role> roles;
-            Collection<RoleDto> rolesDto;
+            IEnumerable<Role> roles = await _roleRepository.GetListNoIncludesAsync();
 
-            rolesDto = new Collection<RoleDto>();
-            roles = await _roleRepository.GetListNoIncludesAsync();
-
-            foreach (var e in roles)
-            {
-                rolesDto.Add(ToRoleDto(e));
-            }
-
-            return new RoleListViewModel{Roles = rolesDto};
+            return RoleConverter.ToRoleListViewModel(roles);
         }
     }
 }
