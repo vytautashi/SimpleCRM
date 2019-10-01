@@ -27,31 +27,44 @@ namespace SimpleCRM.App.Services
             {
                 dailyTasksDto.Add(new DailyTaskDto
                 {
-                    DailyTaskId = dailyTask.DailyTaskId,
+                    DailyTaskId = dailyTask.Id,
                     Title = dailyTask.Title,
                     Description = dailyTask.Description,
                     Priority = (int)dailyTask.Priority,
                     Status = (int)dailyTask.Status,
                     StatusText = dailyTask.Status.ToString(),
 
-                    EmployeeId = dailyTask.Employee.EmployeeId,
+                    EmployeeId = dailyTask.Employee.Id,
                     EmployeeFullName = dailyTask.Employee.FullName,
                 });
             }
 
             return dailyTasksDto;
         }
+        private Employee ToEmployee(EmployeeDto employeeDto)
+        {
+            Employee employee = new Employee
+            {
+                FullName = employeeDto.FullName,
+                Address = employeeDto.Address,
+                Phone = employeeDto.Phone,
+                Email = employeeDto.Email,
+                Online = employeeDto.Online,
+                RoleId = employeeDto.RoleId,
+            };
+            return employee;
+        }
         private EmployeeDto ToEmployeeDto(Employee employee)
         {
             EmployeeDto employeeDto = new EmployeeDto
             {
-                EmployeeId = employee.EmployeeId,
+                EmployeeId = employee.Id,
                 FullName = employee.FullName,
                 Address = employee.Address,
                 Phone = employee.Phone,
                 Email = employee.Email,
                 Online = employee.Online,
-                RoleId = employee.Role.RoleId,
+                RoleId = employee.Role.Id,
                 RoleName = employee.Role.Name,
                 DailyTasks = ToDailyTaskDtoList(employee.DailyTasks),
             };
@@ -74,7 +87,7 @@ namespace SimpleCRM.App.Services
         }
         public async Task<EmployeeViewModel> GetEmployeeAsync(int id)
         {
-            if (!await _employeeRepository.ExistsEmployeeAsync(id))
+            if (!await _employeeRepository.ExistsAsync(id))
             {
                 return new EmployeeViewModel();
             }
@@ -93,30 +106,25 @@ namespace SimpleCRM.App.Services
             {
                 return;
             }
-            Employee e = new Employee
-            {
-                FullName = employee.Employee.FullName,
-            };
-            await _employeeRepository.AddEmployeeAsync(e);
+            Employee e = ToEmployee(employee.Employee);
+
+            await _employeeRepository.AddAsync(e);
         }
         public async Task DeleteEmployeeAsync(int id)
         {
-            if (await _employeeRepository.ExistsEmployeeAsync(id))
+            if (await _employeeRepository.ExistsAsync(id))
             {
-                await _employeeRepository.DeleteEmployeeAsync(id);
+                await _employeeRepository.DeleteAsync(id);
             }
         }
         public async Task UpdateEmployeeAsync(int id, EmployeeViewModel employee)
         {
-            if (await _employeeRepository.ExistsEmployeeAsync(id))
+            if (await _employeeRepository.ExistsAsync(id))
             {
-                Employee e = new Employee
-                {
-                    FullName = employee.Employee.FullName,
-                    Address = employee.Employee.Address,
-                    Phone = employee.Employee.Phone,
-                };
-                await _employeeRepository.UpdateEmployeeAsync(id, e);
+                Employee e = ToEmployee(employee.Employee);
+                e.Id = id;
+
+                await _employeeRepository.UpdateAsync(e);
             }
         }
 

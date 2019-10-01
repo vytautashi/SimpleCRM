@@ -50,7 +50,7 @@ namespace SimpleCRM.Data.Context
                 , Phone = "86342342"
                 , Email = "--1ioi23--@gmail.com"
                 , Online = true
-                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
+                , Role = context.Roles.FirstOrDefault(e => e.Id == 1)
                 },
 
                 new Employee{FullName = "Onute Antanauskiene"
@@ -58,7 +58,7 @@ namespace SimpleCRM.Data.Context
                 , Phone = "863234234"
                 , Email = "dfvs3423vdd@yahoo.com"
                 , Online = true
-                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
+                , Role = context.Roles.FirstOrDefault(e => e.Id == 1)
                 },
 
                 new Employee{FullName = "Jonas Jonauskas"
@@ -66,7 +66,7 @@ namespace SimpleCRM.Data.Context
                 , Phone = "8624235234"
                 , Email = "nnnnerwr323r@yahoo.com"
                 , Online = false
-                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 2)
+                , Role = context.Roles.FirstOrDefault(e => e.Id == 2)
                 },
 
                 new Employee{FullName = "Vytautas"
@@ -74,7 +74,7 @@ namespace SimpleCRM.Data.Context
                 , Phone = "**********"
                 , Email = "********@yahoo.com"
                 , Online = true
-                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 1)
+                , Role = context.Roles.FirstOrDefault(e => e.Id == 1)
                 },
 
                 new Employee{FullName = "Petras N"
@@ -82,7 +82,7 @@ namespace SimpleCRM.Data.Context
                 , Phone = "862352643"
                 , Email = "tik@gmail.com"
                 , Online = false
-                , Role = context.Roles.FirstOrDefault(e => e.RoleId == 4)
+                , Role = context.Roles.FirstOrDefault(e => e.Id == 4)
                 },
             };
 
@@ -96,42 +96,42 @@ namespace SimpleCRM.Data.Context
                 , Description = ""
                 , Status = DailyTask.DailyTaskStatus.Ongoing
                 , Priority = DailyTask.DailyTaskPriority.Low
-                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)
+                , Employee = context.Employees.FirstOrDefault(e => e.Id == 1)
                 },
 
                 new DailyTask{Title = "[Sky web] write unit test for customer module"
                 , Description = ""
                 , Status = DailyTask.DailyTaskStatus.Ongoing
                 , Priority = DailyTask.DailyTaskPriority.Low
-                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 1)
+                , Employee = context.Employees.FirstOrDefault(e => e.Id == 1)
                 },
 
                 new DailyTask{Title = "[Sky web] UI design login screen"
                 , Description = ""
                 , Status = DailyTask.DailyTaskStatus.Ongoing
                 , Priority = DailyTask.DailyTaskPriority.Lowest
-                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 3)
+                , Employee = context.Employees.FirstOrDefault(e => e.Id == 3)
                 },
 
                 new DailyTask{Title = "create Employee add form"
                 , Description = "no info"
                 , Status = DailyTask.DailyTaskStatus.Ongoing
                 , Priority = DailyTask.DailyTaskPriority.Normal
-                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
+                , Employee = context.Employees.FirstOrDefault(e => e.Id == 4)
                 },
 
                 new DailyTask{Title = "extend DailyTask model"
                 , Description = ""
                 , Status = DailyTask.DailyTaskStatus.Completed
                 , Priority = DailyTask.DailyTaskPriority.Normal
-                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
+                , Employee = context.Employees.FirstOrDefault(e => e.Id == 4)
                 },
 
                 new DailyTask{Title = "Refactor Repositories, create generetic class"
                 , Description = ""
                 , Status = DailyTask.DailyTaskStatus.Frozen
                 , Priority = DailyTask.DailyTaskPriority.Important
-                , Employee = context.Employees.FirstOrDefault(e => e.EmployeeId == 4)
+                , Employee = context.Employees.FirstOrDefault(e => e.Id == 4)
                 },
             };
 

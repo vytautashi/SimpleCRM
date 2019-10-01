@@ -20,18 +20,31 @@ namespace SimpleCRM.App.Services
             _dailyTaskRepository = dailyTaskRepository;
         }
 
+        private DailyTask ToDailyTask(DailyTaskDto dailyTaskDto)
+        {
+            DailyTask dailyTask = new DailyTask
+            {
+                Title = dailyTaskDto.Title,
+                Description = dailyTaskDto.Description,
+                Priority = (DailyTask.DailyTaskPriority)dailyTaskDto.Priority,
+                Status = (DailyTask.DailyTaskStatus)dailyTaskDto.Status,
+                EmployeeId = dailyTaskDto.EmployeeId,
+            };
+            return dailyTask;
+        }
+
         private DailyTaskDto ToDailyTaskDto(DailyTask dailyTask)
         {
             DailyTaskDto dailyTaskDto = new DailyTaskDto
             {
-                DailyTaskId = dailyTask.DailyTaskId,
+                DailyTaskId = dailyTask.Id,
                 Title = dailyTask.Title,
                 Description = dailyTask.Description,
                 Priority = (int)dailyTask.Priority,
                 Status = (int)dailyTask.Status,
                 StatusText = dailyTask.Status.ToString(),
 
-                EmployeeId = dailyTask.Employee.EmployeeId,
+                EmployeeId = dailyTask.Employee.Id,
                 EmployeeFullName = dailyTask.Employee.FullName,
             };
             return dailyTaskDto;
@@ -53,7 +66,7 @@ namespace SimpleCRM.App.Services
         }
         public async Task<DailyTaskViewModel> GetDailyTaskAsync(int id)
         {
-            if (!await _dailyTaskRepository.ExistsDailyTaskAsync(id))
+            if (!await _dailyTaskRepository.ExistsAsync(id))
             {
                 return new DailyTaskViewModel();
             }
@@ -68,30 +81,23 @@ namespace SimpleCRM.App.Services
         }
         public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask)
         {
-            DailyTask e = new DailyTask
-            {
-                Title = dailyTask.DailyTask.Title,
-            };
-            await _dailyTaskRepository.AddDailyTaskAsync(e);
+            DailyTask e = ToDailyTask(dailyTask.DailyTask);
+            await _dailyTaskRepository.AddAsync(e);
         }
         public async Task DeleteDailyTaskAsync(int id)
         {
-            if (await _dailyTaskRepository.ExistsDailyTaskAsync(id))
+            if (await _dailyTaskRepository.ExistsAsync(id))
             {
-                await _dailyTaskRepository.DeleteDailyTaskAsync(id);
+                await _dailyTaskRepository.DeleteAsync(id);
             }
         }
         public async Task UpdateDailyTaskAsync(int id, DailyTaskViewModel dailyTask)
         {
-            if (await _dailyTaskRepository.ExistsDailyTaskAsync(id))
+            if (await _dailyTaskRepository.ExistsAsync(id))
             {
-                DailyTask e = new DailyTask
-                {
-
-                    Title = dailyTask.DailyTask.Title,
-                    Description = dailyTask.DailyTask.Description,
-                };
-                await _dailyTaskRepository.UpdateDailyTaskAsync(id, e);
+                DailyTask e = ToDailyTask(dailyTask.DailyTask);
+                e.Id = id;
+                await _dailyTaskRepository.UpdateAsync(e);
             }
         }
     }

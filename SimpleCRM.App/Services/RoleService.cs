@@ -24,7 +24,7 @@ namespace SimpleCRM.App.Services
         {
             RoleDto employeeDto = new RoleDto
             {
-                RoleId = role.RoleId,
+                RoleId = role.Id,
                 Name = role.Name,
                 Description = role.Description,
             };
@@ -36,7 +36,7 @@ namespace SimpleCRM.App.Services
             Collection<RoleDto> rolesDto;
 
             rolesDto = new Collection<RoleDto>();
-            roles = await _roleRepository.GetListAsync();
+            roles = await _roleRepository.GetListNoIncludesAsync();
 
             foreach (var e in roles)
             {

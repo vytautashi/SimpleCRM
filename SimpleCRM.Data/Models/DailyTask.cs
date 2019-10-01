@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using SimpleCRM.Data.Interfaces;
 
 namespace SimpleCRM.Data.Models
 {
-    public class DailyTask
+    public class DailyTask : IEntity
     {
         public enum DailyTaskPriority
         {
@@ -20,12 +21,13 @@ namespace SimpleCRM.Data.Models
             Frozen = 3,
         }
 
-        public int DailyTaskId { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DailyTaskPriority Priority { get; set; }
         public DailyTaskStatus Status { get; set; }
 
+        public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
     }
 }

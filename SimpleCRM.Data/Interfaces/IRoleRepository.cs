@@ -6,6 +6,7 @@ namespace SimpleCRM.Data.Interfaces
 {
     public interface IRoleRepository
     {
-        Task<IEnumerable<Role>> GetListAsync();
+        //Task<IEnumerable<Role>> GetListAsync();
+        Task<IEnumerable<Role>> GetListNoIncludesAsync();
     }
 }

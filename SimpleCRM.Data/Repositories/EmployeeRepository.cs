@@ -10,13 +10,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Data.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
-        private SimpleCRMContext _context;
-
         public EmployeeRepository(SimpleCRMContext context)
+            : base(context)
         {
-            _context = context;
         }
 
         private Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Employee, Role> EmployeeQuery()
@@ -34,38 +32,11 @@ namespace SimpleCRM.Data.Repositories
         {
             return await this.EmployeeQuery().ToListAsync();
         }
+
         public async Task<Employee> GetEmployeeAsync(int id)
         {
-            return await this.EmployeeQuery().FirstOrDefaultAsync(e => e.EmployeeId == id);
-        }
-        public async Task AddEmployeeAsync(Employee employee)
-        {
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
-        }
-        public async Task DeleteEmployeeAsync(int id)
-        {
-            Employee employee = new Employee() { EmployeeId = id };
-
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-        }
-        public async Task UpdateEmployeeAsync(int id, Employee employee)
-        {
-            var e = await _context.Employees.FindAsync(id);
-
-            if (e != null)
-            {
-                e.FullName = employee.FullName;
-                e.Address = employee.Address;
-                e.Phone = employee.Phone;
-                await _context.SaveChangesAsync();
-            }
+            return await this.EmployeeQuery().FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<bool> ExistsEmployeeAsync(int id)
-        {
-            return await _context.Employees.AnyAsync(e => e.EmployeeId == id);
-        }
     }
 }

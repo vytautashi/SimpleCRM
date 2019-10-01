@@ -8,11 +8,12 @@ namespace SimpleCRM.Data.Interfaces
 {
     public interface IEmployeeRepository
     {
+        Task DeleteAsync(int id);
+        Task AddAsync(Employee dailyTask);
+        Task UpdateAsync(Employee dailyTask);
+        Task<bool> ExistsAsync(int id);
+
         Task<IEnumerable<Employee>> GetEmployeeListAsync();
         Task<Employee> GetEmployeeAsync(int id);
-        Task AddEmployeeAsync(Employee employee);
-        Task DeleteEmployeeAsync(int id);
-        Task UpdateEmployeeAsync(int id, Employee employee);
-        Task<bool> ExistsEmployeeAsync(int id);
     }
 }

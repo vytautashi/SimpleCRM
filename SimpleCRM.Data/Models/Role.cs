@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using SimpleCRM.Data.Interfaces;
 
 namespace SimpleCRM.Data.Models
 {
-    public class Role
+    public class Role : IEntity
     {
-        public int RoleId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 

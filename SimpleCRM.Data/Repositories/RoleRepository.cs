@@ -10,18 +10,16 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Data.Repositories
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository : GenericRepository<Role>, IRoleRepository
     {
-        private SimpleCRMContext _context;
-
         public RoleRepository(SimpleCRMContext context)
+            : base(context)
         {
-            _context = context;
         }
 
-        public async Task<IEnumerable<Role>> GetListAsync()
-        {
-            return await _context.Roles.ToListAsync();
-        }
+        //public async Task<IEnumerable<Role>> GetListAsync()
+        //{
+        //    return await _context.Roles.ToListAsync();
+        //}
     }
 }
