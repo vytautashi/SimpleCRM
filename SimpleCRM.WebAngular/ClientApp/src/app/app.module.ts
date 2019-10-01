@@ -16,7 +16,7 @@ import { DailyTaskService } from './services/dailytask.service';
 import { DailyTaskComponent } from './components/task/task-list/task-list.component';
 import { EmployeeService } from './services/employee.service';
 import { PriorityBarComponent } from './components/priority-bar/priority-bar.component';
-import { EmployeeTasksComponent } from './components/employee-tasks/employee-tasks.component';
+import { EmployeeTasksComponent } from './components/tasks/tasks.component';
 import { MyTasksViewpageComponent } from './viewpages/my-tasks/my-tasks-viewpage.component';
 import { MyProfileViewpageComponent } from './viewpages/my-profile/my-profile-viewpage.component';
 import { EmployeeViewpageComponent } from './viewpages/employee/employee-viewpage.component';

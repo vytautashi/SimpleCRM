@@ -3,9 +3,9 @@ import { DailyTaskDto } from 'src/app/interfaces/DailyTaskDto';
 import { DailyTaskService } from 'src/app/services/dailytask.service';
 
 @Component({
-  selector: 'employee-tasks',
-  templateUrl: './employee-tasks.component.html',
-  styleUrls: ['./employee-tasks.component.css'],
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css'],
 })
 
 export class EmployeeTasksComponent {
