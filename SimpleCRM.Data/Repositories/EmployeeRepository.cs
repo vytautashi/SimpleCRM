@@ -19,12 +19,7 @@ namespace SimpleCRM.Data.Repositories
 
         private Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Employee, Role> EmployeeQuery()
         {
-            //var a = from t in _context.EmployeeDailyTasks
-            //        join e in _context.Employees on e.EmployeeDailyTasks equals t
-            //        select new { e.Company, e.EmployeeDailyTasks };
-
             return _context.Employees
-                .Include(e => e.DailyTasks)
                 .Include(e => e.Role);
         }
 

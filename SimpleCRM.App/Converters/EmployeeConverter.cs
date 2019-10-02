@@ -34,7 +34,6 @@ namespace SimpleCRM.App.Converters
                 Online = employee.Online,
                 RoleId = employee.Role.Id,
                 RoleName = employee.Role.Name,
-                DailyTasks = DailyTaskConverter.ToDailyTaskDtoList(employee.DailyTasks),
             };
             return employeeDto;
         }
