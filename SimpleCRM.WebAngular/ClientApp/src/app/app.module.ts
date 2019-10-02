@@ -13,7 +13,6 @@ import { EmployeeComponent } from './components/employee/employee/employee.compo
 import { RoleService } from './services/role.service';
 import { RoleDropdownComponent } from './components/role-dropdown/role-dropdown.component';
 import { DailyTaskService } from './services/dailytask.service';
-import { DailyTaskComponent } from './components/task/task-list/task-list.component';
 import { EmployeeService } from './services/employee.service';
 import { PriorityBarComponent } from './components/priority-bar/priority-bar.component';
 import { EmployeeTasksComponent } from './components/tasks/tasks.component';
@@ -35,7 +34,6 @@ import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewp
     TaskListViewpageComponent,
     EmployeeListComponent,
     EmployeeComponent,
-    DailyTaskComponent,
     RoleDropdownComponent,
     PriorityBarComponent,
     EmployeeTasksComponent,

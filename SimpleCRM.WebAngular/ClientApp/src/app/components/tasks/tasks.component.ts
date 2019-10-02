@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DailyTaskDto } from 'src/app/interfaces/DailyTaskDto';
 import { DailyTaskService } from 'src/app/services/dailytask.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -12,14 +13,24 @@ export class EmployeeTasksComponent {
   @Input()
   public employeeId: number;
   public tasks: DailyTaskDto[];
+  public showEmployeeColumn;
 
   constructor(private service: DailyTaskService) {
   }
 
   ngOnInit() {
-    this.service.getDailyTasksByEmployeeId(this.employeeId).subscribe(result => {
-      this.tasks = result.dailyTasks;
-    }, error => console.error(error));
+    this.showEmployeeColumn = this.employeeId === undefined ? true : false;
+
+    if (this.employeeId === undefined) {
+      this.getDailyTaskList(this.service.getDailyTasks());
+    } else {
+      this.getDailyTaskList(this.service.getDailyTasksByEmployeeId(this.employeeId));
+    }
+  }
+
+  private getDailyTaskList(observable: Observable<any>) {
+    observable.subscribe(result => { this.tasks = result.dailyTasks; }
+      , error => console.error(error));
   }
 
 }

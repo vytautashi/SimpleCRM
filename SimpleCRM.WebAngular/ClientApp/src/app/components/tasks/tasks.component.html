@@ -1,34 +1,35 @@
-<div *ngIf="tasks">
-  <h3>Task List</h3>
-  <table class="table table-sm">
-    <thead class="thead-light">
-      <tr>
-        <th class="col-1">Priority</th>
-        <th class="col-1">Status</th>
-        <th class="col-10">Task Title</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks">
-        <td>
-          <priority-bar [priorityRating]="task.priority"></priority-bar>
-        </td>
-        <td [ngClass]="
-              task.status == 0 ? 'taskCanceled'
-                : task.status == 1 ? 'taskCompleted'
-                : task.status == 2 ? 'taskOngoing'
-                : task.status == 3 ? 'taskFrozen'
-                : 'taskCompleted'
-              ">
-          {{ task.statusText }}
-        </td>
-        <td [ngClass]="
-              task.status == 1 ? 'taskCompleted'
-                : 'taskNormal'
-              ">
-          {{ task.title }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table class="table table-sm" *ngIf="tasks">
+  <thead class="thead-light">
+    <tr>
+      <th class="col-1">Priority</th>
+      <th class="col-1">Status</th>
+      <th>Task Title</th>
+      <th class="col-4" *ngIf="showEmployeeColumn">Employee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>
+        <priority-bar [priorityRating]="task.priority"></priority-bar>
+      </td>
+      <td [ngClass]="
+            task.status == 0 ? 'taskCanceled'
+              : task.status == 1 ? 'taskCompleted'
+              : task.status == 2 ? 'taskOngoing'
+              : task.status == 3 ? 'taskFrozen'
+              : 'taskCompleted'
+            ">
+        {{ task.statusText }}
+      </td>
+      <td [ngClass]="
+            task.status == 1 ? 'taskCompleted'
+              : 'taskNormal'
+            ">
+        {{ task.title }}
+      </td>
+      <td *ngIf="showEmployeeColumn">
+        <a [routerLink]="['/employee', task.employeeId]">{{ task.employeeFullName }}</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
