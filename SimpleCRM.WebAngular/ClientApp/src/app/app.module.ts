@@ -11,7 +11,7 @@ import { HomeViewpageComponent } from './viewpages/home/home-viewpage.component'
 import { EmployeeListComponent } from './components/employee/employee-list/employee-list.component';
 import { EmployeeComponent } from './components/employee/employee/employee.component';
 import { RoleService } from './services/role.service';
-import { RoleDropdownComponent } from './components/role-dropdown/role-dropdown.component';
+import { RoleDropdownComponent } from './components/role/role-dropdown/role-dropdown.component';
 import { DailyTaskService } from './services/dailytask.service';
 import { EmployeeService } from './services/employee.service';
 import { PriorityBarComponent } from './components/priority-bar/priority-bar.component';
@@ -22,6 +22,9 @@ import { EmployeeViewpageComponent } from './viewpages/employee/employee-viewpag
 import { EmployeeListViewpageComponent } from './viewpages/employee-list/employee-list-viewpage.component';
 import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewpage.component';
 import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-add-viewpage.component';
+import { DailyTaskAddViewpageComponent } from './viewpages/dailytask-add/dailytask-add-viewpage.component';
+import { EmployeeSelectlistComponent } from './components/employee/employee-selectlist/employee-selectlist.component';
+import { RoleSelectlistComponent } from './components/role/role-selectlist/role-selectlist.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +37,12 @@ import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-
     EmployeeListViewpageComponent,
     TaskListViewpageComponent,
     EmployeeAddViewpageComponent,
+    DailyTaskAddViewpageComponent,
     EmployeeListComponent,
     EmployeeComponent,
     RoleDropdownComponent,
+    EmployeeSelectlistComponent,
+    RoleSelectlistComponent,
     PriorityBarComponent,
     EmployeeTasksComponent,
   ],
@@ -52,6 +58,7 @@ import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-
       { path: 'employee', component: EmployeeListViewpageComponent },
       { path: 'employee/:id', component: EmployeeViewpageComponent },
       { path: 'employee-add', component: EmployeeAddViewpageComponent },
+      { path: 'task-add', component: DailyTaskAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },
     ])
   ],

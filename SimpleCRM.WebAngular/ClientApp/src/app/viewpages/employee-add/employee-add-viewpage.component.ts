@@ -7,9 +7,13 @@ import { EmployeeDto } from 'src/app/interfaces/EmployeeDto';
   templateUrl: './employee-add-viewpage.component.html',
 })
 export class EmployeeAddViewpageComponent {
-  public employee = {};
+  public employee = { "roleId": 0 };
 
   constructor(private service: EmployeeService) {
+  }
+
+  public assignRoleId(id: number) {
+    this.employee.roleId = id;
   }
 
   public clickSubmit() {

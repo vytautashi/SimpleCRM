@@ -5,7 +5,7 @@
     <input [(ngModel)]="employee.address" placeholder="Address" /><br>
     <input [(ngModel)]="employee.phone" placeholder="Phone" /><br>
     <input [(ngModel)]="employee.email" placeholder="Email" /><br>
-    <input [(ngModel)]="employee.roleId" placeholder="Role Id" /><br>
+    <role-selectlist (notify)="assignRoleId($event)"></role-selectlist><br>
   </div>
   <button type="button" class="btn btn-primary" (click)='clickSubmit()'>Submit</button>
 </div>
