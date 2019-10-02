@@ -1,10 +1,11 @@
-<h3>Employee List <button type="button" class="btn btn-primary">Add new</button></h3>
+<h3>Employee List <button type="button" class="btn btn-primary"  [routerLink]="['/employee-add']">Add new</button></h3>
 <app-role-dropdown (notify)="filterByRole($event)"></app-role-dropdown>
 <table class='table table-striped' *ngIf="employees">
   <thead>
     <tr>
       <th>Full Name</th>
       <th>Role</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
         <em *ngIf="employee.online" class="text-success"> Online </em>
       </td>
       <td>{{ employee.roleName }} </td>
+      <td><a [routerLink]="" (click)='clickDeleteEmployee(employee.employeeId)'>delete</a> | edit</td>
     </tr>
   </tbody>
 </table>

@@ -10,7 +10,7 @@ export class EmployeeListComponent {
   public employees: EmployeeDto[];
   private employeesAll: EmployeeDto[];
 
-  constructor(service: EmployeeService) {
+  constructor(private service: EmployeeService) {
     service.getEmployees().subscribe(result => {
       this.employeesAll = result.employees;
       this.employees = this.employeesAll;
@@ -23,4 +23,12 @@ export class EmployeeListComponent {
     else
       this.employees = this.employeesAll.filter((item) => item.roleId == roleId);
   }
+
+  clickDeleteEmployee(id: number) {
+    if (confirm("Are you sure to delete")) {
+      this.service.deleteEmployee(id);
+    }
+  }
+
+
 }

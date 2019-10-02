@@ -21,6 +21,7 @@ import { MyProfileViewpageComponent } from './viewpages/my-profile/my-profile-vi
 import { EmployeeViewpageComponent } from './viewpages/employee/employee-viewpage.component';
 import { EmployeeListViewpageComponent } from './viewpages/employee-list/employee-list-viewpage.component';
 import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewpage.component';
+import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-add-viewpage.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewp
     EmployeeViewpageComponent,
     EmployeeListViewpageComponent,
     TaskListViewpageComponent,
+    EmployeeAddViewpageComponent,
     EmployeeListComponent,
     EmployeeComponent,
     RoleDropdownComponent,
@@ -49,6 +51,7 @@ import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewp
       { path: 'my-profile', component: MyProfileViewpageComponent },
       { path: 'employee', component: EmployeeListViewpageComponent },
       { path: 'employee/:id', component: EmployeeViewpageComponent },
+      { path: 'employee-add', component: EmployeeAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },
     ])
   ],
