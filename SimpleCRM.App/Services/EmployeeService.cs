@@ -4,6 +4,7 @@ using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
+using SimpleCRM.App.Validators;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,13 +44,11 @@ namespace SimpleCRM.App.Services
 
         public async Task AddEmployeeAsync(EmployeeViewModel employee)
         {
-            if (!EmployeeValidation(employee.Employee))
-            {
-                return;
-            }
             Employee employeeTemp = EmployeeConverter.ToEmployee(employee.Employee);
-
-            await _employeeRepository.AddAsync(employeeTemp);
+            if (EmployeeValidator.isValid(employeeTemp))
+            {
+                await _employeeRepository.AddAsync(employeeTemp);
+            }
         }
 
         public async Task DeleteEmployeeAsync(int id)
@@ -62,19 +61,12 @@ namespace SimpleCRM.App.Services
 
         public async Task UpdateEmployeeAsync(int id, EmployeeViewModel employee)
         {
-            if (await _employeeRepository.ExistsAsync(id))
+            Employee employeeTemp = EmployeeConverter.ToEmployee(employee.Employee);
+            if (EmployeeValidator.isValid(employeeTemp) && (await _employeeRepository.ExistsAsync(id)))
             {
-                Employee employeeTemp = EmployeeConverter.ToEmployee(employee.Employee);
                 employeeTemp.Id = id;
-
                 await _employeeRepository.UpdateAsync(employeeTemp);
             }
-        }
-
-        private bool EmployeeValidation(EmployeeDto employee)
-        {
-            return (employee.FullName.Length > 2)
-                && (employee.FullName.Length < 60);
         }
     }
 }
