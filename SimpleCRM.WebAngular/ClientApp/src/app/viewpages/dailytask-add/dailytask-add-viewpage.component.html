@@ -1,13 +1,25 @@
 <div>
   <h2>Add Task</h2>
-  <div>
-    <input [(ngModel)]="dailyTask.title" placeholder="Title" /><br>
-    <input [(ngModel)]="dailyTask.description" placeholder="Description" /><br>
-    <input [(ngModel)]="dailyTask.priority" placeholder="Priority" type="number" min="1" max="5" /><br>
-    <input [(ngModel)]="dailyTask.status" placeholder="Status" type="number" min="0" max="3" /><br>
-    <employee-selectlist (notify)="assignEmployeeId($event)"></employee-selectlist><br>
+  <div class="col-5">
+
+    <div class="form-group">
+      <input [(ngModel)]="dailyTask.title" class="form-control" id="inputTitle" placeholder="Title">
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="dailyTask.description" class="form-control" id="inputDescription" placeholder="Description">
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="dailyTask.priority" class="form-control" type="number" min="1" max="5" id="inputPriority" placeholder="Priority">
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="dailyTask.status" class="form-control" type="number" min="0" max="3" id="inputStatus" placeholder="Status">
+    </div>
+    <div class="form-group">
+      <employee-selectlist (notify)="assignEmployeeId($event)"></employee-selectlist>
+    </div>
+    <button type="button" class="btn btn-primary" (click)='clickSubmit()'>Submit</button>
+
   </div>
-  <button type="button" class="btn btn-primary" (click)='clickSubmit()'>Submit</button>
 </div>
 
 
