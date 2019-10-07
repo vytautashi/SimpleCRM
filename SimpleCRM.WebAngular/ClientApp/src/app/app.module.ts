@@ -25,6 +25,8 @@ import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-
 import { DailyTaskAddViewpageComponent } from './viewpages/dailytask-add/dailytask-add-viewpage.component';
 import { EmployeeSelectlistComponent } from './components/employee/employee-selectlist/employee-selectlist.component';
 import { RoleSelectlistComponent } from './components/role/role-selectlist/role-selectlist.component';
+import { CustomerListViewpage } from './viewpages/customer-list/customer-list.viewpage';
+import { CustomerService } from './services/customer.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { RoleSelectlistComponent } from './components/role/role-selectlist/role-
     TaskListViewpageComponent,
     EmployeeAddViewpageComponent,
     DailyTaskAddViewpageComponent,
+    CustomerListViewpage,
+
     EmployeeListComponent,
     EmployeeComponent,
     RoleDropdownComponent,
@@ -55,6 +59,7 @@ import { RoleSelectlistComponent } from './components/role/role-selectlist/role-
       { path: '', component: HomeViewpageComponent, pathMatch: 'full' },
       { path: 'my-tasks', component: MyTasksViewpageComponent },
       { path: 'my-profile', component: MyProfileViewpageComponent },
+      { path: 'customer', component: CustomerListViewpage },
       { path: 'employee', component: EmployeeListViewpageComponent },
       { path: 'employee/:id', component: EmployeeViewpageComponent },
       { path: 'employee-add', component: EmployeeAddViewpageComponent },
@@ -66,6 +71,7 @@ import { RoleSelectlistComponent } from './components/role/role-selectlist/role-
     RoleService,
     DailyTaskService,
     EmployeeService,
+    CustomerService,
   ],
   bootstrap: [AppComponent]
 })
