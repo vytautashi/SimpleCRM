@@ -26,6 +26,7 @@ namespace SimpleCRM.Web.Controllers
                     FullName = "Ignas Ignaitis",
                     Phone = "862345222",
                     LastContacted = DateTime.Today,
+                    ActiveAds = 7,
                 },
                 new CustomerDto
                 {
@@ -34,6 +35,7 @@ namespace SimpleCRM.Web.Controllers
                     FullName = "Jonas Jonaitis",
                     Phone = "864233552",
                     LastContacted = DateTime.Now,
+                    ActiveAds = 1,
                 },
             };
             customerViewModel.Customers = customers.ToList();

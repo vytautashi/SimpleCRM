@@ -9,5 +9,6 @@ namespace SimpleCRM.Data.Dto
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime LastContacted { get; set; }
+        public int ActiveAds { get; set; }
     }
 }

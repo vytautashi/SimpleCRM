@@ -10,6 +10,8 @@ namespace SimpleCRM.Data.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime LastContacted { get; set; }
+        public int ActiveAds { get; set; }
+
 
         public int CompanyId { get; set; }
         public Company Company { get; set; }

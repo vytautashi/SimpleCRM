@@ -3,5 +3,6 @@ export interface CustomerDto {
   fullName: string;
   email: string;
   phone: string;
-  lastContacted: Date; 
+  lastContacted: Date;
+  activeAds: number;
 }

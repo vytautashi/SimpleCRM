@@ -14,6 +14,7 @@ namespace Sms.Api
     public class Program
     {
         public static SmsService _smsService;
+        const bool SEND_TEST_SMS = true;
 
         public static void Main(string[] args)
         {
@@ -28,7 +29,7 @@ namespace Sms.Api
             string port = Console.ReadLine();
 
             _smsService = new SmsService(port);
-            _smsService.SendSMS("861711354", "test");
+            if (SEND_TEST_SMS) _smsService.SendSMS("861711354", "test");
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
