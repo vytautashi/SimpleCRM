@@ -7,8 +7,8 @@ namespace SimpleCRM.Data.Interfaces
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         IQueryable<TEntity> GetQueryable();
-        Task<IEnumerable<TEntity>> GetListNoIncludesAsync();
-        Task<TEntity> GetByIdNoIncludesAsync(int id);
+        Task<IEnumerable<TEntity>> GetListAsync();
+        Task<TEntity> GetAsync(int id);
         Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(int id);

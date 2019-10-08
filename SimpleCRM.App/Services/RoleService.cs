@@ -23,7 +23,7 @@ namespace SimpleCRM.App.Services
 
         public async Task<RoleListViewModel> GetListAsync()
         {
-            IEnumerable<Role> roles = await _roleRepository.GetListNoIncludesAsync();
+            IEnumerable<Role> roles = await _roleRepository.GetListAsync();
 
             return RoleConverter.ToRoleListViewModel(roles);
         }

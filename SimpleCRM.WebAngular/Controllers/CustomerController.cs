@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
-using SimpleCRM.Data.Dto;
+using SimpleCRM.App.Dto;
 
 namespace SimpleCRM.Web.Controllers
 {
@@ -22,20 +22,22 @@ namespace SimpleCRM.Web.Controllers
                 new CustomerDto
                 {
                     Id = 1,
-                    Email = "ignas80@yahoo.com",
-                    FullName = "Ignas Ignaitis",
+                    Email = "all.ignas80@yahoo.com",
+                    FullName = "Ignas D.",
                     Phone = "862345222",
                     LastContacted = DateTime.Today,
                     ActiveAds = 7,
+                    OpenIssue = 1,
                 },
                 new CustomerDto
                 {
                     Id = 2,
-                    Email = "jonas@gmail.com",
+                    Email = "j.jonas@gmail.com",
                     FullName = "Jonas Jonaitis",
                     Phone = "864233552",
                     LastContacted = DateTime.Now,
                     ActiveAds = 1,
+                    OpenIssue = 0,
                 },
             };
             customerViewModel.Customers = customers.ToList();

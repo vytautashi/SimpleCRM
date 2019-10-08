@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleCRM.Data.Dto
+namespace SimpleCRM.App.Dto
 {
     public class CustomerDto
     {
@@ -10,5 +10,6 @@ namespace SimpleCRM.Data.Dto
         public string Phone { get; set; }
         public DateTime LastContacted { get; set; }
         public int ActiveAds { get; set; }
+        public int OpenIssue { get; set; }
     }
 }

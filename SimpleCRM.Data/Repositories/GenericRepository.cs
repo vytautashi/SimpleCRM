@@ -19,14 +19,14 @@ namespace SimpleCRM.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<TEntity>> GetListNoIncludesAsync()
+        public async Task<IEnumerable<TEntity>> GetListAsync()
         {
             return await _context.Set<TEntity>()
                 .AsNoTracking()
                 .ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdNoIncludesAsync(int id)
+        public async Task<TEntity> GetAsync(int id)
         {
             return await _context.Set<TEntity>()
                 .AsNoTracking()
