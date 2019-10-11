@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SimpleCRM.App.ViewModels
 {
-    public class CustomerViewModel
+    public class CustomerListViewModel
     {
-        public CustomerDto Customer { get; set; }
+        public IEnumerable<CustomerDto> Customers { get; set; }
     }
 }

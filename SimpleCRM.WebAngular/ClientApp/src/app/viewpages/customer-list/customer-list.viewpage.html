@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let customer of customers">
-      <td>{{ customer.fullName }}</td>
+      <td><a [routerLink]="['/customer', customer.id]">{{ customer.fullName }} </a></td>
       <td>{{ customer.email }}</td>
       <td>{{ customer.phone }}</td>
       <td>{{ formatDate(customer.lastContacted) }}</td>

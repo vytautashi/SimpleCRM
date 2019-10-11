@@ -21,6 +21,9 @@ namespace SimpleCRM.Ioc
 
             service.AddScoped<IRoleService, RoleService>();
             service.AddScoped<IRoleRepository, RoleRepository>();
+
+            service.AddScoped<ICustomerService, CustomerService>();
+            service.AddScoped<ICustomerRepository, CustomerRepository>();
         }
     }
 }

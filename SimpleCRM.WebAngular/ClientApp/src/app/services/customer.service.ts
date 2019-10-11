@@ -11,4 +11,12 @@ export class CustomerService {
   getCustomers() {
     return this.http.get<any>(this.baseUrl + this.url);
   }
+
+  getCustomer(id: string) {
+    return this.http.get<any>(this.baseUrl + this.url + "/" + id);
+  }
+
+  getCustomerByPhone(phoneNumber: string) {
+    return this.http.get<any>(this.baseUrl + this.url  + "/GetByPhone/" + phoneNumber);
+  }
 }

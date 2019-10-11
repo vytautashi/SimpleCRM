@@ -15,5 +15,6 @@ namespace SimpleCRM.Data.Models
         public int RoleId { get; set; }
         public Role Role { get; set; }
         public ICollection<DailyTask> DailyTasks { get; set; }
+        public ICollection<Caller> Callers { get; set; }
     }
 }

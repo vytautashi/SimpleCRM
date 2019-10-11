@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
-using SimpleCRM.App.Dto;
 
 namespace SimpleCRM.Web.Controllers
 {
@@ -13,35 +12,31 @@ namespace SimpleCRM.Web.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private ICustomerService _customerService;
+
+        public CustomerController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            CustomerViewModel customerViewModel = new CustomerViewModel();
-            CustomerDto[] customers =
-            {
-                new CustomerDto
-                {
-                    Id = 1,
-                    Email = "all.ignas80@yahoo.com",
-                    FullName = "Ignas D.",
-                    Phone = "862345222",
-                    LastContacted = DateTime.Today,
-                    ActiveAds = 7,
-                    OpenIssue = 1,
-                },
-                new CustomerDto
-                {
-                    Id = 2,
-                    Email = "j.jonas@gmail.com",
-                    FullName = "Jonas Jonaitis",
-                    Phone = "864233552",
-                    LastContacted = DateTime.Now,
-                    ActiveAds = 1,
-                    OpenIssue = 0,
-                },
-            };
-            customerViewModel.Customers = customers.ToList();
-            return Ok(customerViewModel);
+            return Ok(await _customerService.GetCustomerListAsync());
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _customerService.GetCustomerAsync(id));
+        }
+
+        [Route("[action]/{phoneNumber}")]
+        [HttpGet]
+        public async Task<IActionResult> GetByPhone(string phoneNumber)
+        {
+            return Ok(await _customerService.GetCustomerByPhoneAsync(phoneNumber));
         }
     }
 }

@@ -1,0 +1,29 @@
+<h1 *ngIf="customer">
+  {{ customer.fullName }}
+</h1>
+
+<table class="table table-sm" *ngIf="customer">
+  <tbody>
+    <tr>
+      <th class="w-25">Id</th>
+      <td class="w-25">{{ customer.id }}</td>
+      <th class="w-25"> </th>
+      <td class="w-25"> </td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>{{ customer.phone }}</td>
+      <th>Active advertisements</th>
+      <td>{{ customer.activeAds }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ customer.email }}</td>
+      <th>Last Contacted</th>
+      <td>{{ formatDate(customer.lastContacted) }}</td>
+    </tr>
+  </tbody>
+</table>
+<h2>
+  Issue List
+</h2>

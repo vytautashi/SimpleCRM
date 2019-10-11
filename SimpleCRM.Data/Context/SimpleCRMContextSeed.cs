@@ -22,13 +22,44 @@ namespace SimpleCRM.Data.Context
         {
             return !context.Employees.Any()
                 && !context.DailyTasks.Any()
-                && !context.Roles.Any();
+                && !context.Roles.Any()
+                && !context.Customers.Any();
         }
         private static void SeedDb(SimpleCRMContext context)
         {
             AddRoles(context);
             AddEmployees(context);
             AddDailyTasks(context);
+            AddCustomers(context);
+        }
+
+        private static void AddCustomers(SimpleCRMContext context)
+        {
+            var customers = new Customer[]{
+                new Customer
+                {
+                    Id = 1,
+                    Email = "all.ignas80@yahoo.com",
+                    FullName = "Ignas D.",
+                    Phone = "862345222",
+                    LastContacted = DateTime.Today,
+                    ActiveAds = 7,
+                    OpenIssue = 1,
+                },
+                new Customer
+                {
+                    Id = 2,
+                    Email = "j.jonas@gmail.com",
+                    FullName = "Jonas Jonaitis",
+                    Phone = "864233552",
+                    LastContacted = DateTime.Now,
+                    ActiveAds = 1,
+                    OpenIssue = 0,
+                },
+            };
+
+            context.Customers.AddRange(customers);
+            context.SaveChanges();
         }
         private static void AddRoles(SimpleCRMContext context)
         {
