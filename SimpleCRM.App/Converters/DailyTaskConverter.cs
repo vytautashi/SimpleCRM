@@ -6,9 +6,9 @@ using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
 {
-    public static class DailyTaskConverter
+    public class DailyTaskConverter : GenericConverter<DailyTask, DailyTaskDto>
     {
-        public static DailyTask ToDailyTask(DailyTaskDto dailyTaskDto)
+        public DailyTask ToDailyTask(DailyTaskDto dailyTaskDto)
         {
             DailyTask dailyTask = new DailyTask
             {
@@ -21,7 +21,7 @@ namespace SimpleCRM.App.Converters
             return dailyTask;
         }
 
-        public static DailyTaskDto ToDailyTaskDto(DailyTask dailyTask)
+        public override DailyTaskDto ToDto(DailyTask dailyTask)
         {
             DailyTaskDto dailyTaskDto = new DailyTaskDto
             {
@@ -38,27 +38,14 @@ namespace SimpleCRM.App.Converters
             return dailyTaskDto;
         }
 
-        public static IEnumerable<DailyTaskDto> ToDailyTaskDtoList(IEnumerable<DailyTask> dailyTasks)
+        public DailyTaskListViewModel ToDailyTaskListViewModel(IEnumerable<DailyTask> dailyTasks)
         {
-            ICollection<DailyTaskDto> dailyTasksDto = new Collection<DailyTaskDto>();
-            foreach (var task in dailyTasks)
-            {
-                dailyTasksDto.Add(ToDailyTaskDto(task));
-            }
-
-            return dailyTasksDto;
+            return new DailyTaskListViewModel(ToDtoList(dailyTasks));
         }
 
-        public static DailyTaskListViewModel ToDailyTaskListViewModel(IEnumerable<DailyTask> dailyTasks)
+        public DailyTaskViewModel ToDailyTaskViewModel(DailyTask dailyTask)
         {
-            return new DailyTaskListViewModel { DailyTasks = ToDailyTaskDtoList(dailyTasks) };
-        }
-
-        public static DailyTaskViewModel ToDailyTaskViewModel(DailyTask dailyTask)
-        {
-            DailyTaskDto dailyTaskDto = ToDailyTaskDto(dailyTask);
-
-            return new DailyTaskViewModel{ DailyTask = dailyTaskDto };
+            return new DailyTaskViewModel(ToDto(dailyTask));
         }
 
 

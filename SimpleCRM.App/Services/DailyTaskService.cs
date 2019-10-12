@@ -15,10 +15,12 @@ namespace SimpleCRM.App.Services
     public class DailyTaskService : IDailyTaskService
     {
         private IDailyTaskRepository _dailyTaskRepository;
+        private DailyTaskConverter _dailyTaskConverter;
 
         public DailyTaskService(IDailyTaskRepository dailyTaskRepository)
         {
             _dailyTaskRepository = dailyTaskRepository;
+            _dailyTaskConverter = new DailyTaskConverter();
         }
 
 
@@ -26,14 +28,14 @@ namespace SimpleCRM.App.Services
         {
             IEnumerable<DailyTask> dailyTasks = await _dailyTaskRepository.GetListByEmployeeIdAsync(id);
 
-            return DailyTaskConverter.ToDailyTaskListViewModel(dailyTasks);
+            return _dailyTaskConverter.ToDailyTaskListViewModel(dailyTasks);
         }
 
         public async Task<DailyTaskListViewModel> GetDailyTaskListAsync()
         {
             IEnumerable<DailyTask> dailyTasks = await _dailyTaskRepository.GetDailyTaskListAsync();
 
-            return DailyTaskConverter.ToDailyTaskListViewModel(dailyTasks);
+            return _dailyTaskConverter.ToDailyTaskListViewModel(dailyTasks);
         }
 
         public async Task<DailyTaskViewModel> GetDailyTaskAsync(int id)
@@ -45,12 +47,12 @@ namespace SimpleCRM.App.Services
 
             DailyTask dailyTask = await _dailyTaskRepository.GetDailyTaskAsync(id);
 
-            return DailyTaskConverter.ToDailyTaskViewModel(dailyTask);
+            return _dailyTaskConverter.ToDailyTaskViewModel(dailyTask);
         }
 
         public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask)
         {
-            DailyTask e = DailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
+            DailyTask e = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
             await _dailyTaskRepository.AddAsync(e);
         }
 
@@ -66,7 +68,7 @@ namespace SimpleCRM.App.Services
         {
             if (await _dailyTaskRepository.ExistsAsync(id))
             {
-                DailyTask task = DailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
+                DailyTask task = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
                 task.Id = id;
                 await _dailyTaskRepository.UpdateAsync(task);
             }

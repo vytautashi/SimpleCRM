@@ -15,10 +15,12 @@ namespace SimpleCRM.App.Services
     public class CustomerService : ICustomerService
     {
         private ICustomerRepository _customerRepository;
+        private CustomerConverter _customerConverter;
 
         public CustomerService(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
+            _customerConverter = new CustomerConverter();
         }
 
         public async Task<CustomerViewModel> GetCustomerAsync(int id)
@@ -30,7 +32,7 @@ namespace SimpleCRM.App.Services
 
             Customer customer = await _customerRepository.GetAsync(id);
 
-            return CustomerConverter.ToCustomerViewModel(customer);
+            return _customerConverter.ToCustomerViewModel(customer);
         }
 
         public async Task<CustomerViewModel> GetCustomerByPhoneAsync(string phoneNumber)
@@ -45,14 +47,14 @@ namespace SimpleCRM.App.Services
                 return new CustomerViewModel();
             }
 
-            return CustomerConverter.ToCustomerViewModel(customer);
+            return _customerConverter.ToCustomerViewModel(customer);
         }
 
         public async Task<CustomerListViewModel> GetCustomerListAsync()
         {
             IEnumerable<Customer> customers = await _customerRepository.GetListAsync();
 
-            return CustomerConverter.ToCustomerListViewModel(customers);
+            return _customerConverter.ToCustomerListViewModel(customers);
         }
     }
 }

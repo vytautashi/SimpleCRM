@@ -6,9 +6,9 @@ using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
 {
-    public static class RoleConverter
+    public class RoleConverter : GenericConverter<Role, RoleDto>
     {
-        public static RoleDto ToRoleDto(Role role)
+        public override RoleDto ToDto(Role role)
         {
             RoleDto roleDto = new RoleDto
             {
@@ -19,16 +19,9 @@ namespace SimpleCRM.App.Converters
             return roleDto;
         }
 
-        public static RoleListViewModel ToRoleListViewModel(IEnumerable<Role> roles)
+        public RoleListViewModel ToRoleListViewModel(IEnumerable<Role> roles)
         {
-            Collection<RoleDto> rolesDto = new Collection<RoleDto>();
-
-            foreach (var role in roles)
-            {
-                rolesDto.Add(ToRoleDto(role));
-            }
-
-            return new RoleListViewModel { Roles = rolesDto };
+            return new RoleListViewModel(ToDtoList(roles));
         }
 
     }

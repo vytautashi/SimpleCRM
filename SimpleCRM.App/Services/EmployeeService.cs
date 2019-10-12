@@ -16,10 +16,12 @@ namespace SimpleCRM.App.Services
     public class EmployeeService : IEmpoyeeService
     {
         private IEmployeeRepository _employeeRepository;
+        private EmployeeConverter _employeeConverter;
 
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
+            _employeeConverter = new EmployeeConverter();
         }
 
 
@@ -27,7 +29,7 @@ namespace SimpleCRM.App.Services
         {
             IEnumerable<Employee> employees = await _employeeRepository.GetEmployeeListAsync();
 
-            return EmployeeConverter.ToEmployeeListViewModel(employees);
+            return _employeeConverter.ToEmployeeListViewModel(employees);
         }
 
         public async Task<EmployeeViewModel> GetEmployeeAsync(int id)
@@ -39,12 +41,12 @@ namespace SimpleCRM.App.Services
 
             Employee employee = await _employeeRepository.GetEmployeeAsync(id);
 
-            return EmployeeConverter.ToEmployeeViewModel(employee);
+            return _employeeConverter.ToEmployeeViewModel(employee);
         }
 
         public async Task AddEmployeeAsync(EmployeeViewModel employee)
         {
-            Employee employeeTemp = EmployeeConverter.ToEmployee(employee.Employee);
+            Employee employeeTemp = _employeeConverter.ToEmployee(employee.Employee);
             if (EmployeeValidator.isValid(employeeTemp))
             {
                 await _employeeRepository.AddAsync(employeeTemp);
@@ -61,7 +63,7 @@ namespace SimpleCRM.App.Services
 
         public async Task UpdateEmployeeAsync(int id, EmployeeViewModel employee)
         {
-            Employee employeeTemp = EmployeeConverter.ToEmployee(employee.Employee);
+            Employee employeeTemp = _employeeConverter.ToEmployee(employee.Employee);
             if (EmployeeValidator.isValid(employeeTemp) && (await _employeeRepository.ExistsAsync(id)))
             {
                 employeeTemp.Id = id;

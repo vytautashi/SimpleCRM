@@ -6,9 +6,9 @@ using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
 {
-    public static class CustomerConverter
+    public class CustomerConverter : GenericConverter<Customer, CustomerDto>
     {
-        public static CustomerDto ToCustomerDto(Customer customer)
+        public override CustomerDto ToDto(Customer customer)
         {
             CustomerDto customerDto = new CustomerDto
             {
@@ -23,24 +23,16 @@ namespace SimpleCRM.App.Converters
             return customerDto;
         }
 
-        public static CustomerListViewModel ToCustomerListViewModel(IEnumerable<Customer> customers)
+        public CustomerListViewModel ToCustomerListViewModel(IEnumerable<Customer> customers)
         {
-            Collection<CustomerDto> customersDto = new Collection<CustomerDto>();
-
-            foreach (var customer in customers)
-            {
-                customersDto.Add(ToCustomerDto(customer));
-            }
-
-            return new CustomerListViewModel { Customers = customersDto };
+            return new CustomerListViewModel(ToDtoList(customers));
         }
 
-        public static CustomerViewModel ToCustomerViewModel(Customer customer)
+        public CustomerViewModel ToCustomerViewModel(Customer customer)
         {
-            CustomerDto customerDto = ToCustomerDto(customer);
-
-            return new CustomerViewModel { Customer = customerDto };
+            return new CustomerViewModel(ToDto(customer));
         }
+
 
     }
 }

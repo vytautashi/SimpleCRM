@@ -8,5 +8,14 @@ namespace SimpleCRM.App.ViewModels
     public class RoleListViewModel
     {
         public IEnumerable<RoleDto> Roles { get; set; }
+
+        public RoleListViewModel()
+        {
+        }
+
+        public RoleListViewModel(IEnumerable<RoleDto> rolesDto)
+        {
+            this.Roles = rolesDto;
+        }
     }
 }

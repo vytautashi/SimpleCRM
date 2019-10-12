@@ -8,5 +8,13 @@ namespace SimpleCRM.App.ViewModels
     public class EmployeeListViewModel
     {
         public IEnumerable<EmployeeDto> Employees { get; set; }
+        public EmployeeListViewModel()
+        {
+        }
+
+        public EmployeeListViewModel(IEnumerable<EmployeeDto> employeesDto)
+        {
+            this.Employees = employeesDto;
+        }
     }
 }

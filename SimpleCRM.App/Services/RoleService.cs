@@ -15,17 +15,19 @@ namespace SimpleCRM.App.Services
     public class RoleService : IRoleService
     {
         private IRoleRepository _roleRepository;
+        private RoleConverter _roleConverter;
 
         public RoleService(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
+            _roleConverter = new RoleConverter();
         }
 
         public async Task<RoleListViewModel> GetListAsync()
         {
             IEnumerable<Role> roles = await _roleRepository.GetListAsync();
 
-            return RoleConverter.ToRoleListViewModel(roles);
+            return _roleConverter.ToRoleListViewModel(roles);
         }
     }
 }

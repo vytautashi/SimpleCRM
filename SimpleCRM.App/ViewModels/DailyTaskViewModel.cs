@@ -8,5 +8,13 @@ namespace SimpleCRM.App.ViewModels
     public class DailyTaskViewModel
     {
         public DailyTaskDto DailyTask { get; set; }
+        public DailyTaskViewModel()
+        {
+        }
+
+        public DailyTaskViewModel(DailyTaskDto dailyTaskDto)
+        {
+            this.DailyTask = dailyTaskDto;
+        }
     }
 }

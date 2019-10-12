@@ -6,9 +6,9 @@ using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
 {
-    public static class EmployeeConverter
+    public class EmployeeConverter : GenericConverter<Employee, EmployeeDto>
     {
-        public static Employee ToEmployee(EmployeeDto employeeDto)
+        public Employee ToEmployee(EmployeeDto employeeDto)
         {
             Employee employee = new Employee
             {
@@ -22,7 +22,7 @@ namespace SimpleCRM.App.Converters
             return employee;
         }
 
-        public static EmployeeDto ToEmployeeDto(Employee employee)
+        public override EmployeeDto ToDto(Employee employee)
         {
             EmployeeDto employeeDto = new EmployeeDto
             {
@@ -38,23 +38,14 @@ namespace SimpleCRM.App.Converters
             return employeeDto;
         }
 
-        public static EmployeeListViewModel ToEmployeeListViewModel(IEnumerable<Employee> employees)
+        public EmployeeListViewModel ToEmployeeListViewModel(IEnumerable<Employee> employees)
         {
-            ICollection<EmployeeDto> employeesDto = new Collection<EmployeeDto>();
-
-            foreach (var employee in employees)
-            {
-                employeesDto.Add(ToEmployeeDto(employee));
-            }
-
-            return new EmployeeListViewModel { Employees = employeesDto };
+            return new EmployeeListViewModel(ToDtoList(employees));
         }
 
-        public static EmployeeViewModel ToEmployeeViewModel(Employee employee)
+        public EmployeeViewModel ToEmployeeViewModel(Employee employee)
         {
-            EmployeeDto employeeDto = ToEmployeeDto(employee);
-
-            return new EmployeeViewModel { Employee = employeeDto };
+            return new EmployeeViewModel(ToDto(employee));
         }
 
     }
