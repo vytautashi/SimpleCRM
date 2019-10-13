@@ -48,6 +48,14 @@ namespace SimpleCRM.Web.Controllers
             return Ok(await _dailyTaskService.GetDailyTaskListAsync());
         }
 
+        [Route("[action]/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateStatus(int id, DailyTaskViewModel dailyTask)
+        {
+            await _dailyTaskService.UpdateStatusDailyTaskAsync(id, dailyTask);
+            return Ok();
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, DailyTaskViewModel dailyTask)
         {

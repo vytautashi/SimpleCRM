@@ -74,5 +74,17 @@ namespace SimpleCRM.App.Services
             }
         }
 
+        // TODO fix async
+        public async Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask)
+        {
+            if (await _dailyTaskRepository.ExistsAsync(id))
+            {
+                DailyTaskViewModel taskFromDB = await GetDailyTaskAsync(id);
+                taskFromDB.DailyTask.Status = dailyTask.DailyTask.Status;
+
+                await UpdateDailyTaskAsync(id, taskFromDB);
+            }
+        }
+
     }
 }

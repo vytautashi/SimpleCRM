@@ -19,7 +19,7 @@ namespace SimpleCRM.Data.Repositories
 
         private Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<DailyTask, Employee> DailyTaskQuery()
         {
-            return _context.DailyTasks.Include(e => e.Employee);
+            return _context.DailyTasks.AsNoTracking().Include(e => e.Employee);
         }
 
         public async Task<IEnumerable<DailyTask>> GetListByEmployeeIdAsync(int id)

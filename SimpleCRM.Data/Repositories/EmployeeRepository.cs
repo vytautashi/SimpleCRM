@@ -20,6 +20,7 @@ namespace SimpleCRM.Data.Repositories
         private Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Employee, Role> EmployeeQuery()
         {
             return _context.Employees
+                .AsNoTracking()
                 .Include(e => e.Role);
         }
 
