@@ -14,6 +14,10 @@ export class DailyTaskService {
     return this.http.get<any>(this.baseUrl + this.url);
   }
 
+  getDailyTask(id: string) {
+    return this.http.get<any>(this.baseUrl + this.url + "/" + id);
+  }
+
   getDailyTasksByEmployeeId(id: number) {
     return this.http.get<any>(this.baseUrl + this.url + "/GetByEmployee/" + id);
   }

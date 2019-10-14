@@ -8,6 +8,7 @@
         public int Priority { get; set; }
         public int Status { get; set; }
         public string StatusText { get; set; }
+        public string Log { get; set; }
 
         public int EmployeeId { get; set; }
         public string EmployeeFullName { get; set; }

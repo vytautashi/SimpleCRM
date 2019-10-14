@@ -26,6 +26,7 @@ namespace SimpleCRM.Data.Models
         public string Description { get; set; }
         public DailyTaskPriority Priority { get; set; }
         public DailyTaskStatus Status { get; set; }
+        public string Log { get; set; }
 
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }

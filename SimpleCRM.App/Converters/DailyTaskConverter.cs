@@ -17,6 +17,7 @@ namespace SimpleCRM.App.Converters
                 Priority = (DailyTask.DailyTaskPriority)dailyTaskDto.Priority,
                 Status = (DailyTask.DailyTaskStatus)dailyTaskDto.Status,
                 EmployeeId = dailyTaskDto.EmployeeId,
+                Log = dailyTaskDto.Log,
             };
             return dailyTask;
         }
@@ -31,6 +32,7 @@ namespace SimpleCRM.App.Converters
                 Priority = (int)dailyTask.Priority,
                 Status = (int)dailyTask.Status,
                 StatusText = dailyTask.Status.ToString(),
+                Log = dailyTask.Log,
 
                 EmployeeId = dailyTask.Employee.Id,
                 EmployeeFullName = dailyTask.Employee.FullName,

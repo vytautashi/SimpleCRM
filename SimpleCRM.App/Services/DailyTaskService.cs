@@ -74,7 +74,6 @@ namespace SimpleCRM.App.Services
             }
         }
 
-        // TODO fix async
         public async Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask)
         {
             if (await _dailyTaskRepository.ExistsAsync(id))
@@ -85,6 +84,7 @@ namespace SimpleCRM.App.Services
                 await UpdateDailyTaskAsync(id, taskFromDB);
             }
         }
+
 
     }
 }

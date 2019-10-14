@@ -28,6 +28,7 @@ import { RoleSelectlistComponent } from './components/role/role-selectlist/role-
 import { CustomerListViewpage } from './viewpages/customer-list/customer-list.viewpage';
 import { CustomerService } from './services/customer.service';
 import { CustomerViewpage } from './viewpages/customer/customer.viewpage';
+import { DailyTaskViewpage } from './viewpages/dailytask/dailytask.viewpage';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CustomerViewpage } from './viewpages/customer/customer.viewpage';
     DailyTaskAddViewpageComponent,
     CustomerListViewpage,
     CustomerViewpage,
+    DailyTaskViewpage,
 
     EmployeeListComponent,
     EmployeeComponent,
@@ -68,6 +70,7 @@ import { CustomerViewpage } from './viewpages/customer/customer.viewpage';
       { path: 'employee-add', component: EmployeeAddViewpageComponent },
       { path: 'task-add', component: DailyTaskAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },
+      { path: 'task/:id', component: DailyTaskViewpage },
     ])
   ],
   providers: [

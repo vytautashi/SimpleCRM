@@ -1,0 +1,28 @@
+<h1>
+  {{ dailyTask.title }}
+</h1>
+
+<table class="table table-sm">
+  <tbody>
+    <tr>
+      <th class="w-25">Task Id</th>
+      <td>{{dailyTask.dailyTaskId}}</td>
+    </tr>
+    <tr>
+      <th>Priority</th>
+      <td><priority-bar [priorityRating]="dailyTask.priority"></priority-bar></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td>{{ dailyTask.statusText }} <a [routerLink]="">Edit TODO</a></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>{{ dailyTask.description }}</td>
+    </tr>
+  </tbody>
+</table>
+<h2>
+  Log
+</h2>
+<p>{{ dailyTask.log }}</p>

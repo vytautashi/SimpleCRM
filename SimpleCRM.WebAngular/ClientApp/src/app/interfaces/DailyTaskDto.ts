@@ -6,6 +6,7 @@ export interface DailyTaskDto {
   priority: number;
   status: number;
   statusText: string;
+  log: string;
 
   employeeId: number;
   employeeFullName: string;
