@@ -4,13 +4,8 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Data.Interfaces
 {
-    public interface IDailyTaskRepository
+    public interface IDailyTaskRepository : IGenericRepository<DailyTask>
     {
-        Task DeleteAsync(int id);
-        Task AddAsync(DailyTask dailyTask);
-        Task UpdateAsync(DailyTask dailyTask);
-        Task<bool> ExistsAsync(int id);
-
         Task<IEnumerable<DailyTask>> GetListByEmployeeIdAsync(int id);
         Task<IEnumerable<DailyTask>> GetDailyTaskListAsync();
         Task<DailyTask> GetDailyTaskAsync(int id);

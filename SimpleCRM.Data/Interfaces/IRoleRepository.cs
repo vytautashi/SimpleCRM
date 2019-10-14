@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRM.Data.Interfaces
 {
-    public interface IRoleRepository
+    public interface IRoleRepository : IGenericRepository<Role>
     {
-        //Task<IEnumerable<Role>> GetListAsync();
-        Task<IEnumerable<Role>> GetListAsync();
     }
 }
