@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleCRM.App.Helpers;
 
 namespace SimpleCRM.App.Services
 {
@@ -53,6 +54,7 @@ namespace SimpleCRM.App.Services
         public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask)
         {
             DailyTask e = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
+            e.Log = LoggerCommon.createLogLine("", "Create DailyTask") + e.Log;
             await _dailyTaskRepository.AddAsync(e);
         }
 
@@ -80,10 +82,12 @@ namespace SimpleCRM.App.Services
             {
                 DailyTaskViewModel taskFromDB = await GetDailyTaskAsync(id);
                 taskFromDB.DailyTask.Status = dailyTask.DailyTask.Status;
+                taskFromDB.DailyTask.Log = LoggerCommon.createLogLine("", "Update Status") + taskFromDB.DailyTask.Log;
 
                 await UpdateDailyTaskAsync(id, taskFromDB);
             }
         }
+
 
 
     }

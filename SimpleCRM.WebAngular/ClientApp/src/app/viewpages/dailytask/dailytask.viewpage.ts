@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-dailytask',
   templateUrl: './dailytask.viewpage.html',
+  styleUrls: ['./dailytask.viewpage.css'],
 })
 export class DailyTaskViewpage {
   public dailyTask: DailyTaskDto;
