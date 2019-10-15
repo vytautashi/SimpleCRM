@@ -54,7 +54,7 @@ namespace SimpleCRM.App.Services
         public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask)
         {
             DailyTask e = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
-            e.Log = LoggerCommon.createLogLine("", "Create DailyTask") + e.Log;
+            e.Log = LoggerCommon.createLogLine("", "Create DailyTask", "") + e.Log;
             await _dailyTaskRepository.AddAsync(e);
         }
 
@@ -82,7 +82,7 @@ namespace SimpleCRM.App.Services
             {
                 DailyTaskViewModel taskFromDB = await GetDailyTaskAsync(id);
                 taskFromDB.DailyTask.Status = dailyTask.DailyTask.Status;
-                taskFromDB.DailyTask.Log = LoggerCommon.createLogLine("", "Update Status") + taskFromDB.DailyTask.Log;
+                taskFromDB.DailyTask.Log = LoggerCommon.createLogLine("", "Update Status", dailyTask.DailyTask.StatusText) + taskFromDB.DailyTask.Log;
 
                 await UpdateDailyTaskAsync(id, taskFromDB);
             }

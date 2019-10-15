@@ -10,10 +10,25 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DailyTaskViewpage {
   public dailyTask: DailyTaskDto;
+  public showEditStatus: boolean = false;
 
-  constructor(private service: DailyTaskService, route: ActivatedRoute) {
+  constructor(private service: DailyTaskService, private route: ActivatedRoute) {
     service.getDailyTask(route.snapshot.paramMap.get('id')).subscribe(result => {
       this.dailyTask = result.dailyTask;
     }, error => console.error(error));
   }
+
+  public updateStatus(value: any) {
+    this.showEditStatus = false;
+    this.dailyTask.status = value;
+    this.dailyTask.statusText = DailyTaskStatus[value];
+    this.service.updateStatusDailyTask(this.route.snapshot.paramMap.get('id') ,{ "dailyTask": this.dailyTask });
+  }
+}
+
+export enum DailyTaskStatus {
+  Canceled = 0,
+  Completed = 1,
+  Ongoing = 2,
+  Frozen = 3,
 }

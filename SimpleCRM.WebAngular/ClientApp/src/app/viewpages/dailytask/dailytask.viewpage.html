@@ -14,7 +14,21 @@
     </tr>
     <tr>
       <th>Status</th>
-      <td>{{ dailyTask.statusText }} <a [routerLink]="">Edit TODO</a></td>
+      <td>
+        {{ dailyTask.statusText }}
+        <span *ngIf="!showEditStatus"><a [routerLink]="" (click)="showEditStatus=true">Edit</a></span>
+        <span *ngIf="showEditStatus">
+
+          <select class="col-3" (change)="updateStatus($event.target.value)">
+            <option disabled selected value> -- Status -- </option>
+            <option value="0">Cancelled</option>
+            <option value="1">Completed</option>
+            <option value="2">Ongoing</option>
+            <option value="3">Frozen</option>
+          </select>
+
+        </span>
+      </td>
     </tr>
     <tr>
       <th>Description</th>

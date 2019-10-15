@@ -22,6 +22,11 @@ export class DailyTaskService {
     return this.http.get<any>(this.baseUrl + this.url + "/GetByEmployee/" + id);
   }
 
+  updateStatusDailyTask(id: string, dailyTask) {
+    this.http.put<any>(this.baseUrl + this.url + "/UpdateStatus/" + id, JSON.stringify(dailyTask), httpOptions)
+      .subscribe(result => { });
+  }
+
   addNewDailyTask(dailyTask) {
     this.http.post<any>(this.baseUrl + this.url, JSON.stringify(dailyTask), httpOptions)
       .subscribe(result => { });
