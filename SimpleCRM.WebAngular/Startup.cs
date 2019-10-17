@@ -28,6 +28,21 @@ namespace SimpleCRM.WebAngular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
+
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "http://localhost:5002";
+                    options.RequireHttpsMetadata = false;
+
+                    options.Audience = "simplecrm";
+                });
+
+
+
             services.AddDbContext<SimpleCRMContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -76,6 +91,8 @@ namespace SimpleCRM.WebAngular
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
