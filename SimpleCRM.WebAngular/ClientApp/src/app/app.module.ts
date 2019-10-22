@@ -29,6 +29,7 @@ import { CustomerListViewpage } from './viewpages/customer-list/customer-list.vi
 import { CustomerService } from './services/customer.service';
 import { CustomerViewpage } from './viewpages/customer/customer.viewpage';
 import { DailyTaskViewpage } from './viewpages/dailytask/dailytask.viewpage';
+import { LoginViewpage } from './viewpages/login/login.viewpage';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DailyTaskViewpage } from './viewpages/dailytask/dailytask.viewpage';
     CustomerListViewpage,
     CustomerViewpage,
     DailyTaskViewpage,
+    LoginViewpage,
 
     EmployeeListComponent,
     EmployeeComponent,
@@ -71,6 +73,7 @@ import { DailyTaskViewpage } from './viewpages/dailytask/dailytask.viewpage';
       { path: 'task-add', component: DailyTaskAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },
       { path: 'task/:id', component: DailyTaskViewpage },
+      { path: 'login', component: LoginViewpage },
     ])
   ],
   providers: [

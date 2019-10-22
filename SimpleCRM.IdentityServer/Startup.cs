@@ -2,34 +2,66 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using System;
+using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
-namespace SimpleCRM.IdentityServer
+namespace IdentityServer
 {
     public class Startup
     {
-        public IWebHostEnvironment Environment { get; }
+        public IHostingEnvironment Environment { get; }
 
-        public Startup(IWebHostEnvironment environment)
+        public Startup(IHostingEnvironment environment)
         {
             Environment = environment;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // uncomment, if you want to add an MVC-based UI
-            //services.AddControllersWithViews();
+            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
             var builder = services.AddIdentityServer()
-                .AddInMemoryIdentityResources(Config.Ids)
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApis())
+                .AddInMemoryClients(Config.GetClients())
+                .AddTestUsers(Config.GetUsers());
 
-            // not recommended for production - you need to store your key material somewhere secure
-            builder.AddDeveloperSigningCredential();
+            if (Environment.IsDevelopment())
+            {
+                builder.AddDeveloperSigningCredential();
+            }
+            else
+            {
+                throw new Exception("need to configure key material");
+            }
+
+            services.AddAuthentication()
+                .AddGoogle("Google", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+
+                    options.ClientId = "<insert here>";
+                    options.ClientSecret = "<insert here>";
+                })
+                .AddOpenIdConnect("oidc", "OpenID Connect", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+                    options.SaveTokens = true;
+
+                    options.Authority = "https://demo.identityserver.io/";
+                    options.ClientId = "implicit";
+
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = "name",
+                        RoleClaimType = "role"
+                    };
+                });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -39,18 +71,11 @@ namespace SimpleCRM.IdentityServer
                 app.UseDeveloperExceptionPage();
             }
 
-            // uncomment if you want to add MVC
-            //app.UseStaticFiles();
-            //app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseIdentityServer();
 
-            // uncomment, if you want to add MVC
-            //app.UseAuthorization();
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapDefaultControllerRoute();
-            //});
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

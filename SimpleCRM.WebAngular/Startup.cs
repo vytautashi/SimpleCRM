@@ -12,6 +12,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Reflection;
 using System.IO;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace SimpleCRM.WebAngular
 {
@@ -28,19 +31,34 @@ namespace SimpleCRM.WebAngular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore()
-                .AddAuthorization()
-                .AddJsonFormatters();
+            //services.AddMvc(options => options.Filters.Add(new AuthorizeFilter()));
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "http://localhost:5002";
+                    options.SignInScheme = "Cookies";
+
+                    options.Authority = "http://localhost:5000";
                     options.RequireHttpsMetadata = false;
 
-                    options.Audience = "simplecrm";
-                });
+                    options.ClientId = "mvc";
+                    options.ClientSecret = "secret";
+                    options.ResponseType = "code id_token";
 
+                    options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+
+                    options.Scope.Add("api1");
+                    options.Scope.Add("offline_access");
+
+                    options.ClaimActions.MapJsonKey("website", "website");
+                });
 
 
             services.AddDbContext<SimpleCRMContext>(options =>
@@ -64,6 +82,10 @@ namespace SimpleCRM.WebAngular
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.UseCors("default");
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -92,7 +114,6 @@ namespace SimpleCRM.WebAngular
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
