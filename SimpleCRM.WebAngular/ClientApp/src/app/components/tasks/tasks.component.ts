@@ -23,6 +23,8 @@ export class EmployeeTasksComponent {
 
     if (this.employeeId === undefined) {
       this.getDailyTaskList(this.service.getDailyTasks());
+    } else if (this.employeeId == 0) {
+      this.getDailyTaskList(this.service.getMeDailyTasks());
     } else {
       this.getDailyTaskList(this.service.getDailyTasksByEmployeeId(this.employeeId));
     }

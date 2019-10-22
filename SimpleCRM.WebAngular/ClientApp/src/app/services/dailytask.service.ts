@@ -10,6 +10,10 @@ export class DailyTaskService {
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
   }
 
+  getMeDailyTasks() {
+    return this.http.get<any>(this.baseUrl + this.url + "/GetMeTasks");
+  }
+
   getDailyTasks() {
     return this.http.get<any>(this.baseUrl + this.url);
   }

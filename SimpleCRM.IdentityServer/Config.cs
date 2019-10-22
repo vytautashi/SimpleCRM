@@ -19,27 +19,39 @@ namespace IdentityServer
                 new TestUser
                 {
                     SubjectId = "1",
-                    Username = "alice",
-                    Password = "password",
+                    Username = "antanas",
+                    Password = "antanas",
 
                     Claims = new []
                     {
-                        new Claim("name", "Alice"),
-                        new Claim("website", "https://alice.com")
+                        new Claim("name", "Antanas"),
+                        new Claim("website", "https://www.com")
                     }
                 },
                 new TestUser
                 {
                     SubjectId = "2",
-                    Username = "bob",
-                    Password = "password",
+                    Username = "onute",
+                    Password = "onute",
 
                     Claims = new []
                     {
-                        new Claim("name", "Bob"),
-                        new Claim("website", "https://bob.com")
+                        new Claim("name", "Onute"),
+                        new Claim("website", "https://www.com")
                     }
-                }
+                },
+                new TestUser
+                {
+                    SubjectId = "4",
+                    Username = "vytautas",
+                    Password = "vytautas",
+
+                    Claims = new []
+                    {
+                        new Claim("name", "Vytautas"),
+                        new Claim("website", "https://www.com")
+                    }
+                },
             };
         }
 

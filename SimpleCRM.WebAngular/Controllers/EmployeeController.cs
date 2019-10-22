@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
@@ -19,7 +21,16 @@ namespace SimpleCRM.Web.Controllers
             _empoyeeService = empoyeeService;
         }
 
+        [Route("[action]")]
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetMe()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            int id = Int32.Parse(identity.FindFirst("sub").Value);
 
+            return Ok(await _empoyeeService.GetEmployeeAsync(id));
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get()

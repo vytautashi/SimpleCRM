@@ -1,31 +1,32 @@
 <div class="container-fluid">
   <div class="row">
-	<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-    <div class="menu-header">My Controls</div>
-    <ul class="nav nav-pills flex-column">
-      <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
-        <a class="nav-link" [routerLink]="['/']">Home</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['link-active']">
-        <a class="nav-link" [routerLink]="['/customer']">Customer List</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['link-active']">
-        <a class="nav-link" [routerLink]="['/my-tasks']">My Tasks</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="['link-active']">
-        <a class="nav-link" [routerLink]="['/my-profile']">My Profile</a>
-      </li>
-    </ul>
- 		
-    <div class="menu-header">Manager Controls</div>
-    <ul class="nav nav-pills flex-column">
-		<li class="nav-item" [routerLinkActive]='["link-active"]'>
-		  <a class="nav-link" [routerLink]='["/employee"]'>Employee List</a>
-		</li>
-		<li class="nav-item" [routerLinkActive]='["link-active"]'>
-		  <a class="nav-link" [routerLink]='["/task"]'>Task List</a>
-		</li>
-	  </ul>
-	</nav>
+    <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+      <a class="p-1 center text-warning" href="/api/myauth/signout">[ Sign Out ]</a>
+      <div class="menu-header">My Controls</div>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['/my-tasks']">My Tasks</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['/my-profile']">My Profile</a>
+        </li>
+      </ul>
+
+      <div class="menu-header">Manager Controls</div>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item" [routerLinkActive]='["link-active"]'>
+          <a class="nav-link" [routerLink]='["/employee"]'>Employee List</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]='["link-active"]'>
+          <a class="nav-link" [routerLink]='["/task"]'>Task List</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link" [routerLink]="['/customer']">Customer List</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>
