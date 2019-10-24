@@ -17,11 +17,14 @@ namespace SimpleCRM.App.Services
     {
         private IDailyTaskRepository _dailyTaskRepository;
         private DailyTaskConverter _dailyTaskConverter;
+        private IEmployeeRepository _employeeRepository;
 
-        public DailyTaskService(IDailyTaskRepository dailyTaskRepository)
+        public DailyTaskService(IDailyTaskRepository dailyTaskRepository, IEmployeeRepository employeeRepository)
         {
             _dailyTaskRepository = dailyTaskRepository;
             _dailyTaskConverter = new DailyTaskConverter();
+
+            _employeeRepository = employeeRepository;
         }
 
 
@@ -51,10 +54,13 @@ namespace SimpleCRM.App.Services
             return _dailyTaskConverter.ToDailyTaskViewModel(dailyTask);
         }
 
-        public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask)
+        public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId)
         {
+            string addBy = (await _employeeRepository.GetAsync(addByEmployeeId)).FullName;
+            addBy += " #id:" + addByEmployeeId.ToString();
+
             DailyTask e = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
-            e.Log = LoggerCommon.createLogLine("", "Create DailyTask", "") + e.Log;
+            e.Log = LoggerCommon.createLogLine(addBy, "Create DailyTask", "") + e.Log;
             await _dailyTaskRepository.AddAsync(e);
         }
 

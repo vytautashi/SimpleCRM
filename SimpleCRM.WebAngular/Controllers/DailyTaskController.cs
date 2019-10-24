@@ -56,7 +56,11 @@ namespace SimpleCRM.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(DailyTaskViewModel dailyTask)
         {
-            await _dailyTaskService.AddDailyTaskAsync(dailyTask);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            int employeeId = Int32.Parse(identity.FindFirst("sub").Value);
+
+
+            await _dailyTaskService.AddDailyTaskAsync(dailyTask, employeeId);
 
             return Ok(await _dailyTaskService.GetDailyTaskListAsync());
         }

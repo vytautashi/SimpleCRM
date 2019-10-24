@@ -6,9 +6,9 @@ namespace SimpleCRM.App.Helpers
 {
     public static class LoggerCommon
     {
-        public static string createLogLine(string changedBy, string actionPerformed, string newValueSet)
+        public static string createLogLine(string actionPerformedBy, string actionName, string newValueSet)
         {
-            return DateTime.Now + " | [ " + actionPerformed + " ] [ "+ newValueSet + " ] | performed by [ " + changedBy + " ]" + Environment.NewLine;
+            return DateTime.Now + " | [ " + actionName + " ] [ "+ newValueSet + " ] | performed by [ " + actionPerformedBy + " ]" + Environment.NewLine;
         }
     }
 }
