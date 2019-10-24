@@ -8,6 +8,10 @@ Things you need to install.
 ### Installation
 Step by step installation instructions.
   1. Clone the repository
+  1. To run identityserver4, within the `SimpleCRM.IdentityServer` directory, launch:
+     ```
+     dotnet run
+     ```
   1. Build solution by running within the `SimpleCRM.WebAngular` directory:
      ```
      dotnet build
