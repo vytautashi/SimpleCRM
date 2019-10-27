@@ -10,7 +10,7 @@ namespace SimpleCRM.App.Interfaces
     public interface IDailyTaskService
     {
         Task<DailyTaskListViewModel> GetListByEmployeeIdAsync(int id);
-        Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask);
+        Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask, int updateByEmployeeId);
 
         Task<DailyTaskListViewModel> GetDailyTaskListAsync();
         Task<DailyTaskViewModel> GetDailyTaskAsync(int id);

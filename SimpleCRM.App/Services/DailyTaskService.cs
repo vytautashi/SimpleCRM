@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleCRM.App.Helpers;
 
 namespace SimpleCRM.App.Services
 {
@@ -17,14 +16,14 @@ namespace SimpleCRM.App.Services
     {
         private IDailyTaskRepository _dailyTaskRepository;
         private DailyTaskConverter _dailyTaskConverter;
-        private IEmployeeRepository _employeeRepository;
+        private LoggerService _loggerService;
 
         public DailyTaskService(IDailyTaskRepository dailyTaskRepository, IEmployeeRepository employeeRepository)
         {
             _dailyTaskRepository = dailyTaskRepository;
             _dailyTaskConverter = new DailyTaskConverter();
 
-            _employeeRepository = employeeRepository;
+            _loggerService = new LoggerService(employeeRepository);
         }
 
 
@@ -56,11 +55,9 @@ namespace SimpleCRM.App.Services
 
         public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId)
         {
-            string addBy = (await _employeeRepository.GetAsync(addByEmployeeId)).FullName;
-            addBy += " #id:" + addByEmployeeId.ToString();
-
             DailyTask e = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
-            e.Log = LoggerCommon.createLogLine(addBy, "Create DailyTask", "") + e.Log;
+            e.Log = await _loggerService.createLogLineByEmployee(addByEmployeeId, "Create DailyTask", "") + e.Log;
+
             await _dailyTaskRepository.AddAsync(e);
         }
 
@@ -82,14 +79,14 @@ namespace SimpleCRM.App.Services
             }
         }
 
-        public async Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask)
+        public async Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask, int updateByEmployeeId)
         {
             if (await _dailyTaskRepository.ExistsAsync(id))
             {
                 DailyTaskViewModel taskFromDB = await GetDailyTaskAsync(id);
                 taskFromDB.DailyTask.Status = dailyTask.DailyTask.Status;
-                taskFromDB.DailyTask.Log = LoggerCommon.createLogLine("", "Update Status", dailyTask.DailyTask.StatusText) + taskFromDB.DailyTask.Log;
-
+                taskFromDB.DailyTask.Log = await _loggerService.createLogLineByEmployee(updateByEmployeeId, "Update Status", dailyTask.DailyTask.StatusText) + taskFromDB.DailyTask.Log;
+                
                 await UpdateDailyTaskAsync(id, taskFromDB);
             }
         }

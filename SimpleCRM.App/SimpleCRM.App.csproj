@@ -8,4 +8,8 @@
     <ProjectReference Include="..\SimpleCRM.Data\SimpleCRM.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>

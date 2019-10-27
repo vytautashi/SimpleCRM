@@ -56,11 +56,7 @@ namespace SimpleCRM.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(DailyTaskViewModel dailyTask)
         {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            int employeeId = Int32.Parse(identity.FindFirst("sub").Value);
-
-
-            await _dailyTaskService.AddDailyTaskAsync(dailyTask, employeeId);
+            await _dailyTaskService.AddDailyTaskAsync(dailyTask, getUserId());
 
             return Ok(await _dailyTaskService.GetDailyTaskListAsync());
         }
@@ -69,7 +65,7 @@ namespace SimpleCRM.Web.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateStatus(int id, DailyTaskViewModel dailyTask)
         {
-            await _dailyTaskService.UpdateStatusDailyTaskAsync(id, dailyTask);
+            await _dailyTaskService.UpdateStatusDailyTaskAsync(id, dailyTask, getUserId());
             return Ok();
         }
 
@@ -87,6 +83,12 @@ namespace SimpleCRM.Web.Controllers
             await _dailyTaskService.DeleteDailyTaskAsync(id);
 
             return NoContent();
+        }
+
+        private int getUserId()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            return Int32.Parse(identity.FindFirst("sub").Value);
         }
     }
 }
