@@ -9,6 +9,10 @@
       <td>{{dailyTask.dailyTaskId}}</td>
     </tr>
     <tr>
+      <th class="w-25">Employee</th>
+      <td><a [routerLink]="['/employee', dailyTask.employeeId]">{{ dailyTask.employeeFullName }}</a></td>
+    </tr>
+    <tr>
       <th>Priority</th>
       <td><priority-bar [priorityRating]="dailyTask.priority"></priority-bar></td>
     </tr>
@@ -36,7 +40,18 @@
     </tr>
   </tbody>
 </table>
-<h2>
-  Log
-</h2>
-<pre>{{ dailyTask.log }}</pre>
+
+<div>
+  <button class="btn btn-light pt-0 pb-0" type="button" (click)="displayMessages = !displayMessages">Messages</button>
+  <button class="btn btn-primary pt-0 pb-0 ml-2" type="button">Add</button>
+  <div *ngIf="displayMessages">
+    <pre class="mt-1">empty</pre>
+  </div>
+</div>
+
+
+<button class="btn btn-light pt-0 pb-0" type="button" (click)="displayLogs = !displayLogs">Logs</button>
+<div *ngIf="displayLogs">
+  <pre class="mt-1">{{ dailyTask.log }}</pre>
+</div>
+

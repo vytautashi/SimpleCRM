@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DailyTaskViewpage {
   public dailyTask: DailyTaskDto;
   public showEditStatus: boolean = false;
+  public displayLogs: boolean = true;
+  public displayMessages: boolean = true;
 
   constructor(private service: DailyTaskService, private route: ActivatedRoute) {
     service.getDailyTask(route.snapshot.paramMap.get('id')).subscribe(result => {
