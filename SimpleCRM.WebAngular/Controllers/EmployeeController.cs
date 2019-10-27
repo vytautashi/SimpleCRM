@@ -47,9 +47,7 @@ namespace SimpleCRM.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(EmployeeViewModel employee)
         {
-            await _empoyeeService.AddEmployeeAsync(employee);
-
-            return Ok(await _empoyeeService.GetEmployeeListAsync());
+            return Ok(await _empoyeeService.AddEmployeeAsync(employee));
         }
 
         [HttpPut("{id}")]

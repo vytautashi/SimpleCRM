@@ -33,7 +33,6 @@ export class EmployeeService {
   }
 
   addNewEmployee(employee) {
-    this.http.post<any>(this.baseUrl + this.url, JSON.stringify(employee), httpOptions)
-      .subscribe(result => {});
+    return this.http.post<any>(this.baseUrl + this.url, JSON.stringify(employee), httpOptions);
   }
 }

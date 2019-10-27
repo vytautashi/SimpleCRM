@@ -11,7 +11,7 @@ namespace SimpleCRM.App.Interfaces
     {
         Task<EmployeeListViewModel> GetEmployeeListAsync();
         Task<EmployeeViewModel> GetEmployeeAsync(int id);
-        Task AddEmployeeAsync(EmployeeViewModel employee);
+        Task<int> AddEmployeeAsync(EmployeeViewModel employee);
         Task DeleteEmployeeAsync(int id);
         Task UpdateEmployeeAsync(int id, EmployeeViewModel employee);
     }

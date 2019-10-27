@@ -44,12 +44,17 @@ namespace SimpleCRM.App.Services
             return _employeeConverter.ToEmployeeViewModel(employee);
         }
 
-        public async Task AddEmployeeAsync(EmployeeViewModel employee)
+        public async Task<int> AddEmployeeAsync(EmployeeViewModel employee)
         {
             Employee employeeTemp = _employeeConverter.ToEmployee(employee.Employee);
             if (EmployeeValidator.isValid(employeeTemp))
             {
                 await _employeeRepository.AddAsync(employeeTemp);
+                return 1;
+            }
+            else
+            {
+                return 0;
             }
         }
 
