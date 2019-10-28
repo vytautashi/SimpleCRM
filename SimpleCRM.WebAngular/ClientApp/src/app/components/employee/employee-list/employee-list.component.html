@@ -16,7 +16,7 @@
         <em *ngIf="employee.online" class="text-success"> Online </em>
       </td>
       <td>{{ employee.roleName }} </td>
-      <td><a [routerLink]="" (click)='clickDeleteEmployee(employee.employeeId)'>delete</a> | edit</td>
+      <td><a [routerLink]="" (click)='clickDeleteEmployee(employee)'>delete</a> | edit</td>
     </tr>
   </tbody>
 </table>

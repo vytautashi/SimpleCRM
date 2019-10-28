@@ -37,6 +37,7 @@ export class EmployeeAddViewpageComponent {
     if (success) {
       this.msgId = 1;
       this.addForm = false;
+      this.employee = { "roleId": 0 };
     } else {
       this.msgId = 0;
       this.addForm = true;
