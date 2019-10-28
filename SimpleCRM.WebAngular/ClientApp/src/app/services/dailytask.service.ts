@@ -32,7 +32,6 @@ export class DailyTaskService {
   }
 
   addNewDailyTask(dailyTask) {
-    this.http.post<any>(this.baseUrl + this.url, JSON.stringify(dailyTask), httpOptions)
-      .subscribe(result => { });
+    return this.http.post<any>(this.baseUrl + this.url, JSON.stringify(dailyTask), httpOptions);
   }
 }

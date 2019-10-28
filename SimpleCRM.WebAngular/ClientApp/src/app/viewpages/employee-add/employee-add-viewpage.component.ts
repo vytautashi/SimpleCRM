@@ -21,7 +21,6 @@ export class EmployeeAddViewpageComponent {
 
   public clickSubmit() {
     this.addEmployee(this.service.addNewEmployee({ "employee": this.employee }));
-    this.service.addNewEmployee({ "employee": this.employee });
   }
 
   private addEmployee(observable: Observable<any>) {

@@ -1,4 +1,12 @@
-<div>
+<div class="alert alert-success" role="alert" *ngIf="msgId==1">
+  Successfully added
+  <button class="btn btn-primary pt-0 pb-0" type="button" (click)="addForm = true; msgId = -1">Add another</button>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="msgId==0">
+  Failed to add
+</div>
+
+<div *ngIf="addForm">
   <h2>Add Task</h2>
   <div class="col-5">
 
