@@ -26,9 +26,20 @@ export class EmployeeAddViewpageComponent {
 
   private addEmployee(observable: Observable<any>) {
     observable.subscribe(result => {
-      this.msgId = result;
-      this.addForm = this.msgId == 1 ? false : true;
+      this.postEmployeeStatus(true);
     }
-      , error => console.error(error));
+      , error => {
+        console.error(error);
+        this.postEmployeeStatus(false);
+      });
+  }
+  private postEmployeeStatus(success: boolean) {
+    if (success) {
+      this.msgId = 1;
+      this.addForm = false;
+    } else {
+      this.msgId = 0;
+      this.addForm = true;
+    }
   }
 }

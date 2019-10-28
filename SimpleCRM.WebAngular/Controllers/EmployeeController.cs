@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
@@ -45,9 +46,15 @@ namespace SimpleCRM.Web.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(EmployeeViewModel employee)
         {
-            return Ok(await _empoyeeService.AddEmployeeAsync(employee));
+            bool success = await _empoyeeService.AddEmployeeAsync(employee);
+            if (success)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [HttpPut("{id}")]
