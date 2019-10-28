@@ -1,3 +1,4 @@
+<button [ngClass]="hideCompleted ? 'btn btn-light pt-0 pb-0' : 'btn btn-dark pt-0 pb-0'" type="button" (click)='toggleShowAll()'>Show All</button>
 <table class="table table-sm" *ngIf="tasks">
   <thead class="thead-light">
     <tr>

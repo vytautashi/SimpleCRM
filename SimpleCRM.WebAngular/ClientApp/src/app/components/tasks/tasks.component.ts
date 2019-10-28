@@ -12,10 +12,24 @@ import { Observable } from 'rxjs';
 export class EmployeeTasksComponent {
   @Input()
   public employeeId: number;
+  public tasksAll: DailyTaskDto[];
   public tasks: DailyTaskDto[];
   public showEmployeeColumn;
+  public hideCompleted: boolean = true;
 
   constructor(private service: DailyTaskService) {
+  }
+
+  toggleShowAll() {
+    this.hideCompleted = !this.hideCompleted;
+    this.filterDailyTasks();
+  }
+
+  filterDailyTasks() {
+    if (this.hideCompleted)
+      this.tasks = this.tasksAll.filter((item) => item.status != 1);
+    else
+      this.tasks = this.tasksAll;
   }
 
   ngOnInit() {
@@ -31,7 +45,11 @@ export class EmployeeTasksComponent {
   }
 
   private getDailyTaskList(observable: Observable<any>) {
-    observable.subscribe(result => { this.tasks = result.dailyTasks; }
+    observable.subscribe(result => {
+      this.tasksAll = result.dailyTasks;
+      this.tasks = this.tasksAll;
+      this.filterDailyTasks();
+    }
       , error => console.error(error));
   }
 
