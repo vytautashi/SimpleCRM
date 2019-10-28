@@ -14,7 +14,7 @@ namespace SimpleCRM.App.Interfaces
 
         Task<DailyTaskListViewModel> GetDailyTaskListAsync();
         Task<DailyTaskViewModel> GetDailyTaskAsync(int id);
-        Task AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId);
+        Task<bool> AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId);
         Task DeleteDailyTaskAsync(int id);
         Task UpdateDailyTaskAsync(int id, DailyTaskViewModel dailyTask);
     }

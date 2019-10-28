@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleCRM.App.Validators;
 
 namespace SimpleCRM.App.Services
 {
@@ -53,12 +54,16 @@ namespace SimpleCRM.App.Services
             return _dailyTaskConverter.ToDailyTaskViewModel(dailyTask);
         }
 
-        public async Task AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId)
+        public async Task<bool> AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId)
         {
-            DailyTask e = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
-            e.Log = await _loggerService.createLogLineByEmployee(addByEmployeeId, "Create DailyTask", "") + e.Log;
-
-            await _dailyTaskRepository.AddAsync(e);
+            DailyTask dailyTaskTemp = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
+            bool dailyTaskValid = DailyTaskValidator.isValid(dailyTaskTemp);
+            if (dailyTaskValid)
+            {
+                dailyTaskTemp.Log = await _loggerService.createLogLineByEmployee(addByEmployeeId, "Create DailyTask", "") + dailyTaskTemp.Log;
+                await _dailyTaskRepository.AddAsync(dailyTaskTemp);
+            }
+            return dailyTaskValid;
         }
 
         public async Task DeleteDailyTaskAsync(int id)
