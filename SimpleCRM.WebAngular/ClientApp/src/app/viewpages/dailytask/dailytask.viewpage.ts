@@ -13,11 +13,15 @@ export class DailyTaskViewpage {
   public showEditStatus: boolean = false;
   public displayLogs: boolean = true;
   public displayMessages: boolean = true;
+  public msgId: number = -1;
 
   constructor(private service: DailyTaskService, private route: ActivatedRoute) {
     service.getDailyTask(route.snapshot.paramMap.get('id')).subscribe(result => {
       this.dailyTask = result.dailyTask;
-    }, error => console.error(error));
+    }, error => {
+      console.error(error);
+      this.msgId = 0;
+    });
   }
 
   public updateStatus(value: any) {

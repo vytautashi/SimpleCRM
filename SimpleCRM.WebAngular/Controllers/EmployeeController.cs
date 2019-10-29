@@ -24,7 +24,6 @@ namespace SimpleCRM.Web.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetMe()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
@@ -40,9 +39,16 @@ namespace SimpleCRM.Web.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _empoyeeService.GetEmployeeAsync(id));
+            var employee = await _empoyeeService.GetEmployeeAsync(id);
+
+            if (employee.Employee != null)
+                return Ok(employee);
+            else
+                return NotFound();
         }
 
         [HttpPost]

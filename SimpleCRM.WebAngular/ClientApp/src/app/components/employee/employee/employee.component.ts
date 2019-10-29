@@ -12,6 +12,7 @@ export class EmployeeComponent {
   @Input()
   public employeeId: number;
   public employee: EmployeeDto;
+  public msgId: number = -1;
 
   constructor(private service: EmployeeService) {
   }
@@ -26,7 +27,10 @@ export class EmployeeComponent {
 
   private getEmployee(observable: Observable<any>) {
     observable.subscribe(result => { this.employee = result.employee; }
-      , error => console.error(error));
+      , error => {
+        console.error(error);
+        this.msgId = 0;
+      });
   }
 
 }

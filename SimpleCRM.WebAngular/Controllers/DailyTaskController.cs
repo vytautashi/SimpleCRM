@@ -31,9 +31,16 @@ namespace SimpleCRM.Web.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _dailyTaskService.GetDailyTaskAsync(id));
+            var dailyTask = await _dailyTaskService.GetDailyTaskAsync(id);
+
+            if (dailyTask.DailyTask != null)
+                return Ok(dailyTask);
+            else
+                return NotFound();
         }
 
         [Route("[action]/{id}")]

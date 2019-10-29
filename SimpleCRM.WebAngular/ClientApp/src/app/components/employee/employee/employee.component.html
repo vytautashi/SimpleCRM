@@ -1,25 +1,30 @@
-<h3 *ngIf="employee">
-  {{ employee.fullName }}
-  <em *ngIf="employee.online" class="text-success"> Online </em>
-</h3>
+<div *ngIf="msgId==0" class="alert alert-warning" role="alert">
+  Employee not found
+</div>
+<div *ngIf="employee">
+  <h3>
+    {{ employee.fullName }}
+    <em *ngIf="employee.online" class="text-success"> Online </em>
+  </h3>
 
-<table class="table table-sm" *ngIf="employee">
-  <tbody>
-    <tr>
-      <th class="w-25">Role</th>
-      <td>{{ employee.roleName }}</td>
-    </tr>
-    <tr>
-      <th class="w-25">Address</th>
-      <td>{{ employee.address }}</td>
-    </tr>
-    <tr>
-      <th>Phone</th>
-      <td>{{ employee.phone }}</td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td>{{ employee.email }}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-sm">
+    <tbody>
+      <tr>
+        <th class="w-25">Role</th>
+        <td>{{ employee.roleName }}</td>
+      </tr>
+      <tr>
+        <th class="w-25">Address</th>
+        <td>{{ employee.address }}</td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td>{{ employee.phone }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ employee.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

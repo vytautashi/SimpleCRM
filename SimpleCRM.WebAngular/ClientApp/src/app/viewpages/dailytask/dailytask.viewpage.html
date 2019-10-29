@@ -1,57 +1,61 @@
-<h1>
-  {{ dailyTask.title }}
-</h1>
+<div *ngIf="msgId==0" class="alert alert-warning" role="alert">
+  Task not found
+</div>
+<div *ngIf="dailyTask">
+  <h1>
+    {{ dailyTask.title }}
+  </h1>
 
-<table class="table table-sm">
-  <tbody>
-    <tr>
-      <th class="w-25">Task Id</th>
-      <td>{{dailyTask.dailyTaskId}}</td>
-    </tr>
-    <tr>
-      <th class="w-25">Employee</th>
-      <td><a [routerLink]="['/employee', dailyTask.employeeId]">{{ dailyTask.employeeFullName }}</a></td>
-    </tr>
-    <tr>
-      <th>Priority</th>
-      <td><priority-bar [priorityRating]="dailyTask.priority"></priority-bar></td>
-    </tr>
-    <tr>
-      <th>Status</th>
-      <td>
-        {{ dailyTask.statusText }}
-        <span *ngIf="!showEditStatus"><a [routerLink]="" (click)="showEditStatus=true">Edit</a></span>
-        <span *ngIf="showEditStatus">
+  <table class="table table-sm">
+    <tbody>
+      <tr>
+        <th class="w-25">Task Id</th>
+        <td>{{dailyTask.dailyTaskId}}</td>
+      </tr>
+      <tr>
+        <th class="w-25">Employee</th>
+        <td><a [routerLink]="['/employee', dailyTask.employeeId]">{{ dailyTask.employeeFullName }}</a></td>
+      </tr>
+      <tr>
+        <th>Priority</th>
+        <td><priority-bar [priorityRating]="dailyTask.priority"></priority-bar></td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>
+          {{ dailyTask.statusText }}
+          <span *ngIf="!showEditStatus"><a [routerLink]="" (click)="showEditStatus=true">Edit</a></span>
+          <span *ngIf="showEditStatus">
 
-          <select class="col-3" (change)="updateStatus($event.target.value)">
-            <option disabled selected value> -- Status -- </option>
-            <option value="0">Cancelled</option>
-            <option value="1">Completed</option>
-            <option value="2">Ongoing</option>
-            <option value="3">Frozen</option>
-          </select>
+            <select class="col-3" (change)="updateStatus($event.target.value)">
+              <option disabled selected value> -- Status -- </option>
+              <option value="0">Cancelled</option>
+              <option value="1">Completed</option>
+              <option value="2">Ongoing</option>
+              <option value="3">Frozen</option>
+            </select>
 
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td>{{ dailyTask.description }}</td>
-    </tr>
-  </tbody>
-</table>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ dailyTask.description }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<div>
-  <button class="btn btn-light pt-0 pb-0" type="button" (click)="displayMessages = !displayMessages">Messages</button>
-  <button class="btn btn-primary pt-0 pb-0 ml-2" type="button">Add</button>
-  <div *ngIf="displayMessages">
-    <pre class="mt-1">empty</pre>
+  <div>
+    <button class="btn btn-light pt-0 pb-0" type="button" (click)="displayMessages = !displayMessages">Messages</button>
+    <button class="btn btn-primary pt-0 pb-0 ml-2" type="button">Add</button>
+    <div *ngIf="displayMessages">
+      <pre class="mt-1">empty</pre>
+    </div>
+  </div>
+
+
+  <button class="btn btn-light pt-0 pb-0" type="button" (click)="displayLogs = !displayLogs">Logs</button>
+  <div *ngIf="displayLogs">
+    <pre class="mt-1">{{ dailyTask.log }}</pre>
   </div>
 </div>
-
-
-<button class="btn btn-light pt-0 pb-0" type="button" (click)="displayLogs = !displayLogs">Logs</button>
-<div *ngIf="displayLogs">
-  <pre class="mt-1">{{ dailyTask.log }}</pre>
-</div>
-
