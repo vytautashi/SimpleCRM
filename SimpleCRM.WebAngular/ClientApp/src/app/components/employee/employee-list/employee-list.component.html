@@ -1,3 +1,7 @@
+<div class="alert alert-success" role="alert" *ngIf="msgId==1">
+  <a [routerLink]="" (click)="msgId=-1" class="close">&times;</a>
+  <strong>Success!</strong> Employee removed.
+</div>
 <h3>Employee List <button type="button" class="btn btn-primary"  [routerLink]="['/employee-add']">Add new</button></h3>
 <app-role-dropdown (notify)="filterByRole($event)"></app-role-dropdown>
 <table class='table table-striped' *ngIf="employees">

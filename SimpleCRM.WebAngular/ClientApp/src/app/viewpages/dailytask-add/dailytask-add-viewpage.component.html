@@ -3,7 +3,8 @@
   <button class="btn btn-primary pt-0 pb-0" type="button" (click)="addForm = true; msgId = -1">Add another</button>
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="msgId==0">
-  Failed to add
+  <a [routerLink]="" (click)="msgId=-1" class="close">&times;</a>
+  <strong>Danger!</strong> Failed to add Task
 </div>
 
 <div *ngIf="addForm">

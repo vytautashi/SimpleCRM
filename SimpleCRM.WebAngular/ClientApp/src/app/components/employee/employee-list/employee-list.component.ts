@@ -10,6 +10,7 @@ import { CommonHelper } from 'src/app/helpers/CommonHelper';
 export class EmployeeListComponent {
   public employees: EmployeeDto[];
   private employeesAll: EmployeeDto[];
+  public msgId: number = -1;
 
   constructor(private service: EmployeeService) {
     service.getEmployees().subscribe(result => {
@@ -28,6 +29,7 @@ export class EmployeeListComponent {
   clickDeleteEmployee(employee: EmployeeDto) {
     if (confirm("Are you sure to delete")) {
       this.service.deleteEmployee(employee.employeeId);
+      this.msgId = 1;
       CommonHelper.removeItemFromArray(this.employees, employee);
       CommonHelper.removeItemFromArray(this.employeesAll, employee);
     }
