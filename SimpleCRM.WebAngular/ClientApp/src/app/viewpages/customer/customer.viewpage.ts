@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CustomerDto } from 'src/app/interfaces/CustomerDto';
 import { CustomerService } from 'src/app/services/customer.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonHelper } from 'src/app/helpers/CommonHelper';
 
 @Component({
   selector: 'customer-viewpage',
@@ -16,14 +17,7 @@ export class CustomerViewpage {
     }, error => console.error(error));
   }
 
-  // TODO move to common formaters class
   formatDate(dateTime: Date) {
-    let date: Date = new Date(dateTime);
-    let day = date.getDate();
-    let monthIndex = date.getMonth();
-    let year = date.getFullYear();
-    let formattedDate = year + "-" + (monthIndex + 1) + "-" + day;
-
-    return formattedDate;
+    return CommonHelper.formatMyDate(dateTime);
   }
 }
