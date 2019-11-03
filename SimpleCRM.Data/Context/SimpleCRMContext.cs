@@ -17,6 +17,7 @@ namespace SimpleCRM.Data.Context
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<DailyTask> DailyTasks { get; set; }
+        public DbSet<DailyTaskMessage> DailyTaskMessages { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Customer> Customers { get; set; }

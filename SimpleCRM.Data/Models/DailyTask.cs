@@ -30,5 +30,6 @@ namespace SimpleCRM.Data.Models
 
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
+        public ICollection<DailyTaskMessage> DailyTaskMessages { get; set; }
     }
 }

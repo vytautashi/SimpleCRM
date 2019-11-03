@@ -24,6 +24,9 @@ namespace SimpleCRM.Ioc
 
             service.AddScoped<ICustomerService, CustomerService>();
             service.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            service.AddScoped<IDailyTaskMessageService, DailyTaskMessageService>();
+            service.AddScoped<IDailyTaskMessageRepository, DailyTaskMessageRepository>();
         }
     }
 }
