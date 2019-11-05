@@ -21,6 +21,7 @@ namespace SimpleCRM.Data.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

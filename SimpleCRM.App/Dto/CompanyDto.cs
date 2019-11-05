@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using SimpleCRM.Data.Interfaces;
+﻿using System;
 
-namespace SimpleCRM.Data.Models
+namespace SimpleCRM.App.Dto
 {
-    public class Company : IEntity
+    public class CompanyDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,8 +11,5 @@ namespace SimpleCRM.Data.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public bool Status { get; set; }
-
-        //public ICollection<Task> Tasks { get; set; }
-
     }
 }
