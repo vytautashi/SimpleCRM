@@ -1,4 +1,5 @@
 ﻿using SimpleCRM.App.Converters;
+using SimpleCRM.App.Helpers;
 using SimpleCRM.App.Interfaces;
 using SimpleCRM.App.ViewModels;
 using SimpleCRM.Data.Interfaces;
@@ -85,6 +86,11 @@ namespace SimpleCRM.App.Services
                 companyTemp.Id = id;
                 await _companyRepository.UpdateAsync(companyTemp);
             }
+        }
+
+        public async Task<CompanyInfoListViewModel> GetCompanyExternal(string companyCode)
+        {
+            return new CompanyInfoListViewModel(await MyParser.CompanyByCode(companyCode));
         }
     }
 }

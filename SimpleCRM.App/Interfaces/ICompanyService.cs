@@ -11,6 +11,7 @@ namespace SimpleCRM.App.Interfaces
     {
         Task<CompanyListViewModel> GetCompanyListSearchAsync(string search);
         Task<CompanyListViewModel> GetCompanyListSortAsync(string sort);
+        Task<CompanyInfoListViewModel> GetCompanyExternal(string companyCode);
 
         Task<CompanyListViewModel> GetCompanyListAsync();
         Task<CompanyViewModel> GetCompanyAsync(int id);
