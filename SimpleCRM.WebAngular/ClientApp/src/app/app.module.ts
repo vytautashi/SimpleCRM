@@ -31,6 +31,9 @@ import { CustomerViewpage } from './viewpages/customer/customer.viewpage';
 import { DailyTaskViewpage } from './viewpages/dailytask/dailytask.viewpage';
 import { MyAuthService } from './services/myauth.service';
 import { LoginComponent } from './components/login/login.component';
+import { CompanyListViewpage } from './viewpages/company-list/company-list.viewpage';
+import { CompanyService } from './services/company.service';
+import { CompanyAddViewpage } from './viewpages/company-add/company-add.viewpage';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { LoginComponent } from './components/login/login.component';
     CustomerListViewpage,
     CustomerViewpage,
     DailyTaskViewpage,
+    CompanyListViewpage,
+    CompanyAddViewpage,
 
     EmployeeListComponent,
     EmployeeComponent,
@@ -74,6 +79,8 @@ import { LoginComponent } from './components/login/login.component';
       { path: 'task-add', component: DailyTaskAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },
       { path: 'task/:id', component: DailyTaskViewpage },
+      { path: 'company', component: CompanyListViewpage },
+      { path: 'company-add', component: CompanyAddViewpage },
     ])
   ],
   providers: [
@@ -82,6 +89,7 @@ import { LoginComponent } from './components/login/login.component';
     EmployeeService,
     CustomerService,
     MyAuthService,
+    CompanyService,
   ],
   bootstrap: [AppComponent]
 })

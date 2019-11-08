@@ -27,9 +27,16 @@ namespace SimpleCRM.WebAngular.Controllers
 
         [Route("[action]/{companyCode}")]
         [HttpGet]
-        public async Task<IActionResult> GetCompanyExternal(string companyCode)
+        public async Task<IActionResult> getCompaniesExternalByCode(string companyCode)
         {
             return Ok(await _companyService.GetCompanyExternal(companyCode));
+        }
+
+        [Route("[action]/{title}")]
+        [HttpGet]
+        public async Task<IActionResult> getCompaniesExternalByTitle(string title)
+        {
+            return Ok(await _companyService.GetCompanyExternalByTitle(title));
         }
     }
 }

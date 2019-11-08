@@ -10,13 +10,23 @@ namespace SimpleCRM.App.Helpers
 {
     public static class MyParser
     {
+        public static async Task<IEnumerable<CompanyInfoDto>> CompanyByTitle(string title)
+        {
+            return await CompanyByField(title, "name");
+        }
+
         public static async Task<IEnumerable<CompanyInfoDto>> CompanyByCode(string companyCode)
+        {
+            return await CompanyByField(companyCode, "code");
+        }
+
+        public static async Task<IEnumerable<CompanyInfoDto>> CompanyByField(string value, string searchField)
         {
             IList<CompanyInfoDto> companyInfoDtos = new List<CompanyInfoDto>();
             
             var postParams = new Dictionary<string, string>
             {
-                { "code", companyCode },
+                { searchField, value },
                 { "resetFilter", "0" }
             };
 
@@ -34,15 +44,16 @@ namespace SimpleCRM.App.Helpers
                 string address   = "";
                 string shortInfo = "";
 
-                HtmlNode infoNode = node.SelectSingleNode("//div[@class='info']");
-                HtmlNode firmTitleNode = infoNode.SelectSingleNode("//a[@class='firmTitle']");
+                HtmlNode infoNode = node.SelectSingleNode(".//div[@class='info']");
+                HtmlNode firmTitleNode = infoNode.SelectSingleNode(".//a[@class='firmTitle']");
                 title     = firmTitleNode.InnerText;
                 address   = firmTitleNode.NextSibling.NextSibling.InnerText.Replace("Adresas: ", "");
                 shortInfo = firmTitleNode.NextSibling.NextSibling.NextSibling.NextSibling.InnerText.Replace("Veiklos sritys: ", "");
 
+
                 CompanyInfoDto companyInfoDto = new CompanyInfoDto
                 {
-                    CompanyCode = companyCode,
+                    CompanyCode = searchField.Equals("name")?"":value,
                     Title = title,
                     Address = address,
                     ShortInfo = shortInfo,
