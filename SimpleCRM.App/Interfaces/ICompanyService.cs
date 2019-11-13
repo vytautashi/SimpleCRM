@@ -13,6 +13,7 @@ namespace SimpleCRM.App.Interfaces
         Task<CompanyListViewModel> GetCompanyListSortAsync(string sort);
         Task<CompanyInfoListViewModel> GetCompanyExternal(string companyCode);
         Task<CompanyInfoListViewModel> GetCompanyExternalByTitle(string title);
+        Task<CompanyInfoViewModel> GetCompanyExternalDetails(string url);
 
         Task<CompanyListViewModel> GetCompanyListAsync();
         Task<CompanyViewModel> GetCompanyAsync(int id);

@@ -97,5 +97,10 @@ namespace SimpleCRM.App.Services
         {
             return new CompanyInfoListViewModel(await MyParser.CompanyByTitle(title));
         }
+
+        public async Task<CompanyInfoViewModel> GetCompanyExternalDetails(string url)
+        {
+            return new CompanyInfoViewModel(await MyParser.CompanyByUrl(url));
+        }
     }
 }

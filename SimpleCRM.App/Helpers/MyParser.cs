@@ -20,6 +20,13 @@ namespace SimpleCRM.App.Helpers
             return await CompanyByField(companyCode, "code");
         }
 
+        public static async Task<CompanyInfoDto> CompanyByUrl(string url)
+        {
+            // TODO
+            CompanyInfoDto companyInfoDtos = new CompanyInfoDto();
+            return companyInfoDtos;
+        }
+
         public static async Task<IEnumerable<CompanyInfoDto>> CompanyByField(string value, string searchField)
         {
             IList<CompanyInfoDto> companyInfoDtos = new List<CompanyInfoDto>();
