@@ -7,7 +7,7 @@ namespace SimpleCRM.App.ViewModels
 {
     public class CompanyListViewModel
     {
-        public IEnumerable<CompanyDto> Company { get; set; }
+        public IEnumerable<CompanyDto> Companies { get; set; }
 
         public CompanyListViewModel()
         {
@@ -15,7 +15,7 @@ namespace SimpleCRM.App.ViewModels
 
         public CompanyListViewModel(IEnumerable<CompanyDto> companiesDto)
         {
-            this.Company = companiesDto;
+            this.Companies = companiesDto;
         }
     }
 }

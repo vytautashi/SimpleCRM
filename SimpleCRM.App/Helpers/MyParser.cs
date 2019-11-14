@@ -81,14 +81,14 @@ namespace SimpleCRM.App.Helpers
 
             foreach (HtmlNode node in document.DocumentNode.SelectNodes("//div[@class='firm']"))
             {
-                string title      = "";
+                string name       = "";
                 string address    = "";
                 string shortInfo  = "";
                 string detailsUrl = "";
 
                 HtmlNode infoNode = node.SelectSingleNode(".//div[@class='info']");
                 HtmlNode firmTitleNode = infoNode.SelectSingleNode(".//a[@class='firmTitle']");
-                title      = firmTitleNode.InnerText;
+                name       = firmTitleNode.InnerText;
                 address    = firmTitleNode.NextSibling.NextSibling.InnerText.Replace("Adresas: ", "");
                 shortInfo  = firmTitleNode.NextSibling.NextSibling.NextSibling.NextSibling.InnerText.Replace("Veiklos sritys: ", "");
                 detailsUrl = firmTitleNode.GetAttributeValue("href", "");
@@ -97,7 +97,7 @@ namespace SimpleCRM.App.Helpers
                 CompanyInfoDto companyInfoDto = new CompanyInfoDto
                 {
                     CompanyCode = searchField.Equals("name")?"":value,
-                    Title = title,
+                    Name = name,
                     Address = address,
                     ShortInfo = shortInfo,
                     DetailsUrl = detailsUrl,

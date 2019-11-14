@@ -1,3 +1,11 @@
+<div class="alert alert-success" role="alert" *ngIf="msgId==1">
+  Successfully added
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="msgId==0">
+  <a [routerLink]="" (click)="msgId=-1" class="close">&times;</a>
+  <strong>Danger!</strong> Failed to add Company
+</div>
+
 <div *ngIf="addForm">
   <h2>Add Company</h2>
   <div class="container">
@@ -11,7 +19,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input [(ngModel)]="company.title" class="form-control" placeholder="Title">
+          <input [(ngModel)]="company.name" class="form-control" placeholder="Name">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" (click)="clickFindByTitle()">Find</button>
           </div>
@@ -35,8 +43,8 @@
         <div class="card" *ngFor="let companyInfo of companiesInfo; let i = index">
           <div class="card-body">
             <h5 class="card-title">
-              {{ companyInfo.title }} ({{ companyInfo.companyCode }})
-              <a [routerLink]="" class="card-link" (click)='fillForm(i)'>Fill</a> 
+              {{ companyInfo.name }} ({{ companyInfo.companyCode }})
+              <a [routerLink]="" class="card-link" (click)='fillForm(i)'>Fill</a>
               <a [routerLink]="" class="card-link" (click)='getDetails(i)'>Get details</a>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ companyInfo.address }}</h6>

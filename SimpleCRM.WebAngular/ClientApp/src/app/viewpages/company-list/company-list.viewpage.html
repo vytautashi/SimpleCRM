@@ -1,2 +1,17 @@
 <h3>Company List <button type="button" class="btn btn-primary" [routerLink]="['/company-add']">Add new</button></h3>
-TODO display company list
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Company Code</th>
+      <th>Ceo Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies">
+      <td><a [routerLink]="['/company', company.id]">{{ company.name }} </a></td>
+      <td>{{ company.companyCode }}</td>
+      <td>{{ company.ceoname }}</td>
+    </tr>
+  </tbody>
+</table>

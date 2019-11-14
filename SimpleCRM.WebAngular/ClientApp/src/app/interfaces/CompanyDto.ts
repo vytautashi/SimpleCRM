@@ -1,10 +1,9 @@
-export interface CompanyInfoDto {
+export interface CompanyDto {
+  id: number;
   companyCode: string;
   name: string;
-  phone: string;
   address: string;
-  shortInfo: string;
   ceoname: string;
   website: string;
-  detailsUrl: string;
+  phone: string;
 }

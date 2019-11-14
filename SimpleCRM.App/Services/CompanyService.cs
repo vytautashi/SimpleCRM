@@ -26,7 +26,7 @@ namespace SimpleCRM.App.Services
         {
             // TODO validation
             Company companyTemp = _companyConverter.ToCompany(company.Company);
-            bool companyValid = true; // TODO validation
+            bool companyValid = companyTemp.Name.Length > 0; // TODO validation
             if (companyValid)
             {
                 await _companyRepository.AddAsync(companyTemp);

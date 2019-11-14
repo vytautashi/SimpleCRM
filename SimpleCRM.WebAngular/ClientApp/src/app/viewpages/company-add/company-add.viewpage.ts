@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyService } from 'src/app/services/company.service';
 import { CompanyInfoDto } from 'src/app/interfaces/CompanyInfoDto';
+import { CompanyDto } from 'src/app/interfaces/CompanyDto';
 
 @Component({
   selector: 'app-company-add-viewpage',
@@ -9,8 +10,9 @@ import { CompanyInfoDto } from 'src/app/interfaces/CompanyInfoDto';
 })
 export class CompanyAddViewpage {
   public companiesInfo: CompanyInfoDto[];
-  public company = { "companyCode": "", "title": "" };
+  public company: CompanyInfoDto = {companyCode: "", name: "", website: "", detailsUrl: "", shortInfo: "", address: "", ceoname: "", phone : "",};
   public addForm: boolean = true;
+  public msgId: number = -1;
   
   constructor(private service: CompanyService) {
   }
@@ -24,16 +26,29 @@ export class CompanyAddViewpage {
   }
 
   public clickFindByTitle() {
-    if (this.company.title != "") {
-      this.service.getCompaniesExternalByTitle(this.company.title).subscribe(result => {
+    if (this.company.name != "") {
+      this.service.getCompaniesExternalByTitle(this.company.name).subscribe(result => {
         this.companiesInfo = result.companiesInfo;
       }, error => console.error(error));
     }
   }
 
   public clickSubmit() {
-    alert("TODO submit");
+    this.addCompany(this.service.addNewCompany({ "company": this.company }));
   }
+
+  private addCompany(observable: Observable<any>) {
+    observable.subscribe(result => {
+      this.msgId = 1;
+      this.addForm = false;
+    }
+      , error => {
+        console.error(error);
+        this.msgId = 0;
+        this.addForm = true;
+      });
+  }
+
 
   public fillForm(index: number) {
     this.company = Object.assign({}, this.companiesInfo[index]);

@@ -34,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CompanyListViewpage } from './viewpages/company-list/company-list.viewpage';
 import { CompanyService } from './services/company.service';
 import { CompanyAddViewpage } from './viewpages/company-add/company-add.viewpage';
+import { CompanyViewpage } from './viewpages/company/company.viewpage';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CompanyAddViewpage } from './viewpages/company-add/company-add.viewpage
     DailyTaskViewpage,
     CompanyListViewpage,
     CompanyAddViewpage,
+    CompanyViewpage,
 
     EmployeeListComponent,
     EmployeeComponent,
@@ -79,6 +81,7 @@ import { CompanyAddViewpage } from './viewpages/company-add/company-add.viewpage
       { path: 'task-add', component: DailyTaskAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },
       { path: 'task/:id', component: DailyTaskViewpage },
+      { path: 'company/:id', component: CompanyViewpage },
       { path: 'company', component: CompanyListViewpage },
       { path: 'company-add', component: CompanyAddViewpage },
     ])
