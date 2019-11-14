@@ -15,13 +15,13 @@
         <div class="input-group mb-3">
           <input [(ngModel)]="company.companyCode" class="form-control" placeholder="Company Code">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" (click)="clickFindByCode()">Find</button>
+            <button class="btn btn-outline-secondary" type="button" id="findCodeButton" (click)="clickFindByCode()">Find</button>
           </div>
         </div>
         <div class="input-group mb-3">
           <input [(ngModel)]="company.name" class="form-control" placeholder="Name">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" (click)="clickFindByTitle()">Find</button>
+            <button class="btn btn-outline-secondary" type="button" id="findNameButton" (click)="clickFindByTitle()">Find</button>
           </div>
         </div>
         <div class="form-group">
