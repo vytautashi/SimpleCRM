@@ -14,6 +14,7 @@ namespace SimpleCRM.App.Converters
             {
                 Id = companyDto.Id,
                 Name = companyDto.Name,
+                Address = companyDto.Address,
                 Ceoname = companyDto.Ceoname,
                 Website = companyDto.Website,
                 Email = companyDto.Email,
@@ -29,6 +30,7 @@ namespace SimpleCRM.App.Converters
             {
                 Id = company.Id,
                 Name = company.Name,
+                Address = company.Address,
                 Ceoname = company.Ceoname,
                 Website = company.Website,
                 Email = company.Email,

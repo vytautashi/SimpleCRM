@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SimpleCRM.App.Helpers
 {
@@ -22,9 +23,39 @@ namespace SimpleCRM.App.Helpers
 
         public static async Task<CompanyInfoDto> CompanyByUrl(string url)
         {
-            // TODO
-            CompanyInfoDto companyInfoDtos = new CompanyInfoDto();
-            return companyInfoDtos;
+            string companyCode = "";
+            string ceoname = "";
+            string website = "";
+
+            CompanyInfoDto companyInfoDto;
+
+            var client = new HttpClient();
+            var document = new HtmlAgilityPack.HtmlDocument();
+
+            string urlDecoded = HttpUtility.UrlDecode(url);
+            var response = await client.GetAsync(urlDecoded);
+            var pageContents = await response.Content.ReadAsStringAsync();
+            document.LoadHtml(pageContents);
+
+            HtmlNode infoNode        = document.DocumentNode.SelectSingleNode("//div[@class='info']");
+            HtmlNode companyCodeNode = infoNode.SelectSingleNode(".//td[text() = 'Įmonės kodas']");
+            HtmlNode ceoNameNode     = infoNode.SelectSingleNode(".//td[text() = 'Vadovas']");
+            HtmlNode websiteNode     = infoNode.SelectSingleNode(".//td[text() = 'Tinklalapis']");
+
+            companyCode = companyCodeNode.NextSibling.NextSibling.InnerText.Trim();
+            website     = websiteNode.NextSibling.NextSibling.InnerText.Trim();
+            ceoname     = ceoNameNode.NextSibling.NextSibling.InnerText
+                .Replace(", direktorius", "").Replace(", direktorė", "").Trim();
+
+            companyInfoDto = new CompanyInfoDto
+            {
+                CompanyCode = companyCode,
+                Ceoname     = ceoname,
+                Website     = website,
+                DetailsUrl  = urlDecoded,
+            };
+
+            return companyInfoDto;
         }
 
         public static async Task<IEnumerable<CompanyInfoDto>> CompanyByField(string value, string searchField)
@@ -47,15 +78,17 @@ namespace SimpleCRM.App.Helpers
 
             foreach (HtmlNode node in document.DocumentNode.SelectNodes("//div[@class='firm']"))
             {
-                string title     = "";
-                string address   = "";
-                string shortInfo = "";
+                string title      = "";
+                string address    = "";
+                string shortInfo  = "";
+                string detailsUrl = "";
 
                 HtmlNode infoNode = node.SelectSingleNode(".//div[@class='info']");
                 HtmlNode firmTitleNode = infoNode.SelectSingleNode(".//a[@class='firmTitle']");
-                title     = firmTitleNode.InnerText;
-                address   = firmTitleNode.NextSibling.NextSibling.InnerText.Replace("Adresas: ", "");
-                shortInfo = firmTitleNode.NextSibling.NextSibling.NextSibling.NextSibling.InnerText.Replace("Veiklos sritys: ", "");
+                title      = firmTitleNode.InnerText;
+                address    = firmTitleNode.NextSibling.NextSibling.InnerText.Replace("Adresas: ", "");
+                shortInfo  = firmTitleNode.NextSibling.NextSibling.NextSibling.NextSibling.InnerText.Replace("Veiklos sritys: ", "");
+                detailsUrl = firmTitleNode.GetAttributeValue("href", "");
 
 
                 CompanyInfoDto companyInfoDto = new CompanyInfoDto
@@ -64,6 +97,7 @@ namespace SimpleCRM.App.Helpers
                     Title = title,
                     Address = address,
                     ShortInfo = shortInfo,
+                    DetailsUrl = detailsUrl,
                 };
 
                 companyInfoDtos.Add(companyInfoDto);

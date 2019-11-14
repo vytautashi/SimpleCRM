@@ -31,6 +31,8 @@
               <a [routerLink]="" class="card-link" (click)='fillForm(i)'>Fill</a>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ companyInfo.address }}</h6>
+            <p *ngIf="companyInfo.ceoname" class="card-subtitle mb-2 text-muted">Ceo: {{ companyInfo.ceoname }}</p>
+            <p *ngIf="companyInfo.website" class="card-subtitle mb-2 text-muted">{{ companyInfo.website }}</p>
             <p class="card-text">{{ companyInfo.shortInfo }}</p>
           </div>
         </div>

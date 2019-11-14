@@ -3,4 +3,7 @@ export interface CompanyInfoDto {
   title: string;
   address: string;
   shortInfo: string;
+  ceoname: string;
+  website: string;
+  detailsUrl: string;
 }

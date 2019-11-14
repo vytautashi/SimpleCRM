@@ -39,11 +39,11 @@ namespace SimpleCRM.WebAngular.Controllers
             return Ok(await _companyService.GetCompanyExternalByTitle(title));
         }
 
-        [Route("[action]/{title}")]
+        [Route("[action]/{url}")]
         [HttpGet]
-        public async Task<IActionResult> getCompanyExternalDetails(string title)
+        public async Task<IActionResult> getCompanyExternalDetails(string url)
         {
-            return Ok(await _companyService.GetCompanyExternalDetails(title));
+            return Ok(await _companyService.GetCompanyExternalDetails(url));
         }
     }
 }
