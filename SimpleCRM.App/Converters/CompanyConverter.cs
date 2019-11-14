@@ -13,13 +13,12 @@ namespace SimpleCRM.App.Converters
             Company company = new Company
             {
                 Id = companyDto.Id,
+                CompanyCode = companyDto.CompanyCode,
                 Name = companyDto.Name,
                 Address = companyDto.Address,
                 Ceoname = companyDto.Ceoname,
                 Website = companyDto.Website,
-                Email = companyDto.Email,
                 Phone = companyDto.Phone,
-                Status = companyDto.Status,
             };
             return company;
         }
@@ -29,13 +28,12 @@ namespace SimpleCRM.App.Converters
             CompanyDto companyDto = new CompanyDto
             {
                 Id = company.Id,
+                CompanyCode = company.CompanyCode,
                 Name = company.Name,
                 Address = company.Address,
                 Ceoname = company.Ceoname,
                 Website = company.Website,
-                Email = company.Email,
                 Phone = company.Phone,
-                Status = company.Status,
             };
             return companyDto;
         }

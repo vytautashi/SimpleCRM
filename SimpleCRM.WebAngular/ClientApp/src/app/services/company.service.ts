@@ -17,6 +17,10 @@ export class CompanyService {
     return this.http.get<any>(this.baseUrl + this.url + "/getCompaniesExternalByTitle/" + title);
   }
 
+  getCompanyExternalDetails(url: string) {
+    return this.http.get<any>(this.baseUrl + this.url + "/getCompanyExternalDetails/" + url);
+  }
+
   getCompanies() {
     return this.http.get<any>(this.baseUrl + this.url);
   }

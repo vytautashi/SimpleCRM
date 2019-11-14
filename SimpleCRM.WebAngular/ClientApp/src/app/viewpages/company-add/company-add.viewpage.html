@@ -1,5 +1,4 @@
 <div *ngIf="addForm">
-  123033512
   <h2>Add Company</h2>
   <div class="container">
     <div class="row">
@@ -20,6 +19,15 @@
         <div class="form-group">
           <input [(ngModel)]="company.address" class="form-control" placeholder="Address">
         </div>
+        <div class="form-group">
+          <input [(ngModel)]="company.ceoname" class="form-control" placeholder="Ceoname">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="company.website" class="form-control" placeholder="Website">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="company.phone" class="form-control" placeholder="Phone">
+        </div>
         <button type="button" class="btn btn-primary" (click)='clickSubmit()'>Submit</button>
       </div>
 
@@ -28,7 +36,8 @@
           <div class="card-body">
             <h5 class="card-title">
               {{ companyInfo.title }} ({{ companyInfo.companyCode }})
-              <a [routerLink]="" class="card-link" (click)='fillForm(i)'>Fill</a>
+              <a [routerLink]="" class="card-link" (click)='fillForm(i)'>Fill</a> 
+              <a [routerLink]="" class="card-link" (click)='getDetails(i)'>Get details</a>
             </h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ companyInfo.address }}</h6>
             <p *ngIf="companyInfo.ceoname" class="card-subtitle mb-2 text-muted">Ceo: {{ companyInfo.ceoname }}</p>

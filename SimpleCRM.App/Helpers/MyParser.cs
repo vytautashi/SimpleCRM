@@ -42,10 +42,13 @@ namespace SimpleCRM.App.Helpers
             HtmlNode ceoNameNode     = infoNode.SelectSingleNode(".//td[text() = 'Vadovas']");
             HtmlNode websiteNode     = infoNode.SelectSingleNode(".//td[text() = 'Tinklalapis']");
 
-            companyCode = companyCodeNode.NextSibling.NextSibling.InnerText.Trim();
-            website     = websiteNode.NextSibling.NextSibling.InnerText.Trim();
-            ceoname     = ceoNameNode.NextSibling.NextSibling.InnerText
-                .Replace(", direktorius", "").Replace(", direktorė", "").Trim();
+            if (companyCodeNode != null)
+                companyCode = companyCodeNode.NextSibling.NextSibling.InnerText.Trim();
+            if (websiteNode != null)
+                website     = websiteNode.NextSibling.NextSibling.InnerText.Trim();
+            if (ceoNameNode != null)
+                ceoname     = ceoNameNode.NextSibling.NextSibling.InnerText
+                    .Replace(", direktorius", "").Replace(", direktorė", "").Trim();
 
             companyInfoDto = new CompanyInfoDto
             {

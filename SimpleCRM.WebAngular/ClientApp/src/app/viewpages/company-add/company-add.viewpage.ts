@@ -39,4 +39,14 @@ export class CompanyAddViewpage {
     this.company = Object.assign({}, this.companiesInfo[index]);
   }
 
+  public getDetails(index: number) {
+    let url: string = encodeURIComponent(this.companiesInfo[index].detailsUrl);
+
+    this.service.getCompanyExternalDetails(url).subscribe(result => {
+      this.companiesInfo[index].companyCode = result.companyInfo.companyCode;
+      this.companiesInfo[index].ceoname = result.companyInfo.ceoname;
+      this.companiesInfo[index].website = result.companyInfo.website;
+    }, error => console.error(error));
+  }
+
 }
