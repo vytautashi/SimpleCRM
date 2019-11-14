@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCRM.App.Interfaces;
+using SimpleCRM.App.ViewModels;
 
 namespace SimpleCRM.WebAngular.Controllers
 {
@@ -24,6 +25,51 @@ namespace SimpleCRM.WebAngular.Controllers
         {
             return Ok(await _companyService.GetCompanyListAsync());
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int id)
+        {
+            var company = await _companyService.GetCompanyAsync(id);
+
+            if (company.Company != null)
+                return Ok(company);
+            else
+                return NotFound();
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post(CompanyViewModel company)
+        {
+            bool success = await _companyService.AddCompanyAsync(company);
+            if (success)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, CompanyViewModel company)
+        {
+            await _companyService.UpdateCompanyAsync(id, company);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _companyService.DeleteCompanyAsync(id);
+
+            return NoContent();
+        }
+
+
+        // ------------------------------------------------------------
+        // Find company details via external resources
 
         [Route("[action]/{companyCode}")]
         [HttpGet]
