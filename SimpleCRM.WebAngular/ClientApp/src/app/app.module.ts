@@ -7,7 +7,7 @@ import { CommonModule } from "@angular/common";
 
 import { AppComponent } from './app.component';
 import { NavMenuLeftComponent } from './menus/nav-menu-left/nav-menu-left.component';
-import { HomeViewpageComponent } from './viewpages/home/home-viewpage.component';
+import { HomeViewpage } from './viewpages/home/home.viewpage';
 import { EmployeeListComponent } from './components/employee/employee-list/employee-list.component';
 import { EmployeeComponent } from './components/employee/employee/employee.component';
 import { RoleService } from './services/role.service';
@@ -18,7 +18,7 @@ import { PriorityBarComponent } from './components/priority-bar/priority-bar.com
 import { EmployeeTasksComponent } from './components/tasks/tasks.component';
 import { MyTasksViewpageComponent } from './viewpages/my-tasks/my-tasks-viewpage.component';
 import { MyProfileViewpageComponent } from './viewpages/my-profile/my-profile-viewpage.component';
-import { EmployeeViewpageComponent } from './viewpages/employee/employee-viewpage.component';
+import { EmployeeViewpage } from './viewpages/employee/employee.viewpage';
 import { EmployeeListViewpageComponent } from './viewpages/employee-list/employee-list-viewpage.component';
 import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewpage.component';
 import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-add-viewpage.component';
@@ -40,10 +40,10 @@ import { CompanyViewpage } from './viewpages/company/company.viewpage';
   declarations: [
     AppComponent,
 	  NavMenuLeftComponent,
-    HomeViewpageComponent,
+    HomeViewpage,
     MyTasksViewpageComponent,
     MyProfileViewpageComponent,
-    EmployeeViewpageComponent,
+    EmployeeViewpage,
     EmployeeListViewpageComponent,
     TaskListViewpageComponent,
     EmployeeAddViewpageComponent,
@@ -70,13 +70,13 @@ import { CompanyViewpage } from './viewpages/company/company.viewpage';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeViewpageComponent, pathMatch: 'full' },
+      { path: '', component: HomeViewpage, pathMatch: 'full' },
       { path: 'my-tasks', component: MyTasksViewpageComponent },
       { path: 'my-profile', component: MyProfileViewpageComponent },
       { path: 'customer', component: CustomerListViewpage },
       { path: 'customer/:id', component: CustomerViewpage },
       { path: 'employee', component: EmployeeListViewpageComponent },
-      { path: 'employee/:id', component: EmployeeViewpageComponent },
+      { path: 'employee/:id', component: EmployeeViewpage },
       { path: 'employee-add', component: EmployeeAddViewpageComponent },
       { path: 'task-add', component: DailyTaskAddViewpageComponent },
       { path: 'task', component: TaskListViewpageComponent },

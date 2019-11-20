@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-viewpage',
-  templateUrl: './employee-viewpage.component.html',
+  templateUrl: './employee.viewpage.html',
 })
-export class EmployeeViewpageComponent {
+export class EmployeeViewpage {
   public employeeId: string;
 
   constructor(route: ActivatedRoute) {

@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home-viewpage',
-  templateUrl: './home-viewpage.component.html',
+  templateUrl: './home.viewpage.html',
 })
-export class HomeViewpageComponent {
+export class HomeViewpage {
 
 }
