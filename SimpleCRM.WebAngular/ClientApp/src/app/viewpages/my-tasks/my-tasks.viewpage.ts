@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-my-tasks-viewpage',
-  templateUrl: './my-tasks-viewpage.component.html',
+  templateUrl: './my-tasks.viewpage.html',
 })
-export class MyTasksViewpageComponent {
+export class MyTasksViewpage {
 }

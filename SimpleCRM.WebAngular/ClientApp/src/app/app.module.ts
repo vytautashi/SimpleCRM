@@ -16,13 +16,7 @@ import { DailyTaskService } from './services/dailytask.service';
 import { EmployeeService } from './services/employee.service';
 import { PriorityBarComponent } from './components/priority-bar/priority-bar.component';
 import { EmployeeTasksComponent } from './components/tasks/tasks.component';
-import { MyTasksViewpageComponent } from './viewpages/my-tasks/my-tasks-viewpage.component';
-import { MyProfileViewpageComponent } from './viewpages/my-profile/my-profile-viewpage.component';
 import { EmployeeViewpage } from './viewpages/employee/employee.viewpage';
-import { EmployeeListViewpageComponent } from './viewpages/employee-list/employee-list-viewpage.component';
-import { TaskListViewpageComponent } from './viewpages/task-list/task-list-viewpage.component';
-import { EmployeeAddViewpageComponent } from './viewpages/employee-add/employee-add-viewpage.component';
-import { DailyTaskAddViewpageComponent } from './viewpages/dailytask-add/dailytask-add-viewpage.component';
 import { EmployeeSelectlistComponent } from './components/employee/employee-selectlist/employee-selectlist.component';
 import { RoleSelectlistComponent } from './components/role/role-selectlist/role-selectlist.component';
 import { CustomerListViewpage } from './viewpages/customer-list/customer-list.viewpage';
@@ -35,19 +29,25 @@ import { CompanyListViewpage } from './viewpages/company-list/company-list.viewp
 import { CompanyService } from './services/company.service';
 import { CompanyAddViewpage } from './viewpages/company-add/company-add.viewpage';
 import { CompanyViewpage } from './viewpages/company/company.viewpage';
+import { DailyTaskListViewpage } from './viewpages/dailytask-list/dailytask-list.viewpage';
+import { MyTasksViewpage } from './viewpages/my-tasks/my-tasks.viewpage';
+import { MyProfileViewpage } from './viewpages/my-profile/my-profile.viewpage';
+import { EmployeeListViewpage } from './viewpages/employee-list/employee-list.viewpage';
+import { EmployeeAddViewpage } from './viewpages/employee-add/employee-add.viewpage';
+import { DailyTaskAddViewpage } from './viewpages/dailytask-add/dailytask-add.viewpage';
 
 @NgModule({
   declarations: [
     AppComponent,
 	  NavMenuLeftComponent,
     HomeViewpage,
-    MyTasksViewpageComponent,
-    MyProfileViewpageComponent,
+    MyTasksViewpage,
+    MyProfileViewpage,
     EmployeeViewpage,
-    EmployeeListViewpageComponent,
-    TaskListViewpageComponent,
-    EmployeeAddViewpageComponent,
-    DailyTaskAddViewpageComponent,
+    EmployeeListViewpage,
+    DailyTaskListViewpage,
+    EmployeeAddViewpage,
+    DailyTaskAddViewpage,
     CustomerListViewpage,
     CustomerViewpage,
     DailyTaskViewpage,
@@ -71,15 +71,15 @@ import { CompanyViewpage } from './viewpages/company/company.viewpage';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeViewpage, pathMatch: 'full' },
-      { path: 'my-tasks', component: MyTasksViewpageComponent },
-      { path: 'my-profile', component: MyProfileViewpageComponent },
+      { path: 'my-tasks', component: MyTasksViewpage },
+      { path: 'my-profile', component: MyProfileViewpage },
       { path: 'customer', component: CustomerListViewpage },
       { path: 'customer/:id', component: CustomerViewpage },
-      { path: 'employee', component: EmployeeListViewpageComponent },
+      { path: 'employee', component: EmployeeListViewpage },
       { path: 'employee/:id', component: EmployeeViewpage },
-      { path: 'employee-add', component: EmployeeAddViewpageComponent },
-      { path: 'task-add', component: DailyTaskAddViewpageComponent },
-      { path: 'task', component: TaskListViewpageComponent },
+      { path: 'employee-add', component: EmployeeAddViewpage },
+      { path: 'task-add', component: DailyTaskAddViewpage },
+      { path: 'task', component: DailyTaskListViewpage },
       { path: 'task/:id', component: DailyTaskViewpage },
       { path: 'company/:id', component: CompanyViewpage },
       { path: 'company', component: CompanyListViewpage },

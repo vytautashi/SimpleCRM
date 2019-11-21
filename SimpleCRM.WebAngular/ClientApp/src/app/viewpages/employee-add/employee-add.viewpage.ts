@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employee-add-viewpage',
-  templateUrl: './employee-add-viewpage.component.html',
+  templateUrl: './employee-add.viewpage.html',
 })
-export class EmployeeAddViewpageComponent {
+export class EmployeeAddViewpage {
   public employee = { "roleId": 0 };
   public msgId: number = -1;
   public addForm: boolean = true;

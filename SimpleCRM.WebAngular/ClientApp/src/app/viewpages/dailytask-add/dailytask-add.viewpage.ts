@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dailytask-add-viewpage',
-  templateUrl: './dailytask-add-viewpage.component.html',
+  templateUrl: './dailytask-add.viewpage.html',
 })
-export class DailyTaskAddViewpageComponent {
+export class DailyTaskAddViewpage {
   public dailyTask = { "employeeId": 0 };
   public msgId: number = -1;
   public addForm: boolean = true;
