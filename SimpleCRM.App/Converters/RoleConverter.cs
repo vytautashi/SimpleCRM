@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using SimpleCRM.App.Dto;
-using SimpleCRM.App.ViewModels;
+﻿using SimpleCRM.App.Dto;
 using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
@@ -18,11 +15,5 @@ namespace SimpleCRM.App.Converters
             };
             return roleDto;
         }
-
-        public RoleListViewModel ToRoleListViewModel(IEnumerable<Role> roles)
-        {
-            return new RoleListViewModel(ToDtoList(roles));
-        }
-
     }
 }

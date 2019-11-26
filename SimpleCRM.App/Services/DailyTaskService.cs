@@ -1,13 +1,9 @@
 ﻿using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.App.Converters;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using SimpleCRM.App.Validators;
 
@@ -28,35 +24,35 @@ namespace SimpleCRM.App.Services
         }
 
 
-        public async Task<DailyTaskListViewModel> GetListByEmployeeIdAsync(int id)
+        public async Task<IEnumerable<DailyTaskDto>> GetListByEmployeeIdAsync(int id)
         {
             IEnumerable<DailyTask> dailyTasks = await _dailyTaskRepository.GetListByEmployeeIdAsync(id);
 
-            return _dailyTaskConverter.ToDailyTaskListViewModel(dailyTasks);
+            return _dailyTaskConverter.ToDtoList(dailyTasks);
         }
 
-        public async Task<DailyTaskListViewModel> GetDailyTaskListAsync()
+        public async Task<IEnumerable<DailyTaskDto>> GetDailyTaskListAsync()
         {
             IEnumerable<DailyTask> dailyTasks = await _dailyTaskRepository.GetDailyTaskListAsync();
 
-            return _dailyTaskConverter.ToDailyTaskListViewModel(dailyTasks);
+            return _dailyTaskConverter.ToDtoList(dailyTasks);
         }
 
-        public async Task<DailyTaskViewModel> GetDailyTaskAsync(int id)
+        public async Task<DailyTaskDto> GetDailyTaskAsync(int id)
         {
             if (!await _dailyTaskRepository.ExistsAsync(id))
             {
-                return new DailyTaskViewModel();
+                return new DailyTaskDto();
             }
 
             DailyTask dailyTask = await _dailyTaskRepository.GetDailyTaskAsync(id);
 
-            return _dailyTaskConverter.ToDailyTaskViewModel(dailyTask);
+            return _dailyTaskConverter.ToDto(dailyTask);
         }
 
-        public async Task<bool> AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId)
+        public async Task<bool> AddDailyTaskAsync(DailyTaskDto dailyTask, int addByEmployeeId)
         {
-            DailyTask dailyTaskTemp = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
+            DailyTask dailyTaskTemp = _dailyTaskConverter.ToDailyTask(dailyTask);
             bool dailyTaskValid = DailyTaskValidator.isValid(dailyTaskTemp);
             if (dailyTaskValid)
             {
@@ -74,23 +70,23 @@ namespace SimpleCRM.App.Services
             }
         }
 
-        public async Task UpdateDailyTaskAsync(int id, DailyTaskViewModel dailyTask)
+        public async Task UpdateDailyTaskAsync(int id, DailyTaskDto dailyTask)
         {
             if (await _dailyTaskRepository.ExistsAsync(id))
             {
-                DailyTask task = _dailyTaskConverter.ToDailyTask(dailyTask.DailyTask);
+                DailyTask task = _dailyTaskConverter.ToDailyTask(dailyTask);
                 task.Id = id;
                 await _dailyTaskRepository.UpdateAsync(task);
             }
         }
 
-        public async Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask, int updateByEmployeeId)
+        public async Task UpdateStatusDailyTaskAsync(int id, DailyTaskDto dailyTask, int updateByEmployeeId)
         {
             if (await _dailyTaskRepository.ExistsAsync(id))
             {
-                DailyTaskViewModel taskFromDB = await GetDailyTaskAsync(id);
-                taskFromDB.DailyTask.Status = dailyTask.DailyTask.Status;
-                taskFromDB.DailyTask.Log = await _loggerService.createLogLineByEmployee(updateByEmployeeId, "Update Status", dailyTask.DailyTask.StatusText) + taskFromDB.DailyTask.Log;
+                DailyTaskDto taskFromDB = await GetDailyTaskAsync(id);
+                taskFromDB.Status = dailyTask.Status;
+                taskFromDB.Log = await _loggerService.createLogLineByEmployee(updateByEmployeeId, "Update Status", dailyTask.StatusText) + taskFromDB.Log;
                 
                 await UpdateDailyTaskAsync(id, taskFromDB);
             }

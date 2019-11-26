@@ -12,7 +12,7 @@ export class EmployeeSelectlistComponent {
   public employees: EmployeeDto[];
 
   constructor(private service: EmployeeService) {
-    service.getEmployees().subscribe(result => { this.employees = result.employees; }
+    service.getEmployees().subscribe(result => { this.employees = result; }
       , error => console.error(error));
   }
 

@@ -1,13 +1,9 @@
 ﻿using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.App.Converters;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.App.Services
@@ -23,11 +19,11 @@ namespace SimpleCRM.App.Services
             _roleConverter = new RoleConverter();
         }
 
-        public async Task<RoleListViewModel> GetListAsync()
+        public async Task<IEnumerable<RoleDto>> GetListAsync()
         {
             IEnumerable<Role> roles = await _roleRepository.GetListAsync();
 
-            return _roleConverter.ToRoleListViewModel(roles);
+            return _roleConverter.ToDtoList(roles);
         }
     }
 }

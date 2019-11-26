@@ -1,16 +1,13 @@
-﻿using SimpleCRM.Data.Models;
-using SimpleCRM.App.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SimpleCRM.App.Dto;
 
 namespace SimpleCRM.App.Interfaces
 {
     public interface ICustomerService
     {
-        Task<CustomerListViewModel> GetCustomerListAsync();
-        Task<CustomerViewModel> GetCustomerAsync(int id);
-        Task<CustomerViewModel> GetCustomerByPhoneAsync(string phoneNumber);
+        Task<IEnumerable<CustomerDto>> GetCustomerListAsync();
+        Task<CustomerDto> GetCustomerAsync(int id);
+        Task<CustomerDto> GetCustomerByPhoneAsync(string phoneNumber);
     }
 }

@@ -17,7 +17,7 @@ export class DailyTaskViewpage {
 
   constructor(private service: DailyTaskService, private route: ActivatedRoute) {
     service.getDailyTask(route.snapshot.paramMap.get('id')).subscribe(result => {
-      this.dailyTask = result.dailyTask;
+      this.dailyTask = result;
     }, error => {
       console.error(error);
       this.msgId = 0;
@@ -28,7 +28,7 @@ export class DailyTaskViewpage {
     this.showEditStatus = false;
     this.dailyTask.status = value;
     this.dailyTask.statusText = DailyTaskStatus[value];
-    this.service.updateStatusDailyTask(this.route.snapshot.paramMap.get('id') ,{ "dailyTask": this.dailyTask });
+    this.service.updateStatusDailyTask(this.route.snapshot.paramMap.get('id') ,this.dailyTask);
   }
 }
 

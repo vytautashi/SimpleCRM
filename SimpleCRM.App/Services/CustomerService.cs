@@ -1,13 +1,9 @@
 ﻿using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.App.Converters;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.App.Services
@@ -23,38 +19,38 @@ namespace SimpleCRM.App.Services
             _customerConverter = new CustomerConverter();
         }
 
-        public async Task<CustomerViewModel> GetCustomerAsync(int id)
+        public async Task<CustomerDto> GetCustomerAsync(int id)
         {
             if (!await _customerRepository.ExistsAsync(id))
             {
-                return new CustomerViewModel();
+                return new CustomerDto();
             }
 
             Customer customer = await _customerRepository.GetAsync(id);
 
-            return _customerConverter.ToCustomerViewModel(customer);
+            return _customerConverter.ToDto(customer);
         }
 
-        public async Task<CustomerViewModel> GetCustomerByPhoneAsync(string phoneNumber)
+        public async Task<CustomerDto> GetCustomerByPhoneAsync(string phoneNumber)
         {
             if (phoneNumber == null || phoneNumber.Equals(""))
             {
-                return new CustomerViewModel();
+                return new CustomerDto();
             }
             Customer customer = await _customerRepository.GetByPhoneAsync(phoneNumber);
             if (customer == null)
             {
-                return new CustomerViewModel();
+                return new CustomerDto();
             }
 
-            return _customerConverter.ToCustomerViewModel(customer);
+            return _customerConverter.ToDto(customer);
         }
 
-        public async Task<CustomerListViewModel> GetCustomerListAsync()
+        public async Task<IEnumerable<CustomerDto>> GetCustomerListAsync()
         {
             IEnumerable<Customer> customers = await _customerRepository.GetListAsync();
 
-            return _customerConverter.ToCustomerListViewModel(customers);
+            return _customerConverter.ToDtoList(customers);
         }
     }
 }

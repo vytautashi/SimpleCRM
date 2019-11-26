@@ -46,7 +46,7 @@ export class EmployeeTasksComponent {
 
   private getDailyTaskList(observable: Observable<any>) {
     observable.subscribe(result => {
-      this.tasksAll = result.dailyTasks;
+      this.tasksAll = result;
       this.tasks = this.tasksAll;
       this.filterDailyTasks();
     }

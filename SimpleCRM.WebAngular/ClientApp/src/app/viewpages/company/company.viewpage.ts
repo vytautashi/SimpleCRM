@@ -12,7 +12,7 @@ export class CompanyViewpage {
 
   constructor(private service: CompanyService, route: ActivatedRoute) {
     service.getCompany(route.snapshot.paramMap.get('id')).subscribe(result => {
-      this.company = result.company;
+      this.company = result;
     }, error => console.error(error));
   }
 

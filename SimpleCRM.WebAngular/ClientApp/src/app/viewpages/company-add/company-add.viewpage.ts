@@ -20,7 +20,7 @@ export class CompanyAddViewpage {
   public clickFindByCode() {
     if (this.company.companyCode != "") {
       this.service.getCompaniesExternalByCode(this.company.companyCode).subscribe(result => {
-        this.companiesInfo = result.companiesInfo;
+        this.companiesInfo = result;
       }, error => console.error(error));
     }
   }
@@ -28,13 +28,13 @@ export class CompanyAddViewpage {
   public clickFindByTitle() {
     if (this.company.name != "") {
       this.service.getCompaniesExternalByTitle(this.company.name).subscribe(result => {
-        this.companiesInfo = result.companiesInfo;
+        this.companiesInfo = result;
       }, error => console.error(error));
     }
   }
 
   public clickSubmit() {
-    this.addCompany(this.service.addNewCompany({ "company": this.company }));
+    this.addCompany(this.service.addNewCompany(this.company));
   }
 
   private addCompany(observable: Observable<any>) {
@@ -58,9 +58,9 @@ export class CompanyAddViewpage {
     let url: string = encodeURIComponent(this.companiesInfo[index].detailsUrl);
 
     this.service.getCompanyExternalDetails(url).subscribe(result => {
-      this.companiesInfo[index].companyCode = result.companyInfo.companyCode;
-      this.companiesInfo[index].ceoname = result.companyInfo.ceoname;
-      this.companiesInfo[index].website = result.companyInfo.website;
+      this.companiesInfo[index].companyCode = result.companyCode;
+      this.companiesInfo[index].ceoname = result.ceoname;
+      this.companiesInfo[index].website = result.website;
     }, error => console.error(error));
   }
 

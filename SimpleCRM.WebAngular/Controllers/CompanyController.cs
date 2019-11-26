@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 
 namespace SimpleCRM.WebAngular.Controllers
 {
@@ -33,7 +30,7 @@ namespace SimpleCRM.WebAngular.Controllers
         {
             var company = await _companyService.GetCompanyAsync(id);
 
-            if (company.Company != null)
+            if (company.Id != 0)
                 return Ok(company);
             else
                 return NotFound();
@@ -42,7 +39,7 @@ namespace SimpleCRM.WebAngular.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(CompanyViewModel company)
+        public async Task<IActionResult> Post(CompanyDto company)
         {
             bool success = await _companyService.AddCompanyAsync(company);
             if (success)
@@ -52,7 +49,7 @@ namespace SimpleCRM.WebAngular.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, CompanyViewModel company)
+        public async Task<IActionResult> Put(int id, CompanyDto company)
         {
             await _companyService.UpdateCompanyAsync(id, company);
 

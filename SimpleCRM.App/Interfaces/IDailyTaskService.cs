@@ -1,21 +1,18 @@
-﻿using SimpleCRM.Data.Models;
-using SimpleCRM.App.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SimpleCRM.App.Dto;
 
 namespace SimpleCRM.App.Interfaces
 {
     public interface IDailyTaskService
     {
-        Task<DailyTaskListViewModel> GetListByEmployeeIdAsync(int id);
-        Task UpdateStatusDailyTaskAsync(int id, DailyTaskViewModel dailyTask, int updateByEmployeeId);
+        Task<IEnumerable<DailyTaskDto>> GetListByEmployeeIdAsync(int id);
+        Task UpdateStatusDailyTaskAsync(int id, DailyTaskDto dailyTask, int updateByEmployeeId);
 
-        Task<DailyTaskListViewModel> GetDailyTaskListAsync();
-        Task<DailyTaskViewModel> GetDailyTaskAsync(int id);
-        Task<bool> AddDailyTaskAsync(DailyTaskViewModel dailyTask, int addByEmployeeId);
+        Task<IEnumerable<DailyTaskDto>> GetDailyTaskListAsync();
+        Task<DailyTaskDto> GetDailyTaskAsync(int id);
+        Task<bool> AddDailyTaskAsync(DailyTaskDto dailyTask, int addByEmployeeId);
         Task DeleteDailyTaskAsync(int id);
-        Task UpdateDailyTaskAsync(int id, DailyTaskViewModel dailyTask);
+        Task UpdateDailyTaskAsync(int id, DailyTaskDto dailyTask);
     }
 }

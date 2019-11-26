@@ -1,14 +1,10 @@
 ﻿using SimpleCRM.App.Converters;
 using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
 using SimpleCRM.App.Validators;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.App.Services
@@ -25,28 +21,28 @@ namespace SimpleCRM.App.Services
         }
 
 
-        public async Task<EmployeeListViewModel> GetEmployeeListAsync()
+        public async Task<IEnumerable<EmployeeDto>> GetEmployeeListAsync()
         {
             IEnumerable<Employee> employees = await _employeeRepository.GetEmployeeListAsync();
 
-            return _employeeConverter.ToEmployeeListViewModel(employees);
+            return _employeeConverter.ToDtoList(employees);
         }
 
-        public async Task<EmployeeViewModel> GetEmployeeAsync(int id)
+        public async Task<EmployeeDto> GetEmployeeAsync(int id)
         {
             if (!await _employeeRepository.ExistsAsync(id))
             {
-                return new EmployeeViewModel();
+                return new EmployeeDto();
             }
 
             Employee employee = await _employeeRepository.GetEmployeeAsync(id);
 
-            return _employeeConverter.ToEmployeeViewModel(employee);
+            return _employeeConverter.ToDto(employee);
         }
 
-        public async Task<bool> AddEmployeeAsync(EmployeeViewModel employee)
+        public async Task<bool> AddEmployeeAsync(EmployeeDto employee)
         {
-            Employee employeeTemp = _employeeConverter.ToEmployee(employee.Employee);
+            Employee employeeTemp = _employeeConverter.ToEmployee(employee);
             bool employeeValid = EmployeeValidator.isValid(employeeTemp);
             if (employeeValid)
             {
@@ -63,9 +59,9 @@ namespace SimpleCRM.App.Services
             }
         }
 
-        public async Task UpdateEmployeeAsync(int id, EmployeeViewModel employee)
+        public async Task UpdateEmployeeAsync(int id, EmployeeDto employee)
         {
-            Employee employeeTemp = _employeeConverter.ToEmployee(employee.Employee);
+            Employee employeeTemp = _employeeConverter.ToEmployee(employee);
             if (EmployeeValidator.isValid(employeeTemp) && (await _employeeRepository.ExistsAsync(id)))
             {
                 employeeTemp.Id = id;

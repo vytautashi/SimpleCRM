@@ -19,7 +19,7 @@ export class DailyTaskAddViewpage {
   }
 
   public clickSubmit() {
-    this.addDailyTask(this.service.addNewDailyTask({ "dailyTask": this.dailyTask }));
+    this.addDailyTask(this.service.addNewDailyTask(this.dailyTask));
   }
 
   private addDailyTask(observable: Observable<any>) {

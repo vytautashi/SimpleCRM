@@ -26,7 +26,7 @@ export class EmployeeComponent {
   }
 
   private getEmployee(observable: Observable<any>) {
-    observable.subscribe(result => { this.employee = result.employee; }
+    observable.subscribe(result => { this.employee = result; }
       , error => {
         console.error(error);
         this.msgId = 0;

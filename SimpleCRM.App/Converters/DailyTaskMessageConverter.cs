@@ -1,9 +1,5 @@
 ﻿using SimpleCRM.App.Dto;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleCRM.App.Converters
 {
@@ -22,11 +18,6 @@ namespace SimpleCRM.App.Converters
                 EmployeeId = dailyTaskMessage.EmployeeId,
             };
             return dailyTaskMessageDto;
-        }
-
-        public DailyTaskMessageListViewModel ToDailyTaskMessageListView(IEnumerable<DailyTaskMessage> dailyTaskMessage)
-        {
-            return new DailyTaskMessageListViewModel(ToDtoList(dailyTaskMessage));
         }
     }
 }

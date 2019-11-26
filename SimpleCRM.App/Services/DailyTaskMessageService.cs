@@ -1,11 +1,9 @@
 ﻿using SimpleCRM.App.Converters;
+using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.App.Services
@@ -21,11 +19,11 @@ namespace SimpleCRM.App.Services
             _dailyTaskMessageConverter = new DailyTaskMessageConverter();
         }
 
-        public async Task<DailyTaskMessageListViewModel> GetListAsync()
+        public async Task<IEnumerable<DailyTaskMessageDto>> GetListAsync()
         {
             IEnumerable<DailyTaskMessage> dailyTaskMessages = await _dailyTaskMessageRepository.GetListAsync();
 
-            return _dailyTaskMessageConverter.ToDailyTaskMessageListView(dailyTaskMessages);
+            return _dailyTaskMessageConverter.ToDtoList(dailyTaskMessages);
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using SimpleCRM.Data.Models;
-using SimpleCRM.App.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SimpleCRM.App.Dto;
 
 namespace SimpleCRM.App.Interfaces
 {
     public interface IRoleService
     {
-        Task<RoleListViewModel> GetListAsync();
+        Task<IEnumerable<RoleDto>> GetListAsync();
     }
 }

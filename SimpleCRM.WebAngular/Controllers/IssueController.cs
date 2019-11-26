@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.App.Dto;
 
 namespace SimpleCRM.Web.Controllers
@@ -18,7 +14,6 @@ namespace SimpleCRM.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetByEmployee(int id)
         {
-            IssueListViewModel issueListViewModel = new IssueListViewModel();
             IssueDto[] issues =
             {
                 new IssueDto
@@ -33,8 +28,7 @@ namespace SimpleCRM.Web.Controllers
                     CustomerId = 1,
                 },
             };
-            issueListViewModel.Issues = issues.ToList();
-            return Ok(issueListViewModel);
+            return Ok(issues);
         }
 
     }

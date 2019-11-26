@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using SimpleCRM.App.Dto;
-using SimpleCRM.App.ViewModels;
-using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
 {
@@ -11,7 +8,7 @@ namespace SimpleCRM.App.Converters
         public abstract TDto ToDto(T item);
 
 
-        protected ICollection<TDto> ToDtoList(IEnumerable<T> objectList)
+        public ICollection<TDto> ToDtoList(IEnumerable<T> objectList)
         {
             Collection<TDto> objectDtoList = new Collection<TDto>();
 

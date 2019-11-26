@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using SimpleCRM.App.Dto;
-using SimpleCRM.App.ViewModels;
+﻿using SimpleCRM.App.Dto;
 using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
@@ -39,18 +36,5 @@ namespace SimpleCRM.App.Converters
             };
             return dailyTaskDto;
         }
-
-        public DailyTaskListViewModel ToDailyTaskListViewModel(IEnumerable<DailyTask> dailyTasks)
-        {
-            return new DailyTaskListViewModel(ToDtoList(dailyTasks));
-        }
-
-        public DailyTaskViewModel ToDailyTaskViewModel(DailyTask dailyTask)
-        {
-            return new DailyTaskViewModel(ToDto(dailyTask));
-        }
-
-
-
     }
 }

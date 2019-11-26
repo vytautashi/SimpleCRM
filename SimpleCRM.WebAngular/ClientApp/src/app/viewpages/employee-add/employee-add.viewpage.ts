@@ -20,7 +20,7 @@ export class EmployeeAddViewpage {
   }
 
   public clickSubmit() {
-    this.addEmployee(this.service.addNewEmployee({ "employee": this.employee }));
+    this.addEmployee(this.service.addNewEmployee(this.employee));
   }
 
   private addEmployee(observable: Observable<any>) {

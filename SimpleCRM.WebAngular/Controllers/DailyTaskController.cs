@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 
 namespace SimpleCRM.Web.Controllers
 {
@@ -37,7 +35,7 @@ namespace SimpleCRM.Web.Controllers
         {
             var dailyTask = await _dailyTaskService.GetDailyTaskAsync(id);
 
-            if (dailyTask.DailyTask != null)
+            if (dailyTask.DailyTaskId != 0)
                 return Ok(dailyTask);
             else
                 return NotFound();
@@ -64,7 +62,7 @@ namespace SimpleCRM.Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(DailyTaskViewModel dailyTask)
+        public async Task<IActionResult> Post(DailyTaskDto dailyTask)
         {
             bool success = await _dailyTaskService.AddDailyTaskAsync(dailyTask, getUserId());
             if (success)
@@ -75,14 +73,14 @@ namespace SimpleCRM.Web.Controllers
 
         [Route("[action]/{id}")]
         [HttpPut]
-        public async Task<IActionResult> UpdateStatus(int id, DailyTaskViewModel dailyTask)
+        public async Task<IActionResult> UpdateStatus(int id, DailyTaskDto dailyTask)
         {
             await _dailyTaskService.UpdateStatusDailyTaskAsync(id, dailyTask, getUserId());
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, DailyTaskViewModel dailyTask)
+        public async Task<IActionResult> Put(int id, DailyTaskDto dailyTask)
         {
             await _dailyTaskService.UpdateDailyTaskAsync(id, dailyTask);
 

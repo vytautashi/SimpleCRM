@@ -12,7 +12,7 @@ export class RoleDropdownComponent {
   public roles: RoleDto[];
 
   constructor(service: RoleService) {
-    service.getRoles().subscribe(result => { this.roles = result.roles; }
+    service.getRoles().subscribe(result => { this.roles = result; }
       , error => console.error(error));
   }
 

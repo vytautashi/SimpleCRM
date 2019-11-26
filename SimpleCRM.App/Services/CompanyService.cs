@@ -1,12 +1,10 @@
 ﻿using SimpleCRM.App.Converters;
+using SimpleCRM.App.Dto;
 using SimpleCRM.App.Helpers;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 using SimpleCRM.Data.Interfaces;
 using SimpleCRM.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimpleCRM.App.Services
@@ -22,10 +20,10 @@ namespace SimpleCRM.App.Services
             _companyConverter = new CompanyConverter();
         }
 
-        public async Task<bool> AddCompanyAsync(CompanyViewModel company)
+        public async Task<bool> AddCompanyAsync(CompanyDto company)
         {
             // TODO validation
-            Company companyTemp = _companyConverter.ToCompany(company.Company);
+            Company companyTemp = _companyConverter.ToCompany(company);
             bool companyValid = companyTemp.Name.Length > 0; // TODO validation
             if (companyValid)
             {
@@ -42,45 +40,45 @@ namespace SimpleCRM.App.Services
             }
         }
 
-        public async Task<CompanyViewModel> GetCompanyAsync(int id)
+        public async Task<CompanyDto> GetCompanyAsync(int id)
         {
             if (!await _companyRepository.ExistsAsync(id))
             {
-                return new CompanyViewModel();
+                return new CompanyDto();
             }
 
             Company company = await _companyRepository.GetAsync(id);
 
-            return _companyConverter.ToCompanyViewModel(company);
+            return _companyConverter.ToDto(company);
         }
 
-        public async Task<CompanyListViewModel> GetCompanyListAsync()
+        public async Task<IEnumerable<CompanyDto>> GetCompanyListAsync()
         {
             IEnumerable<Company> companies = await _companyRepository.GetListAsync();
 
-            return _companyConverter.ToCompanyListViewModel(companies);
+            return _companyConverter.ToDtoList(companies);
         }
 
-        public async Task<CompanyListViewModel> GetCompanyListSearchAsync(string search)
+        public async Task<IEnumerable<CompanyDto>> GetCompanyListSearchAsync(string search)
         {
             // TODO validation
             IEnumerable<Company> companies = await _companyRepository.GetListAsyncSearch(search);
 
-            return _companyConverter.ToCompanyListViewModel(companies);
+            return _companyConverter.ToDtoList(companies);
         }
 
-        public async Task<CompanyListViewModel> GetCompanyListSortAsync(string sort)
+        public async Task<IEnumerable<CompanyDto>> GetCompanyListSortAsync(string sort)
         {
             // TODO validation
             IEnumerable<Company> companies = await _companyRepository.GetListAsyncSort(sort);
 
-            return _companyConverter.ToCompanyListViewModel(companies);
+            return _companyConverter.ToDtoList(companies);
         }
 
-        public async Task UpdateCompanyAsync(int id, CompanyViewModel company)
+        public async Task UpdateCompanyAsync(int id, CompanyDto company)
         {
             // TODO validation
-            Company companyTemp = _companyConverter.ToCompany(company.Company);
+            Company companyTemp = _companyConverter.ToCompany(company);
             if (await _companyRepository.ExistsAsync(id))
             {
                 companyTemp.Id = id;
@@ -88,19 +86,19 @@ namespace SimpleCRM.App.Services
             }
         }
 
-        public async Task<CompanyInfoListViewModel> GetCompanyExternal(string companyCode)
+        public async Task<IEnumerable<CompanyInfoDto>> GetCompanyExternal(string companyCode)
         {
-            return new CompanyInfoListViewModel(await MyParser.CompanyByCode(companyCode));
+            return await MyParser.CompanyByCode(companyCode);
         }
 
-        public async Task<CompanyInfoListViewModel> GetCompanyExternalByTitle(string title)
+        public async Task<IEnumerable<CompanyInfoDto>> GetCompanyExternalByTitle(string title)
         {
-            return new CompanyInfoListViewModel(await MyParser.CompanyByTitle(title));
+            return await MyParser.CompanyByTitle(title);
         }
 
-        public async Task<CompanyInfoViewModel> GetCompanyExternalDetails(string url)
+        public async Task<CompanyInfoDto> GetCompanyExternalDetails(string url)
         {
-            return new CompanyInfoViewModel(await MyParser.CompanyByUrl(url));
+            return await MyParser.CompanyByUrl(url);
         }
     }
 }

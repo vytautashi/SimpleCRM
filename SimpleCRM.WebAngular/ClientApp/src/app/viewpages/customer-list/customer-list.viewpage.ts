@@ -12,7 +12,7 @@ export class CustomerListViewpage {
 
   constructor(private service: CustomerService) {
     service.getCustomers().subscribe(result => {
-      this.customers = result.customers;
+      this.customers = result;
     }, error => console.error(error));
   }
   formatDate(dateTime: Date) {

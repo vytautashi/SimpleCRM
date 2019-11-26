@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using SimpleCRM.App.Dto;
-using SimpleCRM.App.ViewModels;
+﻿using SimpleCRM.App.Dto;
 using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
@@ -37,16 +34,5 @@ namespace SimpleCRM.App.Converters
             };
             return employeeDto;
         }
-
-        public EmployeeListViewModel ToEmployeeListViewModel(IEnumerable<Employee> employees)
-        {
-            return new EmployeeListViewModel(ToDtoList(employees));
-        }
-
-        public EmployeeViewModel ToEmployeeViewModel(Employee employee)
-        {
-            return new EmployeeViewModel(ToDto(employee));
-        }
-
     }
 }

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SimpleCRM.App.Dto;
 using SimpleCRM.App.Interfaces;
-using SimpleCRM.App.ViewModels;
 
 namespace SimpleCRM.Web.Controllers
 {
@@ -45,7 +42,7 @@ namespace SimpleCRM.Web.Controllers
         {
             var employee = await _empoyeeService.GetEmployeeAsync(id);
 
-            if (employee.Employee != null)
+            if (employee.EmployeeId != 0)
                 return Ok(employee);
             else
                 return NotFound();
@@ -54,7 +51,7 @@ namespace SimpleCRM.Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(EmployeeViewModel employee)
+        public async Task<IActionResult> Post(EmployeeDto employee)
         {
             bool success = await _empoyeeService.AddEmployeeAsync(employee);
             if (success)
@@ -64,7 +61,7 @@ namespace SimpleCRM.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, EmployeeViewModel employee)
+        public async Task<IActionResult> Put(int id, EmployeeDto employee)
         {
             await _empoyeeService.UpdateEmployeeAsync(id, employee);
 

@@ -14,7 +14,7 @@ export class EmployeeListComponent {
 
   constructor(private service: EmployeeService) {
     service.getEmployees().subscribe(result => {
-      this.employeesAll = result.employees;
+      this.employeesAll = result;
       this.employees = this.employeesAll;
     }, error => console.error(error));
   }

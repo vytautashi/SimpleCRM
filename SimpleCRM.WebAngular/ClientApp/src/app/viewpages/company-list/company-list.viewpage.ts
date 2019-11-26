@@ -11,7 +11,7 @@ export class CompanyListViewpage {
 
   constructor(private service: CompanyService) {
     service.getCompanies().subscribe(result => {
-      this.companies = result.companies;
+      this.companies = result;
     }, error => console.error(error));
   }
 }

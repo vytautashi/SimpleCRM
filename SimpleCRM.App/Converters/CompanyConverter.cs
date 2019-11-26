@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using SimpleCRM.App.Dto;
-using SimpleCRM.App.ViewModels;
+﻿using SimpleCRM.App.Dto;
 using SimpleCRM.Data.Models;
 
 namespace SimpleCRM.App.Converters
@@ -37,18 +34,5 @@ namespace SimpleCRM.App.Converters
             };
             return companyDto;
         }
-
-        public CompanyListViewModel ToCompanyListViewModel(IEnumerable<Company> companies)
-        {
-            return new CompanyListViewModel(ToDtoList(companies));
-        }
-
-        public CompanyViewModel ToCompanyViewModel(Company company)
-        {
-            return new CompanyViewModel(ToDto(company));
-        }
-
-
-
     }
 }

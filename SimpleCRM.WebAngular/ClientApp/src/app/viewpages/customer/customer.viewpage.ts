@@ -13,7 +13,7 @@ export class CustomerViewpage {
 
   constructor(private service: CustomerService, route: ActivatedRoute) {
     service.getCustomer(route.snapshot.paramMap.get('id')).subscribe(result => {
-      this.customer = result.customer;
+      this.customer = result;
     }, error => console.error(error));
   }
 
