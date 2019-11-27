@@ -1,4 +1,4 @@
-<select class="form-control" (change)="selectChange($event.target.value)">
+<select class="form-control" (change)="selectChange($event.target.value)" id="employeeSelectList">
   <option disabled selected value> -- Employee -- </option>
   <option *ngFor="let employee of employees" value={{employee.employeeId}}>
     {{employee.fullName}} [id:{{employee.employeeId}}]
